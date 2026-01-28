@@ -70,10 +70,17 @@ export default function ProductGrid({ title = "New Products" }) {
   return (
     <div className="product-main flex-1">
       <div className="product-grid">
-        <h2 className="title text-xl sm:text-2xl font-extrabold text-gray-900 mb-6 uppercase tracking-wider flex items-center gap-2">
-          <span className="inline-block w-1.5 h-6 bg-gradient-to-b from-[#f0c14b] to-transparent rounded-full" aria-hidden="true"></span>
-          {title}
-        </h2>
+        <div className="mb-8">
+          <h2 className="title text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-[0.15em] flex items-center gap-3 relative group">
+            <span className="inline-block w-2 sm:w-2.5 h-8 sm:h-10 bg-gradient-to-b from-[#f0c14b] via-[#f0c14b]/80 to-transparent rounded-full shadow-lg shadow-[#f0c14b]/30" aria-hidden="true"></span>
+            <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent relative">
+              {title}
+              <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#f0c14b] to-transparent opacity-50"></span>
+            </span>
+            <span className="flex-1 h-0.5 bg-gradient-to-r from-[#f0c14b]/30 to-transparent ml-2"></span>
+          </h2>
+          <p className="text-sm text-gray-500 mt-2 ml-8 font-medium tracking-wide">Discover our latest collection</p>
+        </div>
 
         {/* First 4 Products - List View */}
         <div className="flex flex-col gap-3 sm:gap-4">
