@@ -44,14 +44,18 @@ export default function BestSellers() {
       <div className="container mx-auto px-4">
         
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-900 capitalize flex items-center gap-2">
-            <ion-icon name="flame" class="text-2xl text-red-500"></ion-icon>
-            Best Sellers
-          </h2>
-          <a href="#" className="text-sm text-gray-600 hover:text-gray-900 font-medium">
-            View All →
-          </a>
+        <div className="relative mb-6">
+          <div className="mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-[0.15em] flex items-center gap-3">
+              <span className="inline-block w-2 sm:w-2.5 h-8 sm:h-10 bg-gradient-to-b from-[#f0c14b] via-[#f0c14b]/80 to-transparent rounded-full shadow-lg shadow-[#f0c14b]/30" aria-hidden="true"></span>
+              <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent relative">
+                Best Sellers
+                <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#f0c14b] to-transparent opacity-50"></span>
+              </span>
+              <span className="flex-1 h-0.5 bg-gradient-to-r from-[#f0c14b]/30 to-transparent"></span>
+            </h2>
+            <p className="text-sm text-gray-500 mt-2 ml-8 font-medium tracking-wide">Top rated products</p>
+          </div>
         </div>
 
         {/* Products Grid */}
