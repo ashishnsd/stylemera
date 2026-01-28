@@ -1,0 +1,48 @@
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+
+const Home = lazy(() => import("./pages/Home"));
+const Cart = lazy(() => import("./pages/Cart"));
+const Wishlist = lazy(() => import("./pages/Wishlist"));
+const ProductDetails = lazy(() => import("./pages/ProductDetails"));
+
+export default function App() {
+  return (
+    <>
+      {/* Custom Scrollbar Styles */}
+      <style>{`
+        body::-webkit-scrollbar {
+          width: 15px;
+        }
+
+        body::-webkit-scrollbar-track {
+          background: #ffffff;
+          border-left: 1px solid hsl(0, 0%, 93%);
+        }
+
+        body::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #f0c14b, #f0c14b);
+          border: 3px solid #fdfbf8;
+          border-radius: 6px;
+          box-shadow: 0 0 8px rgba(240, 193, 75, 0.3);
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(180deg, #f0c14b, #f0c14b);
+        }
+      `}</style>
+
+      <Suspense fallback={<div style={{ padding: '50px', textAlign: 'center' }}><p>Loading...</p></div>}>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </>
+  );
+}
