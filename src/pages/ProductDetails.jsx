@@ -1,4 +1,5 @@
-import { useParams, useRef } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useRef } from "react";
 import { products } from "../data/Products";
 
 export default function ProductDetails() {
