@@ -1,3 +1,46 @@
+// Import all product images
+import jewellery1 from '../assets/images/products/jewellery-1.jpg';
+import jewellery2 from '../assets/images/products/jewellery-2.jpg';
+import jewellery3 from '../assets/images/products/jewellery-3.jpg';
+import perfume from '../assets/images/products/perfume.jpg';
+import jacket1 from '../assets/images/products/jacket-1.jpg';
+import jacket2 from '../assets/images/products/jacket-2.jpg';
+import jacket3 from '../assets/images/products/jacket-3.jpg';
+import jacket4 from '../assets/images/products/jacket-4.jpg';
+import jacket5 from '../assets/images/products/jacket-5.jpg';
+import jacket6 from '../assets/images/products/jacket-6.jpg';
+import shirt1 from '../assets/images/products/shirt-1.jpg';
+import shirt2 from '../assets/images/products/shirt-2.jpg';
+import shorts1 from '../assets/images/products/shorts-1.jpg';
+import shorts2 from '../assets/images/products/shorts-2.jpg';
+import watch1 from '../assets/images/products/watch-1.jpg';
+import watch2 from '../assets/images/products/watch-2.jpg';
+import watch3 from '../assets/images/products/watch-3.jpg';
+import watch4 from '../assets/images/products/watch-4.jpg';
+import shoe1 from '../assets/images/products/shoe-1.jpg';
+import shoe2 from '../assets/images/products/shoe-2.jpg';
+import shoe3 from '../assets/images/products/shoe-3.jpg';
+import shoe4 from '../assets/images/products/shoe-4.jpg';
+import shoe5 from '../assets/images/products/shoe-5.jpg';
+import clothes1 from '../assets/images/products/clothes-1.jpg';
+import clothes2 from '../assets/images/products/clothes-2.jpg';
+import clothes3 from '../assets/images/products/clothes-3.jpg';
+import clothes4 from '../assets/images/products/clothes-4.jpg';
+import partyWear1 from '../assets/images/products/party-wear-1.jpg';
+import partyWear2 from '../assets/images/products/party-wear-2.jpg';
+import belt from '../assets/images/products/belt.jpg';
+import shampoo from '../assets/images/products/shampoo.jpg';
+import sports1 from '../assets/images/products/sports-1.jpg';
+import sports2 from '../assets/images/products/sports-2.jpg';
+import sports3 from '../assets/images/products/sports-3.jpg';
+import sports4 from '../assets/images/products/sports-4.jpg';
+import sports5 from '../assets/images/products/sports-5.jpg';
+import sports6 from '../assets/images/products/sports-6.jpg';
+import prod1 from '../assets/images/products/1.jpg';
+import prod2 from '../assets/images/products/2.jpg';
+import prod3 from '../assets/images/products/3.jpg';
+import prod4 from '../assets/images/products/4.jpg';
+
 export const products = [
   {
     id: "jewel-1",
@@ -5,7 +48,7 @@ export const products = [
     category: "Jewelry",
     price: 199,
     oldPrice: 249,
-    image: "/src/assets/images/products/jewellery-1.jpg",
+    image: jewellery1,
     badge: "Sale"
   },
   {
@@ -13,7 +56,7 @@ export const products = [
     title: "Couple Rings",
     category: "Jewelry",
     price: 349,
-    image: "/src/assets/images/products/jewellery-2.jpg"
+    image: jewellery2
   },
   {
     id: "jewel-3",
@@ -21,7 +64,7 @@ export const products = [
     category: "Jewelry",
     price: 450,
     oldPrice: 500,
-    image: "/src/assets/images/products/jewellery-3.jpg",
+    image: jewellery3,
     badge: "10% Off"
   },
   {
@@ -29,7 +72,7 @@ export const products = [
     title: "Clothes Perfume",
     category: "Perfume",
     price: 129,
-    image: "/src/assets/images/products/perfume.jpg"
+    image: perfume
   },
   {
     id: "jacket-1",
@@ -37,7 +80,7 @@ export const products = [
     category: "Men's Fashion",
     price: 4999,
     oldPrice: 5999,
-    image: "/src/assets/images/products/jacket-1.jpg",
+    image: jacket1,
     badge: "Sale"
   },
   {
@@ -45,21 +88,21 @@ export const products = [
     title: "Denim Jacket",
     category: "Men's Fashion",
     price: 4999,
-    image: "/src/assets/images/products/jacket-2.jpg"
+    image: jacket2
   },
   {
     id: "jacket-3",
     title: "Winter Jacket",
     category: "Men's Fashion",
     price: 4999,
-    image: "/src/assets/images/products/jacket-3.jpg"
+    image: jacket3
   },
   {
     id: "jacket-4",
     title: "Sports Jacket",
     category: "Men's Fashion",
     price: 4999,
-    image: "/src/assets/images/products/jacket-4.jpg"
+    image: jacket4
   },
   {
     id: "jacket-5",
@@ -67,7 +110,7 @@ export const products = [
     category: "Men's Fashion",
     price: 4999,
     oldPrice: 5999,
-    image: "/src/assets/images/products/jacket-5.jpg",
+    image: jacket5,
     badge: "New"
   },
   {
@@ -75,14 +118,14 @@ export const products = [
     title: "Hoodie Jacket",
     category: "Men's Fashion",
     price: 4999,
-    image: "/src/assets/images/products/jacket-6.jpg"
+    image: jacket6
   },
   {
     id: "shirt-1",
     title: "Casual Shirt",
     category: "Men's Fashion",
     price: 89,
-    image: "/src/assets/images/products/shirt-1.jpg"
+    image: shirt1
   },
   {
     id: "shirt-2",
@@ -90,7 +133,7 @@ export const products = [
     category: "Men's Fashion",
     price: 99,
     oldPrice: 120,
-    image: "/src/assets/images/products/shirt-2.jpg",
+    image: shirt2,
     badge: "Sale"
   },
   {
@@ -98,14 +141,14 @@ export const products = [
     title: "Denim Shorts",
     category: "Men's Fashion",
     price: 79,
-    image: "/src/assets/images/products/shorts-1.jpg"
+    image: shorts1
   },
   {
     id: "shorts-2",
     title: "Cargo Shorts",
     category: "Men's Fashion",
     price: 89,
-    image: "/src/assets/images/products/shorts-2.jpg"
+    image: shorts2
   },
   {
     id: "watch-1",
@@ -113,7 +156,7 @@ export const products = [
     category: "Accessories",
     price: 299,
     oldPrice: 399,
-    image: "/src/assets/images/products/watch-1.jpg",
+    image: watch1,
     badge: "Hot"
   },
   {
@@ -121,28 +164,28 @@ export const products = [
     title: "Luxury Watch",
     category: "Accessories",
     price: 599,
-    image: "/src/assets/images/products/watch-2.jpg"
+    image: watch2
   },
   {
     id: "watch-3",
     title: "Sport Watch",
     category: "Accessories",
     price: 199,
-    image: "/src/assets/images/products/watch-3.jpg"
+    image: watch3
   },
   {
     id: "watch-4",
     title: "Classic Watch",
     category: "Accessories",
     price: 249,
-    image: "/src/assets/images/products/watch-4.jpg"
+    image: watch4
   },
   {
     id: "shoe-1",
     title: "Running Shoes",
     category: "Footwear",
     price: 159,
-    image: "/src/assets/images/products/shoe-1.jpg"
+    image: shoe1
   },
   {
     id: "shoe-2",
@@ -150,7 +193,7 @@ export const products = [
     category: "Footwear",
     price: 129,
     oldPrice: 159,
-    image: "/src/assets/images/products/shoe-2.jpg",
+    image: shoe2,
     badge: "Sale"
   },
   {
@@ -158,21 +201,21 @@ export const products = [
     title: "Formal Shoes",
     category: "Footwear",
     price: 199,
-    image: "/src/assets/images/products/shoe-3.jpg"
+    image: shoe3
   },
   {
     id: "shoe-4",
     title: "Sports Shoes",
     category: "Footwear",
     price: 179,
-    image: "/src/assets/images/products/shoe-4.jpg"
+    image: shoe4
   },
   {
     id: "shoe-5",
     title: "Boots",
     category: "Footwear",
     price: 249,
-    image: "/src/assets/images/products/shoe-5.jpg"
+    image: shoe5
   },
   {
     id: "clothes-1",
@@ -180,7 +223,7 @@ export const products = [
     category: "Women's Fashion",
     price: 189,
     oldPrice: 229,
-    image: "/src/assets/images/products/clothes-1.jpg",
+    image: clothes1,
     badge: "Sale"
   },
   {
@@ -188,21 +231,21 @@ export const products = [
     title: "Summer Dress",
     category: "Women's Fashion",
     price: 149,
-    image: "/src/assets/images/products/clothes-2.jpg"
+    image: clothes2
   },
   {
     id: "clothes-3",
     title: "Casual Top",
     category: "Women's Fashion",
     price: 79,
-    image: "/src/assets/images/products/clothes-3.jpg"
+    image: clothes3
   },
   {
     id: "clothes-4",
     title: "Designer Dress",
     category: "Women's Fashion",
     price: 299,
-    image: "/src/assets/images/products/clothes-4.jpg"
+    image: clothes4
   },
   {
     id: "party-1",
@@ -210,7 +253,7 @@ export const products = [
     category: "Women's Fashion",
     price: 399,
     oldPrice: 499,
-    image: "/src/assets/images/products/party-wear-1.jpg",
+    image: partyWear1,
     badge: "New"
   },
   {
@@ -218,21 +261,21 @@ export const products = [
     title: "Cocktail Dress",
     category: "Women's Fashion",
     price: 349,
-    image: "/src/assets/images/products/party-wear-2.jpg"
+    image: partyWear2
   },
   {
     id: "belt-1",
     title: "Leather Belt",
     category: "Accessories",
     price: 49,
-    image: "/src/assets/images/products/belt.jpg"
+    image: belt
   },
   {
     id: "shampoo-1",
     title: "Hair Care Shampoo",
     category: "Beauty",
     price: 29,
-    image: "/src/assets/images/products/shampoo.jpg"
+    image: shampoo
   },
   {
     id: "sports-1",
@@ -240,7 +283,7 @@ export const products = [
     category: "Sports",
     price: 149,
     oldPrice: 199,
-    image: "/src/assets/images/products/sports-1.jpg",
+    image: sports1,
     badge: "Sale"
   },
   {
@@ -248,14 +291,14 @@ export const products = [
     title: "Fitness Equipment",
     category: "Sports",
     price: 249,
-    image: "/src/assets/images/products/sports-2.jpg"
+    image: sports2
   },
   {
     id: "sports-3",
     title: "Sports Shoes",
     category: "Sports",
     price: 179,
-    image: "/src/assets/images/products/sports-3.jpg"
+    image: sports3
   },
   {
     id: "sports-4",
@@ -263,7 +306,7 @@ export const products = [
     category: "Sports",
     price: 59,
     oldPrice: 79,
-    image: "/src/assets/images/products/sports-4.jpg",
+    image: sports4,
     badge: "Hot"
   },
   {
@@ -271,14 +314,14 @@ export const products = [
     title: "Gym Bag",
     category: "Sports",
     price: 89,
-    image: "/src/assets/images/products/sports-5.jpg"
+    image: sports5
   },
   {
     id: "sports-6",
     title: "Sports Watch",
     category: "Sports",
     price: 199,
-    image: "/src/assets/images/products/sports-6.jpg"
+    image: sports6
   },
   {
     id: "prod-1",
@@ -286,7 +329,7 @@ export const products = [
     category: "Electronics",
     price: 299,
     oldPrice: 399,
-    image: "/src/assets/images/products/1.jpg",
+    image: prod1,
     badge: "30% Off"
   },
   {
@@ -294,7 +337,7 @@ export const products = [
     title: "Wireless Speaker",
     category: "Electronics",
     price: 149,
-    image: "/src/assets/images/products/2.jpg"
+    image: prod2
   },
   {
     id: "prod-3",
@@ -302,7 +345,7 @@ export const products = [
     category: "Electronics",
     price: 399,
     oldPrice: 499,
-    image: "/src/assets/images/products/3.jpg",
+    image: prod3,
     badge: "New"
   },
   {
@@ -310,6 +353,6 @@ export const products = [
     title: "Power Bank",
     category: "Electronics",
     price: 79,
-    image: "/src/assets/images/products/4.jpg"
+    image: prod4
   }
 ];
