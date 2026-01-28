@@ -78,17 +78,9 @@ export default function Blog() {
     <div className="w-full">
       {/* Neo-Brutalism Header */}
       <div className="flex items-center justify-center mb-5 bg-yellow-300 border-4 border-black p-[0.5px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-        <div className="mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-[0.15em] flex items-center gap-3">
-            <span className="inline-block w-2 sm:w-2.5 h-8 sm:h-10 bg-gradient-to-b from-[#f0c14b] via-[#f0c14b]/80 to-transparent rounded-full shadow-lg shadow-[#f0c14b]/30" aria-hidden="true"></span>
-            <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent relative">
-              Latest Blog
-              <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#f0c14b] to-transparent opacity-50"></span>
-            </span>
-            <span className="flex-1 h-0.5 bg-gradient-to-r from-[#f0c14b]/30 to-transparent"></span>
-          </h2>
-          <p className="text-sm text-gray-500 mt-2 ml-8 font-medium tracking-wide">Insights and trends</p>
-        </div>
+        <GradientHeading subtitle="Insights and trends">
+          Latest Blog
+        </GradientHeading>
 
       {/* Slider viewport */}
       <div className="relative">

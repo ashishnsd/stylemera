@@ -91,17 +91,9 @@ export default function TrendingProducts() {
   return (
     <div className="trending-products">
       {/* Title */}
-      <div className="mb-8">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-[0.15em] flex items-center gap-3">
-          <span className="inline-block w-2 sm:w-2.5 h-8 sm:h-10 bg-gradient-to-b from-[#f0c14b] via-[#f0c14b]/80 to-transparent rounded-full shadow-lg shadow-[#f0c14b]/30" aria-hidden="true"></span>
-          <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent relative">
-            Trending
-            <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#f0c14b] to-transparent opacity-50"></span>
-          </span>
-          <span className="flex-1 h-0.5 bg-gradient-to-r from-[#f0c14b]/30 to-transparent"></span>
-        </h2>
-        <p className="text-sm text-gray-500 mt-2 ml-8 font-medium tracking-wide">Most popular products</p>
-      </div>
+      <GradientHeading subtitle="Most popular products">
+        Trending
+      </GradientHeading>
 
       {/* Category Filter */}
       <div className="mb-6 flex gap-2 overflow-x-auto pb-2 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
