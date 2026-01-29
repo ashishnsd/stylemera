@@ -55,21 +55,21 @@ export default function CategoryScroller() {
                 <div className="relative flex flex-col items-center">
                   
                   {/* Circle */}
-                  <div className="w-12 h-12 rounded-full bg-white border-2 border-gray-200 group-hover:border-[#f0c14b] flex items-center justify-center mb-2 transition-all duration-300 group-hover:scale-110 relative z-10 shadow-sm group-hover:shadow-md">
+                  <div className="w-12 h-12 rounded-full bg-white border-2 border-gray-200 group-hover:border-[#f0c14b] flex items-center justify-center mb-2 transition-all duration-300 ease-out group-hover:scale-110 relative z-10 shadow-sm group-hover:shadow-lg">
                     <img 
                       src={cat.icon} 
                       alt={cat.title}
-                      className="w-6 h-6 opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                      className="w-6 h-6 opacity-60 group-hover:opacity-100 transition-all duration-300 ease-out group-hover:scale-110"
                     />
                   </div>
 
                   {/* Title */}
-                  <span className="text-xs text-gray-600 group-hover:text-gray-900 font-medium transition-colors duration-300">
+                  <span className="text-xs text-gray-600 group-hover:text-gray-900 font-medium transition-all duration-300 ease-out">
                     {cat.title}
                   </span>
 
                   {/* Count */}
-                  <span className="text-[10px] text-gray-400 mt-0.5">
+                  <span className="text-[10px] text-gray-400 mt-0.5 transition-colors duration-300 ease-out">
                     {cat.count}
                   </span>
                 </div>

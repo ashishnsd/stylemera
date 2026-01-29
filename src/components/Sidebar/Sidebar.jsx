@@ -13,7 +13,7 @@ import clothes3 from '../../assets/images/products/clothes-3.jpg';
 import clothes4 from '../../assets/images/products/clothes-4.jpg';
 
 export default function Sidebar() {
-  const { activeAccordion, setActiveAccordion, isSidebarOpen, setSidebarOpen } = useContext(UIContext);
+  const { activeAccordion, setActiveAccordion, isSidebarOpen, setSidebarOpen, setSelectedCategory } = useContext(UIContext);
 
   const toggle = (id) => setActiveAccordion(activeAccordion === id ? null : id);
   const closeSidebar = () => setSidebarOpen(false);
@@ -164,13 +164,18 @@ export default function Sidebar() {
                 <ul className={`overflow-hidden transition-all ${activeAccordion === category.id ? 'max-h-[300px] pt-1 pb-2' : 'max-h-0'}`}>
                   {category.items.map((item, index) => (
                     <li key={index}>
-                      <a 
-                        href="#"
-                        className="flex justify-between items-center py-1.5 px-3 ml-7 text-sm text-gray-600 hover:text-gray-900"
+                      <button 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setSelectedCategory(item.name);
+                          closeSidebar();
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className="w-full flex justify-between items-center py-1.5 px-3 ml-7 text-sm text-gray-600 hover:text-gray-900"
                       >
                         <span>{item.name}</span>
                         <span className="text-xs text-gray-400">{item.count}</span>
-                      </a>
+                      </button>
                     </li>
                   ))}
                 </ul>

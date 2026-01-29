@@ -9,6 +9,9 @@ export function UIProvider({ children }) {
   const [isCartOpen, setCartOpen] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState(null);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedFilters, setSelectedFilters] = useState({ design: [], color: [], price: [] });
+  const [showFilters, setShowFilters] = useState(false);
 
   const overlayVisible = isModalOpen || isMobileMenuOpen || isCartOpen || isSidebarOpen;
 
@@ -27,6 +30,12 @@ export function UIProvider({ children }) {
         setActiveAccordion,
         isSidebarOpen,
         setSidebarOpen,
+        selectedCategory,
+        setSelectedCategory,
+        selectedFilters,
+        setSelectedFilters,
+        showFilters,
+        setShowFilters,
         overlayVisible
       }}
     >
