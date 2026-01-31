@@ -31,14 +31,15 @@ export default function FilterBar() {
     badge: badgeOptions
   };
 
-  const toggleFilter = (filterType, filterId) => {
+
+  // Generic filter handler for future extensibility
+  const handleFilterChange = (filterType, filterId) => {
     setSelectedFilters(prev => {
       const current = prev[filterType] || [];
-      if (current.includes(filterId)) {
-        return { ...prev, [filterType]: current.filter(id => id !== filterId) };
-      } else {
-        return { ...prev, [filterType]: [...current, filterId] };
-      }
+      const updated = current.includes(filterId)
+        ? current.filter(id => id !== filterId)
+        : [...current, filterId];
+      return { ...prev, [filterType]: updated };
     });
   };
 
@@ -82,7 +83,7 @@ export default function FilterBar() {
           {filterGroups.category.map(filter => (
             <button
               key={filter.id}
-              onClick={() => toggleFilter("category", filter.id)}
+              onClick={() => handleFilterChange("category", filter.id)}
               className={`group inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ease-out border ${
                 selectedFilters.category?.includes(filter.id)
                   ? "bg-gray-900 text-white border-gray-900 shadow-md shadow-black/10"
@@ -115,7 +116,7 @@ export default function FilterBar() {
           {filterGroups.price.map(filter => (
             <button
               key={filter.id}
-              onClick={() => toggleFilter("price", filter.id)}
+              onClick={() => handleFilterChange("price", filter.id)}
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ease-out border ${
                 selectedFilters.price?.includes(filter.id)
                   ? "bg-[#f0c14b] text-gray-900 border-yellow-300 shadow-md shadow-yellow-300/30"
@@ -141,7 +142,7 @@ export default function FilterBar() {
             {filterGroups.badge.map(filter => (
               <button
                 key={filter.id}
-                onClick={() => toggleFilter("badge", filter.id)}
+                onClick={() => handleFilterChange("badge", filter.id)}
                 className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ease-out border ${
                   selectedFilters.badge?.includes(filter.id)
                     ? "bg-gray-900 text-white border-gray-900 shadow-md shadow-black/10"
