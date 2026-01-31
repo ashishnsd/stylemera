@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../../context/CartContext';
+import flyToCartFromElement from '../../utils/flyToCart';
 import shampoo from '../../assets/images/products/shampoo.jpg';
 import jewellery2 from '../../assets/images/products/jewellery-2.jpg';
 
@@ -155,6 +156,7 @@ export default function DealOfDay() {
                           className="bg-[#8b9a8b] hover:bg-[#6d7d6d] text-white text-xs font-bold uppercase px-3 py-1 rounded transition-colors"
                           onClick={(e) => {
                             e.stopPropagation();
+                            flyToCartFromElement(e.currentTarget);
                             addToCart({
                               id: deal.id,
                               name: deal.name,
@@ -298,6 +300,7 @@ export default function DealOfDay() {
                         className="w-full bg-[#8b9a8b] hover:bg-[#6d7d6d] text-white text-sm font-bold uppercase py-2.5 rounded transition-colors mb-3"
                         onClick={(e) => {
                           e.stopPropagation();
+                          flyToCartFromElement(e.currentTarget);
                           addToCart({
                             id: deal.id,
                             name: deal.name,
@@ -446,7 +449,9 @@ export default function DealOfDay() {
 
               <div className="flex flex-col gap-3">
                 <button 
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation && e.stopPropagation();
+                    flyToCartFromElement(e.currentTarget);
                     addToCart({
                       id: selectedDeal.id,
                       name: selectedDeal.name,
@@ -462,7 +467,9 @@ export default function DealOfDay() {
                   Add Cart
                 </button>
                 <button 
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation && e.stopPropagation();
+                    flyToCartFromElement(e.currentTarget);
                     addToCart({
                       id: selectedDeal.id,
                       name: selectedDeal.name,

@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect, useContext } from "react";
+import logo from "../../assets/images/logo/logo.svg";
 import ProductCard from "./ProductCard";
 import FilterBar from "./FilterBar";
 import { products } from "../../data/Products";
 import { CartContext } from "../../context/CartContext";
 import { UIContext } from "../../context/UIContext";
+import flyToCartFromElement from "../../utils/flyToCart";
 
 export default function ProductGrid({ title = "New Products" }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -14,17 +16,27 @@ export default function ProductGrid({ title = "New Products" }) {
   const { selectedCategory, selectedFilters, showFilters, setShowFilters } = useContext(UIContext);
   const gridRef = useRef(null);
   const moreProductsRef = useRef(null);
+  const filterPanelRef = useRef(null);
+  const filterToggleRef = useRef(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const touchStartY = useRef(0);
   const touchEndY = useRef(0);
 
-  // Filter products by category and design filters
+  // Filter products by category and selected filters
   let filteredProducts = selectedCategory 
     ? products.filter(p => p.category?.toLowerCase().includes(selectedCategory.toLowerCase()))
     : products;
 
-  // Apply design filters (placeholder - add design field to products later)
+  // Apply category filters
+  if (selectedFilters.category?.length > 0) {
+    filteredProducts = filteredProducts.filter(p =>
+      selectedFilters.category.some(categoryId =>
+        p.category?.toLowerCase().replace(/\s+/g, "-") === categoryId
+      )
+    );
+  }
+
   // Apply price filters
   if (selectedFilters.price?.length > 0) {
     const priceRanges = {
@@ -38,6 +50,15 @@ export default function ProductGrid({ title = "New Products" }) {
         return p.price >= min && p.price <= max;
       });
     });
+  }
+
+  // Apply badge filters
+  if (selectedFilters.badge?.length > 0) {
+    filteredProducts = filteredProducts.filter(p =>
+      selectedFilters.badge.some(badgeId =>
+        p.badge?.toLowerCase().replace(/\s+/g, "-") === badgeId
+      )
+    );
   }
 
   const displayProducts = filteredProducts.slice(0, 4);
@@ -64,6 +85,37 @@ export default function ProductGrid({ title = "New Products" }) {
       }
     };
   }, []);
+
+  // Close filters on outside click & prevent background scroll
+  useEffect(() => {
+    // Prevent background scroll when filters open
+    if (showFilters) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    if (!showFilters) return;
+
+    const handleOutsideClick = (event) => {
+      const panel = filterPanelRef.current;
+      const toggle = filterToggleRef.current;
+
+      if (!panel || !toggle) return;
+      if (panel.contains(event.target) || toggle.contains(event.target)) return;
+
+      setShowFilters(false);
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [showFilters, setShowFilters]);
 
   // Handle swipe/touch navigation
   const handleTouchStart = (e) => {
@@ -94,7 +146,7 @@ export default function ProductGrid({ title = "New Products" }) {
   return (
     <div className="product-main flex-1">
       <div className="product-grid">
-        <div className="mb-8">
+        <div id="new-products-section" className="mb-8">
           <h2 className="title text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-[0.15em] flex items-center gap-3 relative group">
             <span className="inline-block w-2 sm:w-2.5 h-8 sm:h-10 bg-gradient-to-b from-[#f0c14b] via-[#f0c14b]/80 to-transparent rounded-full shadow-lg shadow-[#f0c14b]/30" aria-hidden="true"></span>
             <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent relative">
@@ -109,20 +161,31 @@ export default function ProductGrid({ title = "New Products" }) {
         {/* Filter Toggle Button */}
         <div className="mb-6 flex items-center gap-3 animate-in fade-in duration-300">
           <button
+            ref={filterToggleRef}
             onClick={() => setShowFilters(!showFilters)}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#f0c14b] to-yellow-400 text-gray-900 font-bold text-sm rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 ease-out"
+            className={`
+              inline-flex items-center gap-2.5
+              px-6 sm:px-8 py-2.5 sm:py-3
+              rounded-lg font-semibold text-sm
+              transition-all duration-300
+              hover:scale-105 active:scale-95
+              shadow-md hover:shadow-lg
+              ${
+                showFilters
+                  ? "bg-[#f0c14b] text-gray-900 hover:bg-yellow-300"
+                  : "bg-white text-gray-900 hover:bg-[#f0c14b]"
+              }
+            `}
           >
             <ion-icon 
               name={showFilters ? "chevron-up" : "chevron-down"} 
-              class={`text-lg transition-all duration-500 ease-out ${showFilters ? 'rotate-0' : 'rotate-180'}`}
+              class={`text-lg transition-all duration-300 ease-out ${showFilters ? 'rotate-0' : 'rotate-180'}`}
               style={{
                 transform: showFilters ? 'rotate(0deg)' : 'rotate(180deg)',
                 transformOrigin: 'center'
               }}
             ></ion-icon>
-            <span className="transition-all duration-300 ease-out">
-              {showFilters ? "Hide Filters" : "Show Filters"}
-            </span>
+            <span>{showFilters ? "Hide Filters ↑" : "Filters →"}</span>
           </button>
           {Object.values(selectedFilters).some(arr => arr.length > 0) && (
             <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold animate-in fade-in zoom-in duration-300">
@@ -131,18 +194,54 @@ export default function ProductGrid({ title = "New Products" }) {
           )}
         </div>
 
-        {/* Filter Bar - Smooth Height Animation */}
-        <div 
-          className={`overflow-hidden transition-all duration-500 ease-out ${
-            showFilters 
-              ? 'max-h-screen opacity-100 mb-6 visible' 
-              : 'max-h-0 opacity-0 mb-0 invisible'
-          }`}
-        >
-          <div className="animate-in fade-in slide-in-from-top-2 duration-500">
-            <FilterBar />
+        {/* Filter Bar - With Backdrop for Better UX */}
+        {showFilters && (
+          <div>
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 bg-black/20 z-30 transition-opacity duration-300"
+              onClick={() => setShowFilters(false)}
+              aria-label="Close filters"
+            />
+            <div 
+              ref={filterPanelRef}
+              id="filter-bar-section"
+              className={`fixed left-0 top-0 w-full max-w-md sm:max-w-lg z-40 bg-white shadow-2xl overflow-y-auto border-r-2 border-yellow-100 transition-transform duration-500 ease-[cubic-bezier(.77,0,.175,1)] will-change-transform
+                ${showFilters ? 'translate-x-0 pointer-events-auto' : '-translate-x-full pointer-events-none'}`}
+              style={{
+                boxShadow: '8px 0 32px 0 rgba(0,0,0,0.10)',
+                borderTopRightRadius: '2rem',
+                borderBottomRightRadius: '2rem',
+                maxHeight: '90vh',
+                minHeight: 'auto',
+                marginTop: '2.5rem',
+                background: 'linear-gradient(135deg, #fffbe6 0%, #fff 100%)',
+                transformOrigin: 'left center'
+              }}
+            >
+              <div className="p-4 sm:p-6 pt-0">
+                <FilterBar />
+                <div className="flex flex-col gap-3 mt-10 px-2 pb-2">
+                  <button
+                    onClick={() => setShowFilters(false)}
+                    className="w-full flex items-center justify-center gap-2 text-base sm:text-lg font-bold text-gray-900 bg-gradient-to-r from-[#ffe082] to-[#f0c14b] hover:from-[#f0c14b] hover:to-[#ffe082] rounded-2xl py-3 shadow-md transition-all duration-200 active:scale-98 focus:outline-none focus:ring-2 focus:ring-[#f0c14b] border border-yellow-200"
+                    aria-label="Close filters"
+                  >
+                    <ion-icon name="arrow-back-outline" class="text-xl sm:text-2xl mr-1 opacity-80"></ion-icon>
+                    <span>Back</span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
+        {!showFilters && (
+          <div 
+            ref={filterPanelRef}
+            id="filter-bar-section"
+            className="overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0 mb-0 invisible"
+          />
+        )}
 
         {/* Products Count */}
         {filteredProducts.length > 0 && (
@@ -175,6 +274,7 @@ export default function ProductGrid({ title = "New Products" }) {
         {/* Main Slider with Thumbnail Navigation */}
         {remainingProducts.length > 0 && (
           <div 
+            id="more-products-section"
             ref={moreProductsRef}
             className={`mt-8 transition-all duration-700 ease-out transform ${
               showMore 
@@ -306,7 +406,9 @@ export default function ProductGrid({ title = "New Products" }) {
 
                 <div className="flex flex-col gap-3">
                   <button 
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation && e.stopPropagation();
+                      flyToCartFromElement(e.currentTarget);
                       addToCart(selectedProduct);
                       setIsModalAnimating(false);
                       setTimeout(() => setSelectedProduct(null), 150);
@@ -316,7 +418,9 @@ export default function ProductGrid({ title = "New Products" }) {
                     Add Cart
                   </button>
                   <button 
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation && e.stopPropagation();
+                      flyToCartFromElement(e.currentTarget);
                       addToCart(selectedProduct);
                       setIsModalAnimating(false);
                       setTimeout(() => setSelectedProduct(null), 150);

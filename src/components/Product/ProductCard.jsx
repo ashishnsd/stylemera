@@ -18,6 +18,48 @@ function ProductCard({
   const { addToCart } = useContext(CartContext);
 
   const handleAddToCart = () => {
+    // Visual fly-to-cart effect
+    try {
+      const imgEl = document.querySelector(`#product-${id} img`);
+      const cartBtn = document.getElementById('cart-button');
+
+      if (imgEl && cartBtn) {
+        const imgRect = imgEl.getBoundingClientRect();
+        const cartRect = cartBtn.getBoundingClientRect();
+
+        const flying = imgEl.cloneNode(true);
+        flying.style.position = 'fixed';
+        flying.style.left = `${imgRect.left}px`;
+        flying.style.top = `${imgRect.top}px`;
+        flying.style.width = `${imgRect.width}px`;
+        flying.style.height = `${imgRect.height}px`;
+        flying.style.transition = 'transform 1100ms cubic-bezier(0.2,0.8,0.2,1), opacity 1100ms ease';
+        flying.style.zIndex = 9999;
+        flying.style.borderRadius = '8px';
+        flying.style.pointerEvents = 'none';
+        document.body.appendChild(flying);
+
+        // Force reflow then animate
+        void flying.offsetWidth;
+
+        const targetX = cartRect.left + cartRect.width / 2 - imgRect.width / 2;
+        const targetY = cartRect.top + cartRect.height / 2 - imgRect.height / 2;
+        flying.style.transform = `translate3d(${targetX - imgRect.left}px, ${targetY - imgRect.top}px, 0) scale(0.15)`;
+        flying.style.opacity = '0.6';
+
+        // Cart pulse (slightly slower)
+        cartBtn.classList.add('cart-hit');
+        setTimeout(() => cartBtn.classList.remove('cart-hit'), 1050);
+
+        // Remove flying clone after animation completes
+        setTimeout(() => {
+          try { document.body.removeChild(flying); } catch (e) {}
+        }, 1150);
+      }
+    } catch (e) {
+      // ignore DOM errors
+    }
+
     addToCart({ id, title, price, image, category, oldPrice });
   };
 
@@ -36,6 +78,7 @@ function ProductCard({
 
       {/* Image */}
       <div 
+        id={`product-${id}`}
         className="relative w-36 sm:w-44 flex-shrink-0 bg-gray-50 overflow-hidden transition-all duration-300"
       >
         <img

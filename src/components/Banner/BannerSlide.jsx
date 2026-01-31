@@ -5,7 +5,7 @@ export default function BannerSlide({ img, subtitle, title, price }) {
       min-w-full 
       snap-start 
       flex items-center justify-center
-      h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px]
+      h-[200px] sm:h-[260px] md:h-[320px] lg:h-[360px]
       bg-gradient-to-br from-gray-50 to-gray-100
       overflow-hidden
     ">
@@ -25,7 +25,7 @@ export default function BannerSlide({ img, subtitle, title, price }) {
         absolute inset-0
         bg-gradient-to-t from-black/80 via-black/30 to-transparent
         flex flex-col justify-end
-        p-4 sm:p-6 md:p-8 lg:p-10
+        p-3 sm:p-4 md:p-6 lg:p-8
       ">
         <div className="max-w-xl">
           <p className="

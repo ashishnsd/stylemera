@@ -43,6 +43,23 @@ export default function App() {
           </Route>
         </Routes>
       </Suspense>
+
+      <style>{`
+        @keyframes search-drop {
+          0% { 
+            transform: translateY(-20px);
+            opacity: 0;
+          }
+          100% { 
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        
+        .animate-search-drop {
+          animation: search-drop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+      `}</style>
     </>
   );
 }

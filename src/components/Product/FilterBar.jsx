@@ -1,31 +1,34 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import logo from "../../assets/images/logo/logo.svg";
 import { UIContext } from "../../context/UIContext";
+import { products } from "../../data/Products";
 
 export default function FilterBar() {
   const { selectedFilters, setSelectedFilters } = useContext(UIContext);
+  const [clearAnim, setClearAnim] = useState(false);
+
+  const categoryOptions = Array.from(
+    new Set(products.map(p => p.category).filter(Boolean))
+  ).map(category => ({
+    id: category.toLowerCase().replace(/\s+/g, "-"),
+    label: category
+  }));
+
+  const badgeOptions = Array.from(
+    new Set(products.map(p => p.badge).filter(Boolean))
+  ).map(badge => ({
+    id: badge.toLowerCase().replace(/\s+/g, "-"),
+    label: badge
+  }));
 
   const filterGroups = {
-    design: [
-      { id: "solid", label: "Solid", icon: "🎨" },
-      { id: "striped", label: "Striped", icon: "📊" },
-      { id: "printed", label: "Printed", icon: "🖨️" },
-      { id: "tie-dye", label: "Tie-Dye", icon: "🌀" },
-      { id: "colorblock", label: "Color Block", icon: "🔲" },
-      { id: "floral", label: "Floral", icon: "🌸" }
-    ],
-    color: [
-      { id: "red", label: "Red", color: "#EF4444" },
-      { id: "blue", label: "Blue", color: "#3B82F6" },
-      { id: "black", label: "Black", color: "#1F2937" },
-      { id: "white", label: "White", color: "#F3F4F6" },
-      { id: "yellow", label: "Yellow", color: "#FBBF24" },
-      { id: "green", label: "Green", color: "#10B981" }
-    ],
+    category: categoryOptions,
     price: [
       { id: "budget", label: "₹0 - ₹500", range: [0, 500] },
       { id: "midrange", label: "₹500 - ₹2000", range: [500, 2000] },
       { id: "premium", label: "₹2000+", range: [2000, Infinity] }
-    ]
+    ],
+    badge: badgeOptions
   };
 
   const toggleFilter = (filterType, filterId) => {
@@ -40,79 +43,50 @@ export default function FilterBar() {
   };
 
   const clearAllFilters = () => {
-    setSelectedFilters({ design: [], color: [], price: [] });
+    setClearAnim(true);
+    setSelectedFilters({ category: [], price: [], badge: [] });
+    setTimeout(() => setClearAnim(false), 400);
   };
 
   return (
-    <div className="bg-gradient-to-r from-gray-50 to-white border border-gray-200 rounded-lg p-6 mb-8 transition-all duration-300 ease-out">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-black uppercase tracking-wider text-gray-900 flex items-center gap-2">
-          <span className="w-1 h-5 bg-[#f0c14b] rounded"></span>
+    <div className="relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white/80 backdrop-blur-xl shadow-[0_10px_30px_-15px_rgba(0,0,0,0.25)] p-6 sm:p-7 mb-8 transition-all duration-300 ease-out">
+      <div className="absolute inset-0 bg-gradient-to-br from-yellow-50/60 via-white to-gray-50/60 pointer-events-none"></div>
+      <div className="absolute -top-16 -right-12 w-40 h-40 rounded-full bg-[#f0c14b]/15 blur-2xl"></div>
+
+      {/* Header + Extra Features */}
+      <div className="relative flex items-center mb-6">
+        <h3 className="text-base sm:text-lg font-black uppercase tracking-[0.2em] text-gray-900 flex items-center gap-3">
+          <span className="w-2 h-6 bg-gradient-to-b from-[#f0c14b] to-yellow-300 rounded-full shadow-sm"></span>
           Filters
         </h3>
-        {Object.values(selectedFilters).some(arr => arr.length > 0) && (
+      </div>
+      {/* Clear All Button at Bottom */}
+      {Object.values(selectedFilters).some(arr => arr.length > 0) && (
+        <div className="flex justify-center mt-8">
           <button
             onClick={clearAllFilters}
-            className="text-sm font-semibold text-[#f0c14b] hover:text-yellow-600 transition-colors duration-200"
+            className={`text-base sm:text-lg font-bold uppercase tracking-wide px-8 py-3 rounded-full border-2 border-[#f0c14b] bg-[#fffbe6] text-yellow-900 shadow-lg hover:bg-[#f0c14b] hover:text-gray-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#f0c14b] ${clearAnim ? 'animate-pulse scale-105' : ''}`}
+            style={clearAnim ? { boxShadow: '0 0 0 6px #f0c14b44' } : {}}
           >
+            <ion-icon name="close-circle" class="text-xl mr-2 align-middle"></ion-icon>
             Clear All
           </button>
-        )}
-      </div>
-
-      {/* Design Filters */}
-      <div className="mb-6">
-        <h4 className="text-sm font-bold text-gray-800 mb-3 uppercase tracking-wider">Design</h4>
-        <div className="flex flex-wrap gap-2">
-          {filterGroups.design.map(filter => (
-            <button
-              key={filter.id}
-              onClick={() => toggleFilter("design", filter.id)}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ease-out ${
-                selectedFilters.design?.includes(filter.id)
-                  ? "bg-[#f0c14b] text-gray-900 shadow-md scale-105"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300 hover:scale-105"
-              }`}
-            >
-              {filter.icon} {filter.label}
-            </button>
-          ))}
         </div>
-      </div>
+      )}
 
-      {/* Color Filters */}
-      <div className="mb-6">
-        <h4 className="text-sm font-bold text-gray-800 mb-3 uppercase tracking-wider">Color</h4>
-        <div className="flex flex-wrap gap-3">
-          {filterGroups.color.map(filter => (
+
+      {/* Category Filters */}
+      <div className="relative mb-6">
+        <h4 className="text-xs sm:text-sm font-bold text-gray-800 uppercase tracking-widest mb-3">Category</h4>
+        <div className="flex flex-wrap gap-2.5">
+          {filterGroups.category.map(filter => (
             <button
               key={filter.id}
-              onClick={() => toggleFilter("color", filter.id)}
-              className={`w-10 h-10 rounded-full border-3 transition-all duration-200 ease-out hover:scale-110 ${
-                selectedFilters.color?.includes(filter.id)
-                  ? "border-[#f0c14b] scale-110 shadow-lg"
-                  : "border-gray-300 hover:shadow-md"
-              }`}
-              style={{ backgroundColor: filter.color }}
-              title={filter.label}
-            ></button>
-          ))}
-        </div>
-      </div>
-
-      {/* Price Filters */}
-      <div>
-        <h4 className="text-sm font-bold text-gray-800 mb-3 uppercase tracking-wider">Price Range</h4>
-        <div className="flex flex-wrap gap-2">
-          {filterGroups.price.map(filter => (
-            <button
-              key={filter.id}
-              onClick={() => toggleFilter("price", filter.id)}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ease-out ${
-                selectedFilters.price?.includes(filter.id)
-                  ? "bg-[#f0c14b] text-gray-900 shadow-md scale-105"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300 hover:scale-105"
+              onClick={() => toggleFilter("category", filter.id)}
+              className={`group inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ease-out border ${
+                selectedFilters.category?.includes(filter.id)
+                  ? "bg-gray-900 text-white border-gray-900 shadow-md shadow-black/10"
+                  : "bg-white/90 text-gray-700 border-gray-200 hover:border-gray-300 hover:shadow-sm"
               }`}
             >
               {filter.label}
@@ -121,28 +95,66 @@ export default function FilterBar() {
         </div>
       </div>
 
-      {/* Active Filters Display */}
-      {Object.values(selectedFilters).some(arr => arr.length > 0) && (
-        <div className="mt-6 pt-4 border-t border-gray-200 animate-in fade-in duration-300">
-          <p className="text-xs font-semibold text-gray-600 mb-2">Active Filters:</p>
-          <div className="flex flex-wrap gap-2">
-            {selectedFilters.design?.map(id => (
-              <span key={id} className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full font-medium animate-in fade-in zoom-in duration-300">
-                {filterGroups.design.find(f => f.id === id)?.label}
-                <button onClick={() => toggleFilter("design", id)} className="hover:text-blue-900 transition-colors duration-200">✕</button>
-              </span>
-            ))}
-            {selectedFilters.color?.map(id => (
-              <span key={id} className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full font-medium animate-in fade-in zoom-in duration-300">
-                {filterGroups.color.find(f => f.id === id)?.label}
-                <button onClick={() => toggleFilter("color", id)} className="hover:text-green-900 transition-colors duration-200">✕</button>
-              </span>
-            ))}
-            {selectedFilters.price?.map(id => (
-              <span key={id} className="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full font-medium animate-in fade-in zoom-in duration-300">
-                {filterGroups.price.find(f => f.id === id)?.label}
-                <button onClick={() => toggleFilter("price", id)} className="hover:text-purple-900 transition-colors duration-200">✕</button>
-              </span>
+      {/* Centered Logo Layer below Category */}
+      <div className="flex justify-center my-6">
+          {/* Logo as card background */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+            <img
+              src={logo}
+              alt="Brand Logo Background"
+              className="w-3/4 max-w-[320px] opacity-25"
+              draggable="false"
+            />
+          </div>
+      </div>
+
+      {/* Price Filters */}
+      <div className="relative mb-6">
+        <h4 className="text-xs sm:text-sm font-bold text-gray-800 uppercase tracking-widest mb-3">Price Range</h4>
+        <div className="flex flex-wrap gap-2.5">
+          {filterGroups.price.map(filter => (
+            <button
+              key={filter.id}
+              onClick={() => toggleFilter("price", filter.id)}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ease-out border ${
+                selectedFilters.price?.includes(filter.id)
+                  ? "bg-[#f0c14b] text-gray-900 border-yellow-300 shadow-md shadow-yellow-300/30"
+                  : "bg-white/90 text-gray-700 border-gray-200 hover:border-gray-300 hover:shadow-sm"
+              }`}
+            >
+              <span className={`w-2 h-2 rounded-full ${
+                selectedFilters.price?.includes(filter.id)
+                  ? "bg-gray-900"
+                  : "bg-gray-300"
+              }`}></span>
+              {filter.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Badge Filters */}
+      {filterGroups.badge.length > 0 && (
+        <div className="relative">
+          <h4 className="text-xs sm:text-sm font-bold text-gray-800 uppercase tracking-widest mb-3">Offers</h4>
+          <div className="flex flex-wrap gap-2.5">
+            {filterGroups.badge.map(filter => (
+              <button
+                key={filter.id}
+                onClick={() => toggleFilter("badge", filter.id)}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ease-out border ${
+                  selectedFilters.badge?.includes(filter.id)
+                    ? "bg-gray-900 text-white border-gray-900 shadow-md shadow-black/10"
+                    : "bg-white/90 text-gray-700 border-gray-200 hover:border-gray-300 hover:shadow-sm"
+                }`}
+              >
+                <span className={`w-2 h-2 rounded-full ${
+                  selectedFilters.badge?.includes(filter.id)
+                    ? "bg-[#f0c14b]"
+                    : "bg-gray-300"
+                }`}></span>
+                {filter.label}
+              </button>
             ))}
           </div>
         </div>

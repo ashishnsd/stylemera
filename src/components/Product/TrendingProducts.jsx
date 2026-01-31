@@ -2,6 +2,7 @@ import { useState, useContext, useRef, useEffect } from "react";
 import { CartContext } from "../../context/CartContext";
 import { WishlistContext } from "../../context/WishlistContext";
 import { products } from "../../data/Products";
+import flyToCartFromElement from "../../utils/flyToCart";
 
 export default function TrendingProducts() {
   const { addToCart } = useContext(CartContext);
@@ -89,7 +90,7 @@ export default function TrendingProducts() {
   };
 
   return (
-    <div className="trending-products">
+    <div id="trending-section" className="trending-products">
       {/* Title */}
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-[0.15em] flex items-center gap-3">
@@ -180,7 +181,7 @@ export default function TrendingProducts() {
 
               {/* Add to Cart Button */}
               <button 
-                onClick={() => addToCart(product)}
+                onClick={(e) => { e.stopPropagation(); flyToCartFromElement(e.currentTarget); addToCart(product); }}
                 className="w-full bg-[#8b9a8b] hover:bg-[#6d7d6d] text-white text-[10px] font-bold py-1.5 rounded transition-colors"
               >
                 Add Cart
@@ -281,7 +282,9 @@ export default function TrendingProducts() {
 
                 <div className="flex gap-3">
                   <button 
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      flyToCartFromElement(e.currentTarget);
                       addToCart(selectedProduct);
                       setIsModalAnimating(false);
                       setTimeout(() => setSelectedProduct(null), 150);
@@ -291,7 +294,9 @@ export default function TrendingProducts() {
                     Add Cart
                   </button>
                   <button 
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      flyToCartFromElement(e.currentTarget);
                       addToCart(selectedProduct);
                       setIsModalAnimating(false);
                       setTimeout(() => setSelectedProduct(null), 150);

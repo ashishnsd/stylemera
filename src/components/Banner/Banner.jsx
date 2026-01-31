@@ -61,7 +61,7 @@ export default function Banner() {
 
 
   return (
-    <div className="banner my-6 md:my-8 lg:mt-0">
+    <div className="banner my-4 md:my-6 lg:my-4">
       <div className="container mx-auto px-4">
         <div className="relative">
           {/* Slider Container */}

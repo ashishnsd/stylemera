@@ -1,7 +1,10 @@
 import logo from "../../assets/images/logo/logo.svg";
 import paymentImg from "../../assets/images/payment.png";
+import { useRef } from "react";
 
 export default function Footer() {
+  const footerRef = useRef(null);
+
   const footerCategories = [
     { name: "Fashion", icon: "shirt-outline" },
     { name: "Electronics", icon: "phone-portrait-outline" },
@@ -40,7 +43,18 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="overflow-hidden bg-gradient-to-b from-black via-[#0a0a0a] to-[#1a1a2e] mt-16 md:mt-24 lg:mt-32 w-full">
+    <footer ref={footerRef} className="relative overflow-hidden bg-gradient-to-b from-black via-[#0a0a0a] to-[#1a1a2e] mt-16 md:mt-24 lg:mt-32 w-full">
+      {/* Background Logo Layer */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img
+            src={logo}
+            alt=""
+            aria-hidden="true"
+            className="w-[90%] max-w-[900px] opacity-[0.18] blur-[0.5px]"
+          />
+        </div>
+      </div>
       <div className="w-full px-2 sm:px-4 py-8 md:py-12 lg:py-16">
         <div className="container mx-auto">
         {/* Main Content Grid */}
@@ -95,8 +109,7 @@ export default function Footer() {
 
           {/* Company Section */}
           <div className="col-span-1 md:col-span-2 lg:col-span-2">
-            <h3 className="text-white font-extrabold text-[13px] md:text-lg uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
-              <span className="w-1 h-6 bg-gradient-to-b from-[#f0c14b] to-transparent rounded-full"></span>
+            <h3 className="text-white font-bold text-sm md:text-base uppercase tracking-wider mb-3">
               COMPANY
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-2">
@@ -104,10 +117,10 @@ export default function Footer() {
                 <a
                   key={index}
                   href="#"
-                  className="group flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-[#f0c14b]/10 hover:to-transparent transition-all duration-300 hover:translate-x-1"
+                  className="group flex items-center gap-2 py-1.5 hover:text-[#f0c14b] transition-colors duration-200"
                 >
-                  <ion-icon name={item.icon} className="text-lg flex-shrink-0 group-hover:scale-125 transition-transform duration-300" style={{color: '#f0c14b'}}></ion-icon>
-                  <span className="text-gray-300 text-xs md:text-sm group-hover:text-[#f0c14b] transition-colors duration-300">{item.name}</span>
+                  <span className="text-[#f0c14b] text-sm">•</span>
+                  <span className="text-gray-300 text-xs md:text-sm">{item.name}</span>
                 </a>
               ))}
             </div>
@@ -120,7 +133,9 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
             {/* Payment Methods */}
             <div className="text-center md:text-left">
-              <p className="text-[#f0c14b] font-extrabold text-[12px] uppercase tracking-[0.2em] mb-3">Secure Payment</p>
+              <p className="text-white font-bold text-sm uppercase tracking-wider mb-3">
+                Secure Payment
+              </p>
               <img
                 src={paymentImg}
                 alt="payment methods"
@@ -130,7 +145,9 @@ export default function Footer() {
 
             {/* Newsletter */}
             <div className="md:col-span-2 lg:col-span-1">
-              <p className="text-[#f0c14b] font-extrabold text-[12px] uppercase tracking-[0.2em] mb-3">Newsletter</p>
+              <p className="text-white font-bold text-sm uppercase tracking-wider mb-3">
+                Newsletter
+              </p>
               <div className="flex gap-2">
                 <input
                   type="email"
@@ -169,6 +186,7 @@ export default function Footer() {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-20px); }
         }
+
       `}</style>
     </footer>
   );
@@ -178,8 +196,7 @@ export default function Footer() {
 function FooterSection({ title, items }) {
   return (
     <div>
-      <h3 className="text-white font-extrabold text-[13px] md:text-lg uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
-        <span className="w-1 h-6 bg-gradient-to-b from-[#f0c14b] to-transparent rounded-full"></span>
+      <h3 className="text-white font-bold text-sm md:text-base uppercase tracking-wider mb-3">
         {title}
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
@@ -187,10 +204,10 @@ function FooterSection({ title, items }) {
           <a
             key={index}
             href="#"
-            className="group flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-[#f0c14b]/10 hover:to-transparent transition-all duration-300 hover:translate-x-1"
+            className="group flex items-center gap-2 py-1.5 hover:text-[#f0c14b] transition-colors duration-200"
           >
-            <ion-icon name={item.icon} className="text-lg flex-shrink-0 group-hover:scale-125 transition-transform duration-300" style={{color: '#f0c14b'}}></ion-icon>
-            <span className="text-gray-300 text-xs md:text-sm group-hover:text-[#f0c14b] transition-colors duration-300">{item.name}</span>
+            <span className="text-[#f0c14b] text-sm">•</span>
+            <span className="text-gray-300 text-xs md:text-sm">{item.name}</span>
           </a>
         ))}
       </div>

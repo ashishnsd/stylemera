@@ -6,25 +6,46 @@ export default function CartDrawer() {
   const { cartItems, removeFromCart } = useContext(CartContext);
   const { isCartOpen, setCartOpen } = useContext(UIContext);
 
-  if (!isCartOpen) return null;
-
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   return (
-    <div className={`sidebar ${isCartOpen ? "active" : ""}`} style={{
-      position: 'fixed',
-      right: 0,
-      top: 0,
-      height: '100vh',
-      width: '350px',
-      background: 'white',
-      boxShadow: '-2px 0 8px rgba(0,0,0,0.1)',
-      zIndex: 1002,
-      overflowY: 'auto',
-      transform: isCartOpen ? 'translateX(0)' : 'translateX(100%)',
-      transition: 'transform 0.3s ease'
-    }}>
-      <div style={{ padding: '20px' }}>
+    <div style={{ pointerEvents: isCartOpen ? 'auto' : 'none' }}>
+      {/* Backdrop */}
+      <div
+        onClick={() => setCartOpen(false)}
+        style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'rgba(0,0,0,0.38)',
+          opacity: isCartOpen ? 1 : 0,
+          transition: 'opacity 0.4s ease',
+          zIndex: 1001
+        }}
+      />
+
+      <div className={`sidebar ${isCartOpen ? "active" : ""}`} style={{
+        position: 'fixed',
+        right: 0,
+        top: 0,
+        height: '100vh',
+        width: '350px',
+        maxWidth: '92vw',
+        background: 'white',
+        boxShadow: '-2px 0 18px rgba(0,0,0,0.18)',
+        zIndex: 1002,
+        overflowY: 'auto',
+        transform: isCartOpen ? 'translateX(0)' : 'translateX(104%)',
+        transition: 'transform 0.6s cubic-bezier(0.12, 0.72, 0.24, 1)',
+        willChange: 'transform',
+        backdropFilter: 'blur(0px)'
+      }}>
+        <div style={{
+          padding: '20px',
+          transform: isCartOpen ? 'translateX(0)' : 'translateX(14px)',
+          opacity: isCartOpen ? 1 : 0,
+          transition: 'transform 0.44s ease-out, opacity 0.36s ease-out',
+          transitionDelay: isCartOpen ? '60ms' : '0ms'
+        }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
           <h3 style={{ margin: 0 }}>Shopping Cart</h3>
           <button 
@@ -100,6 +121,7 @@ export default function CartDrawer() {
             </div>
           </>
         )}
+      </div>
       </div>
     </div>
   );

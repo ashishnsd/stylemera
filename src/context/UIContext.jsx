@@ -10,8 +10,9 @@ export function UIProvider({ children }) {
   const [activeAccordion, setActiveAccordion] = useState(null);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedFilters, setSelectedFilters] = useState({ design: [], color: [], price: [] });
+  const [selectedFilters, setSelectedFilters] = useState({ category: [], price: [], badge: [] });
   const [showFilters, setShowFilters] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
   const overlayVisible = isModalOpen || isMobileMenuOpen || isCartOpen || isSidebarOpen;
 
@@ -36,6 +37,8 @@ export function UIProvider({ children }) {
         setSelectedFilters,
         showFilters,
         setShowFilters,
+        showSearchBar,
+        setShowSearchBar,
         overlayVisible
       }}
     >
