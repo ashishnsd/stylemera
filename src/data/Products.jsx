@@ -379,13 +379,6 @@ export const products = [
     image: belt
   },
   {
-    id: "shampoo-1",
-    title: "Hair Care Shampoo",
-    category: "Beauty",
-    price: 29,
-    image: shampoo
-  },
-  {
     id: "sports-1",
     title: "Running Gear",
     category: "Sports",

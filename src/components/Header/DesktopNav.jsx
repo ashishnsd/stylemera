@@ -47,7 +47,7 @@ export default function DesktopNav() {
                 <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 group-hover:translate-y-0 translate-y-2">
                   <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-3 px-4 min-w-[200px]">
                     <ul className="space-y-2">
-                      {['Fashion', 'Home & Living', 'Sports', 'Beauty'].map((category) => (
+                      {['Fashion', 'Home & Living', 'Sports'].map((category) => (
                         <li key={category}>
                           <a 
                             href="#"
