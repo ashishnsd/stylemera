@@ -6,6 +6,7 @@ const Home = lazy(() => import("./pages/Home"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Wishlist = lazy(() => import("./pages/Wishlist"));
 const ProductDetails = lazy(() => import("./pages/ProductDetails"));
+const CategoryProducts = lazy(() => import("./pages/CategoryProducts"));
 
 export default function App() {
   return (
@@ -40,6 +41,7 @@ export default function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/category/:category" element={<CategoryProducts />} />
           </Route>
         </Routes>
       </Suspense>

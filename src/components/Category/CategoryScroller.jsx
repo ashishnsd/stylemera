@@ -96,116 +96,45 @@ export default function CategoryScroller() {
         `}</style>
       </div>
       {/* Category Sections - Only show active */}
-      {categories.map((cat, catIndex) => {
+      {categories.map(cat => {
         const filteredProducts = products.filter(p => p.category?.toLowerCase() === cat.title.toLowerCase());
         return activeSection === cat.title ? (
           <div
             key={cat.title}
             id={`${cat.title.toLowerCase().replace(/\s+/g, '-')}-section`}
-            className="container mx-auto px-4 py-12"
+            className="container mx-auto px-4 py-12 bg-gray-50"
           >
-            {/* Neo-Brutalism Header */}
-            <div className="flex items-center justify-center mb-8 bg-yellow-300 border-4 border-black p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-              <div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-[0.15em] flex items-center gap-3">
-                  <span className="inline-block w-2 sm:w-2.5 h-8 sm:h-10 bg-gradient-to-b from-[#f0c14b] via-[#f0c14b]/80 to-transparent rounded-full shadow-lg shadow-[#f0c14b]/30" aria-hidden="true"></span>
-                  <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent relative">
-                    {cat.title}
-                    <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#f0c14b] to-transparent opacity-50"></span>
-                  </span>
-                  <span className="flex-1 h-0.5 bg-gradient-to-r from-[#f0c14b]/30 to-transparent"></span>
-                </h2>
-                <p className="text-sm text-gray-800 mt-2 ml-8 font-bold tracking-wide uppercase">
-                  {filteredProducts.length} Products Available
-                </p>
-              </div>
-            </div>
+            <h2 className="text-2xl font-bold mb-2">{cat.title}</h2>
+            <p className="text-gray-600 mb-6">Total products: {filteredProducts.length}</p>
             
-            {/* Products Grid */}
+            {/* Suggestions Section */}
+            <h3 className="text-lg font-bold mb-4">Popular Products</h3>
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
-                {filteredProducts.slice(0, 15).map((product, index) => (
-                  <a 
-                    href={`/product/${product.id}`}
-                    key={product.id}
-                    className="block group"
-                  >
-                    <div
-                      className={`relative overflow-hidden border-4 border-black mb-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 ${
-                        index % 4 === 0
-                          ? "bg-yellow-200"
-                          : index % 4 === 1
-                          ? "bg-pink-200"
-                          : index % 4 === 2
-                          ? "bg-cyan-200"
-                          : "bg-purple-200"
-                      }`}
-                    >
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="w-full aspect-square object-cover border-b-4 border-black"
-                      />
-                      {product.badge && (
-                        <div className={`absolute top-2 right-2 px-2 py-1 border-2 border-black text-black text-xs font-black uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] ${
-                          product.badge.toLowerCase().includes('sale') ? 'bg-red-400' :
-                          product.badge.toLowerCase().includes('hot') ? 'bg-orange-400' :
-                          'bg-green-400'
-                        }`}>
-                          {product.badge}
-                        </div>
-                      )}
-                    </div>
-
-                    <h3 className="text-black text-sm font-black leading-tight mb-2 uppercase tracking-tight line-clamp-2 hover:text-pink-600 transition-colors">
-                      {product.title}
-                    </h3>
-
-                    <div className="flex items-center gap-2 bg-white border-3 border-black px-2 py-1.5 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-                      <div className="flex items-center gap-1">
-                        <div className="w-5 h-5 bg-green-400 border-2 border-black flex items-center justify-center">
-                          <span className="text-xs font-black">₹</span>
-                        </div>
-                        <span className="text-black font-black text-sm">{product.price}</span>
-                      </div>
-                      {product.oldPrice && (
-                        <>
-                          <span className="text-black font-black">•</span>
-                          <span className="text-gray-500 line-through text-xs font-bold">₹{product.oldPrice}</span>
-                        </>
-                      )}
-                    </div>
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-8">
+                {filteredProducts.slice(0, 12).map(sug => (
+                  <a href={`/product/${sug.id}`}
+                     key={sug.id}
+                     className="bg-white rounded-lg shadow p-3 flex flex-col items-center hover:shadow-lg transition min-w-0">
+                    <img src={sug.image} alt={sug.title} className="w-16 h-16 mb-2 object-cover rounded" />
+                    <span className="font-semibold text-xs text-center line-clamp-2">{sug.title}</span>
+                    <span className="text-[11px] text-gray-700 font-bold mt-1">₹{sug.price}</span>
+                    {sug.badge && <span className="text-[10px] bg-[#f0c14b] text-gray-900 px-1.5 py-0.5 rounded-full mt-1 font-bold">{sug.badge}</span>}
                   </a>
                 ))}
               </div>
             ) : (
-              <div className="bg-yellow-200 border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] text-center">
-                <p className="text-black font-black text-lg uppercase">No products found in this category.</p>
-              </div>
+              <p className="text-gray-500 mb-6">No products found in this category.</p>
             )}
             
-            {filteredProducts.length > 15 && (
-              <div className="flex justify-center">
-                <a 
-                  href={`/category/${cat.title.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="bg-yellow-400 border-4 border-black text-black font-black px-8 py-3 uppercase text-sm shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200"
-                >
-                  View All {filteredProducts.length} Products
-                </a>
-              </div>
-            )}
+            <div className="flex justify-center">
+              <a href={`/category/${cat.title.toLowerCase().replace(/\s+/g, '-')}`}
+                 className="bg-[#f0c14b] text-gray-900 font-bold px-6 py-2 rounded-full shadow hover:bg-yellow-400 transition">
+                View All Products
+              </a>
+            </div>
           </div>
         ) : null;
       })}
-      
-      <style>{`
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </>
   );
 }
