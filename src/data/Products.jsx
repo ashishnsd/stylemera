@@ -62,6 +62,24 @@ import shoe2 from '../assets/images/products/shoe-2.jpg';
 import shoe3 from '../assets/images/products/shoe-3.jpg';
 import shoe4 from '../assets/images/products/shoe-4.jpg';
 import shoe5 from '../assets/images/products/shoe-5.jpg';
+import shoeNew1 from '../assets/images/products/collection1.png';
+import shoeNew2 from '../assets/images/products/collection2.png';
+import shoeNew3 from '../assets/images/products/collection3.png';
+import shoeNew4 from '../assets/images/products/collection4.png';
+import shoeNew5 from '../assets/images/products/collection5.png';
+import shoeNew6 from '../assets/images/products/collection6.png';
+import shoeNew7 from '../assets/images/products/collection7.png';
+import shoeNew8 from '../assets/images/products/collection8.png';
+import shoeNew9 from '../assets/images/products/collection9.png';
+import shoeNew10 from '../assets/images/products/collection10.png';
+import shoeNew11 from '../assets/images/products/collection11.png';
+import shoeNew12 from '../assets/images/products/collection12.png';
+import shoeNew13 from '../assets/images/products/collection13.png';
+import shoeNew14 from '../assets/images/products/collection14.png';
+import shoeNew15 from '../assets/images/products/collection15.png';
+import shoeNew16 from '../assets/images/products/collection16.png';
+import shoeNew17 from '../assets/images/products/collection17.png';
+import shoeNew18 from '../assets/images/products/collection18.png';
 import clothes1 from '../assets/images/products/clothes-1.jpg';
 import clothes2 from '../assets/images/products/clothes-2.jpg';
 import clothes3 from '../assets/images/products/clothes-3.jpg';
@@ -704,5 +722,145 @@ export const products = [
     category: "Watch",
     price: 4499,
     image: watchList4
+  },
+  {
+    id: "shoe-new-1",
+    title: "Premium Running Shoes",
+    category: "Shoes",
+    price: 2499,
+    oldPrice: 3499,
+    image: shoeNew1,
+    badge: "Sale"
+  },
+  {
+    id: "shoe-new-2",
+    title: "Casual Sports Sneakers",
+    category: "Shoes",
+    price: 1999,
+    image: shoeNew2
+  },
+  {
+    id: "shoe-new-3",
+    title: "Stylish Canvas Shoes",
+    category: "Shoes",
+    price: 1599,
+    oldPrice: 2199,
+    image: shoeNew3,
+    badge: "Hot"
+  },
+  {
+    id: "shoe-new-4",
+    title: "Modern Athletic Shoes",
+    category: "Shoes",
+    price: 2299,
+    image: shoeNew4
+  },
+  {
+    id: "shoe-new-5",
+    title: "Comfort Walking Shoes",
+    category: "Shoes",
+    price: 1799,
+    image: shoeNew5
+  },
+  {
+    id: "shoe-new-6",
+    title: "Professional Sports Shoes",
+    category: "Shoes",
+    price: 2799,
+    oldPrice: 3599,
+    image: shoeNew6,
+    badge: "New"
+  },
+  {
+    id: "shoe-new-7",
+    title: "Urban Collection Shoes",
+    category: "Shoes",
+    price: 2199,
+    image: shoeNew7
+  },
+  {
+    id: "shoe-new-8",
+    title: "Lightweight Training Shoes",
+    category: "Shoes",
+    price: 2399,
+    image: shoeNew8
+  },
+  {
+    id: "shoe-new-9",
+    title: "Trendy Fashion Shoes",
+    category: "Shoes",
+    price: 1999,
+    oldPrice: 2699,
+    image: shoeNew9,
+    badge: "Sale"
+  },
+  {
+    id: "shoe-new-10",
+    title: "Durable Daily Wear Shoes",
+    category: "Shoes",
+    price: 1699,
+    image: shoeNew10
+  },
+  {
+    id: "shoe-new-11",
+    title: "Stylish Casual Shoes",
+    category: "Shoes",
+    price: 2099,
+    image: shoeNew11
+  },
+  {
+    id: "shoe-new-12",
+    title: "Premium Quality Shoes",
+    category: "Shoes",
+    price: 2899,
+    oldPrice: 3699,
+    image: shoeNew12,
+    badge: "Hot"
+  },
+  {
+    id: "shoe-new-13",
+    title: "Comfortable Everyday Shoes",
+    category: "Shoes",
+    price: 1899,
+    image: shoeNew13
+  },
+  {
+    id: "shoe-new-14",
+    title: "Fashion Forward Shoes",
+    category: "Shoes",
+    price: 2399,
+    image: shoeNew14
+  },
+  {
+    id: "shoe-new-15",
+    title: "Elegant Dress Shoes",
+    category: "Shoes",
+    price: 2699,
+    oldPrice: 3399,
+    image: shoeNew15,
+    badge: "New"
+  },
+  {
+    id: "shoe-new-16",
+    title: "Sport Performance Shoes",
+    category: "Shoes",
+    price: 2599,
+    image: shoeNew16
+  },
+  {
+    id: "shoe-new-17",
+    title: "Versatile Outdoor Shoes",
+    category: "Shoes",
+    price: 2199,
+    image: shoeNew17
+  },
+  {
+    id: "shoe-new-18",
+    title: "Latest Collection Shoes",
+    category: "Shoes",
+    price: 2499,
+    oldPrice: 3199,
+    image: shoeNew18,
+    badge: "Sale"
   }
 ];
