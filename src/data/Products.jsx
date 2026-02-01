@@ -80,6 +80,9 @@ import shoeNew15 from '../assets/images/products/collection15.png';
 import shoeNew16 from '../assets/images/products/collection16.png';
 import shoeNew17 from '../assets/images/products/collection17.png';
 import shoeNew18 from '../assets/images/products/collection18.png';
+import perfumeNew1 from '../assets/images/products/perfume1.png';
+import perfumeNew2 from '../assets/images/products/perfume2.png';
+import perfumeNew3 from '../assets/images/products/perfume3.png';
 import clothes1 from '../assets/images/products/clothes-1.jpg';
 import clothes2 from '../assets/images/products/clothes-2.jpg';
 import clothes3 from '../assets/images/products/clothes-3.jpg';
@@ -862,5 +865,30 @@ export const products = [
     oldPrice: 3199,
     image: shoeNew18,
     badge: "Sale"
+  },
+  {
+    id: "perfume-new-1",
+    title: "Premium Cologne Perfume",
+    category: "Perfume",
+    price: 1999,
+    oldPrice: 2499,
+    image: perfumeNew1,
+    badge: "Sale"
+  },
+  {
+    id: "perfume-new-2",
+    title: "Luxury Scent Perfume",
+    category: "Perfume",
+    price: 2299,
+    image: perfumeNew2
+  },
+  {
+    id: "perfume-new-3",
+    title: "Elegant Fragrance Perfume",
+    category: "Perfume",
+    price: 2499,
+    oldPrice: 3299,
+    image: perfumeNew3,
+    badge: "Hot"
   }
 ];
