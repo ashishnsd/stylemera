@@ -1,31 +1,30 @@
 import React, { useState } from "react";
 import { products } from "../../data/Products";
-import dress from "../../assets/images/icons/dress.svg";
-import coat from "../../assets/images/icons/coat.svg";
-import glasses from "../../assets/images/icons/glasses.svg";
-import shorts from "../../assets/images/icons/shorts.svg";
-import tee from "../../assets/images/icons/tee.svg";
-import jacket from "../../assets/images/icons/jacket.svg";
-import hat from "../../assets/images/icons/hat.svg";
-import watch from "../../assets/images/icons/watch.svg";
-import shoes from "../../assets/images/icons/shoes.svg";
-import jewelry from "../../assets/images/icons/jewelry.svg";
-import perfume from "../../assets/images/icons/perfume.svg";
-import cosmetics from "../../assets/images/icons/cosmetics.svg";
-import bag from "../../assets/images/icons/bag.svg";
+// Category representative product images
+import dressImg from "../../assets/images/products/clothes-1.jpg";
+import glassesImg from "../../assets/images/products/clothes-2.jpg";
+import tshirtImg from "../../assets/images/products/shirt-1.jpg";
+import jacketImg from "../../assets/images/products/jacket-1.jpg";
+import watchImg from "../../assets/images/products/watch-1.jpg";
+import hatImg from "../../assets/images/products/hat_cutout_fancy_simple.png";
+import shoeImg from "../../assets/images/products/shoe-1.jpg";
+import jewelryImg from "../../assets/images/products/jewellery-1.jpg";
+import perfumeImg from "../../assets/images/products/perfume.jpg";
+import cosmeticsImg from "../../assets/images/products/christianlouboutin-rougelouboutin-velvet-matte.png";
+import bagImg from "../../assets/images/products/bag-tote_bag_spacious_and_perfect_for.jpg";
 
 const categories = [
-  { title: "Dress", count: 53, icon: dress },
-  { title: "Glasses", count: 68, icon: glasses },
-  { title: "T-Shirts", count: 155, icon: tee },
-  { title: "Jacket", count: 48, icon: jacket },
-  { title: "Watch", count: 73, icon: watch },
-  { title: "Hats", count: 39, icon: hat },
-  { title: "Shoes", count: 92, icon: shoes },
-  { title: "Jewelry", count: 61, icon: jewelry },
-  { title: "Perfume", count: 34, icon: perfume },
-  { title: "Cosmetics", count: 125, icon: cosmetics },
-  { title: "Bags", count: 88, icon: bag },
+  { title: "Dress", count: 53, icon: dressImg },
+  { title: "Glasses", count: 68, icon: glassesImg },
+  { title: "T-Shirts", count: 155, icon: tshirtImg },
+  { title: "Jacket", count: 48, icon: jacketImg },
+  { title: "Watch", count: 73, icon: watchImg },
+  { title: "Hats", count: 39, icon: hatImg },
+  { title: "Shoes", count: 92, icon: shoeImg },
+  { title: "Jewelry", count: 61, icon: jewelryImg },
+  { title: "Perfume", count: 34, icon: perfumeImg },
+  { title: "Cosmetics", count: 125, icon: cosmeticsImg },
+  { title: "Bags", count: 88, icon: bagImg },
 ];
 
 export default function CategoryScroller() {
@@ -63,12 +62,11 @@ export default function CategoryScroller() {
                   {/* Dot */}
                   <div className="relative flex flex-col items-center">
                     {/* Circle */}
-                    <div className="w-12 h-12 rounded-full bg-white border-2 border-gray-200 group-hover:border-[#f0c14b] flex items-center justify-center mb-2 transition-all duration-300 ease-out group-hover:scale-105 relative z-10 shadow-sm group-hover:shadow-lg">
+                    <div className="w-12 h-12 rounded-full bg-white border-2 border-gray-200 group-hover:border-[#f0c14b] flex items-center justify-center mb-2 transition-all duration-300 ease-out group-hover:scale-105 relative z-10 shadow-sm group-hover:shadow-lg overflow-hidden">
                       <img 
                         src={cat.icon} 
                         alt={cat.title}
-                        className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-all duration-300 ease-out group-hover:scale-110"
-                        style={{ display: 'block', margin: 'auto', padding: 0, verticalAlign: 'middle' }}
+                        className="w-full h-full object-cover transition-all duration-300 ease-out group-hover:scale-110"
                       />
                     </div>
                     {/* Title */}
