@@ -53,6 +53,10 @@ import watchNew12 from '../assets/images/products/product3.png';
 import watchNew13 from '../assets/images/products/product4.png';
 import watchNew14 from '../assets/images/products/product5.png';
 import watchNew15 from '../assets/images/products/story.png';
+import watchList1 from '../assets/images/products/product-8.jpg';
+import watchList2 from '../assets/images/products/product-9.jpg';
+import watchList3 from '../assets/images/products/testimonial.png';
+import watchList4 from '../assets/images/products/watch.jpg';
 import shoe1 from '../assets/images/products/shoe-1.jpg';
 import shoe2 from '../assets/images/products/shoe-2.jpg';
 import shoe3 from '../assets/images/products/shoe-3.jpg';
@@ -668,5 +672,37 @@ export const products = [
     oldPrice: 6099,
     image: watchNew15,
     badge: "New"
+  },
+  {
+    id: "watch-list-1",
+    title: "Premium Apple Smart Watch",
+    category: "Watch",
+    price: 24999,
+    oldPrice: 29999,
+    image: watchList1,
+    badge: "Hot"
+  },
+  {
+    id: "watch-list-2",
+    title: "Advanced Tech Watch",
+    category: "Watch",
+    price: 8999,
+    image: watchList2
+  },
+  {
+    id: "watch-list-3",
+    title: "Testimonial Choice Watch",
+    category: "Watch",
+    price: 6999,
+    oldPrice: 8499,
+    image: watchList3,
+    badge: "Sale"
+  },
+  {
+    id: "watch-list-4",
+    title: "Classic Watch Collection",
+    category: "Watch",
+    price: 4499,
+    image: watchList4
   }
 ];
