@@ -25,7 +25,7 @@ export default function Sidebar() {
       icon: clothesIcon,
       items: [
         { name: "Shirt", count: 300 },
-        { name: "Shorts & Jeans", count: 60 },
+        { name: "Shorts", count: 60 },
         { name: "Jacket", count: 50 },
         { name: "Dress & Frock", count: 87 }
       ]
