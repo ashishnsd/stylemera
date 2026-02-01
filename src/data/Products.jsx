@@ -478,38 +478,6 @@ export const products = [
     image: sports6
   },
   {
-    id: "prod-1",
-    title: "Premium Headphones",
-    category: "Electronics",
-    price: 299,
-    oldPrice: 399,
-    image: prod1,
-    badge: "30% Off"
-  },
-  {
-    id: "prod-2",
-    title: "Wireless Speaker",
-    category: "Electronics",
-    price: 149,
-    image: prod2
-  },
-  {
-    id: "prod-3",
-    title: "Smart Camera",
-    category: "Electronics",
-    price: 399,
-    oldPrice: 499,
-    image: prod3,
-    badge: "New"
-  },
-  {
-    id: "prod-4",
-    title: "Power Bank",
-    category: "Electronics",
-    price: 79,
-    image: prod4
-  },
-  {
     id: "tshirt-new-1",
     title: "Casual Cotton T-Shirt",
     category: "T-Shirts",

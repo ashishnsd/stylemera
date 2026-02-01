@@ -7,7 +7,6 @@ export default function Footer() {
 
   const footerCategories = [
     { name: "Fashion", icon: "shirt-outline" },
-    { name: "Electronics", icon: "phone-portrait-outline" },
     { name: "Cosmetics", icon: "sparkles-outline" },
     { name: "Health", icon: "heart-outline" },
     { name: "Best Sellers", icon: "trophy-outline" }
@@ -70,7 +69,7 @@ export default function Footer() {
               />
               <div className="flex-1">
                 <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-2 md:mb-3">
-                  Your ultimate destination for fashion, electronics, cosmetics and more. Quality products with amazing prices delivered fast!
+                  Your ultimate destination for fashion, cosmetics, jewelry and more. Quality products with amazing prices delivered fast!
                 </p>
                 
                 <div className="flex gap-2 md:gap-3">

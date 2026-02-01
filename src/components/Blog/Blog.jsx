@@ -29,7 +29,7 @@ const blogs = [
   {
     id: 4,
     title: "Modern Shopping Experience: Future of Retail",
-    category: "Electronics",
+    category: "Fashion",
     date: "Mar 15, 2021",
     image: blog4
   }

@@ -1,4 +1,4 @@
-import{j as e,r,C as T,U as _,l as X,W as Y}from"./index-qpkDOZTe.js";import{p as P,s as O,j as q}from"./Products-PmlJ-Eoi.js";function W({img:m,subtitle:x,title:a,price:s}){return e.jsxs("div",{className:`\r
+import{j as e,r,C as T,U as _,l as X,W as Y}from"./index-QOkTFcGj.js";import{p as P,s as O,j as q}from"./Products-CDpHlT8q.js";function W({img:m,subtitle:x,title:a,price:s}){return e.jsxs("div",{className:`\r
       relative \r
       min-w-full \r
       snap-start \r
