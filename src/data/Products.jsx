@@ -372,52 +372,6 @@ export const products = [
     image: shoe5
   },
   {
-    id: "clothes-1",
-    title: "Party Dress",
-    category: "Women's Fashion",
-    price: 189,
-    oldPrice: 229,
-    image: clothes1,
-    badge: "Sale"
-  },
-  {
-    id: "clothes-2",
-    title: "Summer Dress",
-    category: "Women's Fashion",
-    price: 149,
-    image: clothes2
-  },
-  {
-    id: "clothes-3",
-    title: "Casual Top",
-    category: "Women's Fashion",
-    price: 79,
-    image: clothes3
-  },
-  {
-    id: "clothes-4",
-    title: "Designer Dress",
-    category: "Women's Fashion",
-    price: 299,
-    image: clothes4
-  },
-  {
-    id: "party-1",
-    title: "Evening Gown",
-    category: "Women's Fashion",
-    price: 399,
-    oldPrice: 499,
-    image: partyWear1,
-    badge: "New"
-  },
-  {
-    id: "party-2",
-    title: "Cocktail Dress",
-    category: "Women's Fashion",
-    price: 349,
-    image: partyWear2
-  },
-  {
     id: "belt-1",
     title: "Leather Belt",
     category: "Accessories",
