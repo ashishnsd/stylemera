@@ -85,6 +85,11 @@ import perfumeNew2 from '../assets/images/products/perfume2.png';
 import perfumeNew3 from '../assets/images/products/perfume3.png';
 import perfumeExtra1 from '../assets/images/products/30 ML.jpg';
 import perfumeExtra2 from '../assets/images/products/50 ML.jpg';
+import jacketExtra1 from '../assets/images/products/jacket-1.jpg';
+import jacketExtra2 from '../assets/images/products/jacket-2.jpg';
+import jacketExtra3 from '../assets/images/products/jacket-3.jpg';
+import jacketExtra4 from '../assets/images/products/jacket-4.jpg';
+import jacketExtra5 from '../assets/images/products/jacket-5.jpg';
 import clothes1 from '../assets/images/products/clothes-1.jpg';
 import clothes2 from '../assets/images/products/clothes-2.jpg';
 import clothes3 from '../assets/images/products/clothes-3.jpg';
@@ -908,5 +913,46 @@ export const products = [
     category: "Perfume",
     price: 2199,
     image: perfumeExtra2
+  },
+  {
+    id: "jacket-extra-1",
+    title: "Premium Leather Jacket",
+    category: "Jacket",
+    price: 5999,
+    oldPrice: 7499,
+    image: jacketExtra1,
+    badge: "Sale"
+  },
+  {
+    id: "jacket-extra-2",
+    title: "Casual Denim Jacket",
+    category: "Jacket",
+    price: 4499,
+    image: jacketExtra2
+  },
+  {
+    id: "jacket-extra-3",
+    title: "Winter Wool Jacket",
+    category: "Jacket",
+    price: 5299,
+    oldPrice: 6599,
+    image: jacketExtra3,
+    badge: "Hot"
+  },
+  {
+    id: "jacket-extra-4",
+    title: "Sporty Athletic Jacket",
+    category: "Jacket",
+    price: 3999,
+    image: jacketExtra4
+  },
+  {
+    id: "jacket-extra-5",
+    title: "Stylish Bomber Jacket",
+    category: "Jacket",
+    price: 4799,
+    oldPrice: 5999,
+    image: jacketExtra5,
+    badge: "New"
   }
 ];
