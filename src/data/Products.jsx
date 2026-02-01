@@ -110,6 +110,10 @@ import cosmeticNew2 from '../assets/images/products/Son-Dior-Rouge-634-Strong-Ma
 import cosmeticNew3 from '../assets/images/products/son-gucci-505-Janet-Rust-Mat-Lipstick.png';
 import cosmeticNew4 from '../assets/images/products/son-kem-ysl-425.png';
 import cosmeticNew5 from '../assets/images/products/Tom-Ford-RUBY-RUSH.png';
+import jewelry1 from '../assets/images/products/new-product-1.jpg';
+import jewelry2 from '../assets/images/products/new-product-2.jpg';
+import jewelry3 from '../assets/images/products/new-product-3.jpg';
+import jewelry4 from '../assets/images/products/new-product-4.jpg';
 import skincare1 from '../assets/images/products/product-01.jpg';
 import skincare2 from '../assets/images/products/product-02.jpg';
 import skincare3 from '../assets/images/products/product-03.jpg';
@@ -168,6 +172,38 @@ export const products = [
     oldPrice: 500,
     image: jewellery3,
     badge: "10% Off"
+  },
+  {
+    id: "jewel-4",
+    title: "Elegant Diamond Pendant",
+    category: "Jewelry",
+    price: 599,
+    oldPrice: 799,
+    image: jewelry1,
+    badge: "Sale"
+  },
+  {
+    id: "jewel-5",
+    title: "Premium Gold Bracelet",
+    category: "Jewelry",
+    price: 749,
+    image: jewelry2
+  },
+  {
+    id: "jewel-6",
+    title: "Crystal Drop Earrings",
+    category: "Jewelry",
+    price: 549,
+    oldPrice: 699,
+    image: jewelry3,
+    badge: "Hot"
+  },
+  {
+    id: "jewel-7",
+    title: "Designer Finger Rings Set",
+    category: "Jewelry",
+    price: 899,
+    image: jewelry4
   },
   {
     id: "perfume-1",
