@@ -105,6 +105,11 @@ import hatNew12 from '../assets/images/products/hats_come_in_a_huge_variety_of (
 import hatNew13 from '../assets/images/products/hats_come_in_a_huge_variety_of (2).png';
 import hatNew14 from '../assets/images/products/ht1.png';
 import hatNew15 from '../assets/images/products/ht2.png';
+import cosmeticNew1 from '../assets/images/products/christianlouboutin-rougelouboutin-velvet-matte.png';
+import cosmeticNew2 from '../assets/images/products/Son-Dior-Rouge-634-Strong-Matte.png';
+import cosmeticNew3 from '../assets/images/products/son-gucci-505-Janet-Rust-Mat-Lipstick.png';
+import cosmeticNew4 from '../assets/images/products/son-kem-ysl-425.png';
+import cosmeticNew5 from '../assets/images/products/Tom-Ford-RUBY-RUSH.png';
 import clothes1 from '../assets/images/products/clothes-1.jpg';
 import clothes2 from '../assets/images/products/clothes-2.jpg';
 import clothes3 from '../assets/images/products/clothes-3.jpg';
@@ -1084,5 +1089,46 @@ export const products = [
     category: "Hats",
     price: 699,
     image: hatNew15
+  },
+  {
+    id: "cosmetic-new-1",
+    title: "Christian Louboutin Lipstick",
+    category: "Cosmetics",
+    price: 3499,
+    oldPrice: 4499,
+    image: cosmeticNew1,
+    badge: "Sale"
+  },
+  {
+    id: "cosmetic-new-2",
+    title: "Dior Rouge Lipstick",
+    category: "Cosmetics",
+    price: 2999,
+    image: cosmeticNew2
+  },
+  {
+    id: "cosmetic-new-3",
+    title: "Gucci Lipstick Collection",
+    category: "Cosmetics",
+    price: 2499,
+    oldPrice: 3199,
+    image: cosmeticNew3,
+    badge: "Hot"
+  },
+  {
+    id: "cosmetic-new-4",
+    title: "YSL Cream Lipstick",
+    category: "Cosmetics",
+    price: 2799,
+    image: cosmeticNew4
+  },
+  {
+    id: "cosmetic-new-5",
+    title: "Tom Ford Ruby Lipstick",
+    category: "Cosmetics",
+    price: 3199,
+    oldPrice: 3999,
+    image: cosmeticNew5,
+    badge: "New"
   }
 ];
