@@ -16,7 +16,6 @@ import bag from "../../assets/images/icons/bag.svg";
 
 const categories = [
   { title: "Dress", count: 53, icon: dress },
-  { title: "Winter", count: 58, icon: coat },
   { title: "Glasses", count: 68, icon: glasses },
   { title: "Jeans", count: 84, icon: shorts },
   { title: "T-Shirts", count: 155, icon: tee },
