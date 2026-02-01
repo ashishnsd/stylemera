@@ -102,33 +102,88 @@ export default function CategoryScroller() {
           <div
             key={cat.title}
             id={`${cat.title.toLowerCase().replace(/\s+/g, '-')}-section`}
-            className="container mx-auto px-4 py-12 bg-gray-50"
+            className="container mx-auto px-4 py-12"
           >
-            <h2 className="text-2xl font-bold mb-2">{cat.title}</h2>
-            <p className="text-gray-600 mb-6">Total products: {filteredProducts.length}</p>
+            {/* Neo-Brutalism Header */}
+            <div className="flex items-center justify-center mb-8 bg-yellow-300 border-4 border-black p-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+              <div>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-[0.15em] flex items-center gap-3">
+                  <span className="inline-block w-2 sm:w-2.5 h-8 sm:h-10 bg-gradient-to-b from-[#f0c14b] via-[#f0c14b]/80 to-transparent rounded-full shadow-lg shadow-[#f0c14b]/30" aria-hidden="true"></span>
+                  <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent relative">
+                    {cat.title}
+                    <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#f0c14b] to-transparent opacity-50"></span>
+                  </span>
+                  <span className="flex-1 h-0.5 bg-gradient-to-r from-[#f0c14b]/30 to-transparent"></span>
+                </h2>
+                <p className="text-sm text-gray-500 mt-2 ml-8 font-medium tracking-wide">Total products: {filteredProducts.length}</p>
+              </div>
+            </div>
             
-            {/* Suggestions Section */}
-            <h3 className="text-lg font-bold mb-4">Popular Products</h3>
+            {/* Products Grid - Blog Style */}
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-8">
-                {filteredProducts.slice(0, 12).map(sug => (
-                  <a href={`/product/${sug.id}`}
-                     key={sug.id}
-                     className="bg-white rounded-lg shadow p-3 flex flex-col items-center hover:shadow-lg transition min-w-0">
-                    <img src={sug.image} alt={sug.title} className="w-16 h-16 mb-2 object-cover rounded" />
-                    <span className="font-semibold text-xs text-center line-clamp-2">{sug.title}</span>
-                    <span className="text-[11px] text-gray-700 font-bold mt-1">₹{sug.price}</span>
-                    {sug.badge && <span className="text-[10px] bg-[#f0c14b] text-gray-900 px-1.5 py-0.5 rounded-full mt-1 font-bold">{sug.badge}</span>}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 mb-8">
+                {filteredProducts.slice(0, 12).map((product, index) => (
+                  <a 
+                    href={`/product/${product.id}`}
+                    key={product.id}
+                    className="block group"
+                  >
+                    <div
+                      className={`relative overflow-hidden border-4 border-black mb-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 ${
+                        index % 4 === 0
+                          ? "bg-yellow-200"
+                          : index % 4 === 1
+                          ? "bg-pink-200"
+                          : index % 4 === 2
+                          ? "bg-cyan-200"
+                          : "bg-purple-200"
+                      }`}
+                    >
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="w-full aspect-square object-cover border-b-4 border-black"
+                      />
+                    </div>
+
+                    <div>
+                      {product.badge && (
+                        <span
+                          className={`inline-block px-2 py-0.5 rounded-full border-2 border-black text-black text-xs font-black uppercase mb-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all ${
+                            index % 3 === 0
+                              ? "bg-yellow-400"
+                              : index % 3 === 1
+                              ? "bg-pink-400"
+                              : "bg-cyan-400"
+                          }`}
+                        >
+                          {product.badge}
+                        </span>
+                      )}
+
+                      <h3 className="text-black text-sm font-black leading-tight mb-1 uppercase tracking-tight line-clamp-2 hover:text-pink-600 transition-colors">
+                        {product.title}
+                      </h3>
+
+                      <div className="flex items-center justify-between gap-2 bg-white border-3 border-black px-2 py-1.5 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+                        <span className="text-lg font-black text-gray-900">₹{product.price}</span>
+                        {product.oldPrice && (
+                          <span className="text-sm line-through text-gray-500">₹{product.oldPrice}</span>
+                        )}
+                      </div>
+                    </div>
                   </a>
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 mb-6">No products found in this category.</p>
+              <p className="text-gray-500 mb-6 text-center">No products found in this category.</p>
             )}
             
             <div className="flex justify-center">
-              <a href={`/category/${cat.title.toLowerCase().replace(/\s+/g, '-')}`}
-                 className="bg-[#f0c14b] text-gray-900 font-bold px-6 py-2 rounded-full shadow hover:bg-yellow-400 transition">
+              <a 
+                href={`/category/${cat.title.toLowerCase().replace(/\s+/g, '-')}`}
+                className="inline-block bg-yellow-400 border-4 border-black px-8 py-3 text-black font-black uppercase tracking-wider shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200"
+              >
                 View All Products
               </a>
             </div>
