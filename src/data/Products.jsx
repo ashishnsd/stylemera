@@ -110,6 +110,20 @@ import cosmeticNew2 from '../assets/images/products/Son-Dior-Rouge-634-Strong-Ma
 import cosmeticNew3 from '../assets/images/products/son-gucci-505-Janet-Rust-Mat-Lipstick.png';
 import cosmeticNew4 from '../assets/images/products/son-kem-ysl-425.png';
 import cosmeticNew5 from '../assets/images/products/Tom-Ford-RUBY-RUSH.png';
+import skincare1 from '../assets/images/products/product-01.jpg';
+import skincare2 from '../assets/images/products/product-02.jpg';
+import skincare3 from '../assets/images/products/product-03.jpg';
+import skincare4 from '../assets/images/products/product-04.jpg';
+import skincare5 from '../assets/images/products/product-05.jpg';
+import skincare6 from '../assets/images/products/product-06.jpg';
+import skincare7 from '../assets/images/products/product-07.jpg';
+import skincare8 from '../assets/images/products/product-08.jpg';
+import skincare9 from '../assets/images/products/product-09.jpg';
+import skincare10 from '../assets/images/products/product-10.jpg';
+import skincare11 from '../assets/images/products/product-11.jpg';
+import skincare12 from '../assets/images/products/product-15.jpg';
+import skincare13 from '../assets/images/products/product-16.jpg';
+import skincare14 from '../assets/images/products/product-17.jpg';
 import clothes1 from '../assets/images/products/clothes-1.jpg';
 import clothes2 from '../assets/images/products/clothes-2.jpg';
 import clothes3 from '../assets/images/products/clothes-3.jpg';
@@ -1130,5 +1144,117 @@ export const products = [
     oldPrice: 3999,
     image: cosmeticNew5,
     badge: "New"
+  },
+  {
+    id: "skincare-1",
+    title: "Hydrating Cleanser",
+    category: "Skincare",
+    price: 899,
+    oldPrice: 1199,
+    image: skincare1,
+    badge: "Sale"
+  },
+  {
+    id: "skincare-2",
+    title: "Moisturizing Cream",
+    category: "Skincare",
+    price: 1299,
+    image: skincare2
+  },
+  {
+    id: "skincare-3",
+    title: "Anti-Aging Serum",
+    category: "Skincare",
+    price: 1599,
+    oldPrice: 1999,
+    image: skincare3,
+    badge: "Hot"
+  },
+  {
+    id: "skincare-4",
+    title: "Face Mask",
+    category: "Skincare",
+    price: 799,
+    image: skincare4
+  },
+  {
+    id: "skincare-5",
+    title: "Exfoliating Scrub",
+    category: "Skincare",
+    price: 699,
+    oldPrice: 899,
+    image: skincare5,
+    badge: "Sale"
+  },
+  {
+    id: "skincare-6",
+    title: "Eye Cream",
+    category: "Skincare",
+    price: 1399,
+    image: skincare6
+  },
+  {
+    id: "skincare-7",
+    title: "Night Repair Cream",
+    category: "Skincare",
+    price: 1499,
+    oldPrice: 1899,
+    image: skincare7,
+    badge: "New"
+  },
+  {
+    id: "skincare-8",
+    title: "Sunscreen SPF 50",
+    category: "Skincare",
+    price: 899,
+    image: skincare8
+  },
+  {
+    id: "skincare-9",
+    title: "Toner",
+    category: "Skincare",
+    price: 599,
+    oldPrice: 799,
+    image: skincare9,
+    badge: "Sale"
+  },
+  {
+    id: "skincare-10",
+    title: "Vitamin C Serum",
+    category: "Skincare",
+    price: 1399,
+    image: skincare10
+  },
+  {
+    id: "skincare-11",
+    title: "Hydrating Mask",
+    category: "Skincare",
+    price: 899,
+    oldPrice: 1099,
+    image: skincare11,
+    badge: "Hot"
+  },
+  {
+    id: "skincare-12",
+    title: "Moisturizing Serum",
+    category: "Skincare",
+    price: 1199,
+    image: skincare12
+  },
+  {
+    id: "skincare-13",
+    title: "Cleansing Balm",
+    category: "Skincare",
+    price: 749,
+    oldPrice: 999,
+    image: skincare13,
+    badge: "Sale"
+  },
+  {
+    id: "skincare-14",
+    title: "Premium Face Treatment",
+    category: "Skincare",
+    price: 1899,
+    image: skincare14
   }
 ];
