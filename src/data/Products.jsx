@@ -38,6 +38,21 @@ import watch1 from '../assets/images/products/watch-1.jpg';
 import watch2 from '../assets/images/products/watch-2.jpg';
 import watch3 from '../assets/images/products/watch-3.jpg';
 import watch4 from '../assets/images/products/watch-4.jpg';
+import watchNew1 from '../assets/images/products/exclusive.png';
+import watchNew2 from '../assets/images/products/featured1.png';
+import watchNew3 from '../assets/images/products/featured2.png';
+import watchNew4 from '../assets/images/products/featured3.png';
+import watchNew5 from '../assets/images/products/home.png';
+import watchNew6 from '../assets/images/products/new1.png';
+import watchNew7 from '../assets/images/products/new2.png';
+import watchNew8 from '../assets/images/products/new3.png';
+import watchNew9 from '../assets/images/products/new4.png';
+import watchNew10 from '../assets/images/products/product1.png';
+import watchNew11 from '../assets/images/products/product2.png';
+import watchNew12 from '../assets/images/products/product3.png';
+import watchNew13 from '../assets/images/products/product4.png';
+import watchNew14 from '../assets/images/products/product5.png';
+import watchNew15 from '../assets/images/products/story.png';
 import shoe1 from '../assets/images/products/shoe-1.jpg';
 import shoe2 from '../assets/images/products/shoe-2.jpg';
 import shoe3 from '../assets/images/products/shoe-3.jpg';
@@ -536,5 +551,122 @@ export const products = [
     category: "T-Shirts",
     price: 299,
     image: shirtNew21
+  },
+  {
+    id: "watch-new-1",
+    title: "Exclusive Smart Watch",
+    category: "Watch",
+    price: 3999,
+    oldPrice: 4999,
+    image: watchNew1,
+    badge: "Sale"
+  },
+  {
+    id: "watch-new-2",
+    title: "Featured Premium Watch",
+    category: "Watch",
+    price: 4499,
+    image: watchNew2
+  },
+  {
+    id: "watch-new-3",
+    title: "Luxury Timepiece",
+    category: "Watch",
+    price: 5499,
+    image: watchNew3
+  },
+  {
+    id: "watch-new-4",
+    title: "Classic Edition Watch",
+    category: "Watch",
+    price: 3999,
+    oldPrice: 4999,
+    image: watchNew4,
+    badge: "Hot"
+  },
+  {
+    id: "watch-new-5",
+    title: "Home Collection Watch",
+    category: "Watch",
+    price: 2999,
+    image: watchNew5
+  },
+  {
+    id: "watch-new-6",
+    title: "New Arrival Watch 1",
+    category: "Watch",
+    price: 3499,
+    oldPrice: 4399,
+    image: watchNew6,
+    badge: "New"
+  },
+  {
+    id: "watch-new-7",
+    title: "New Arrival Watch 2",
+    category: "Watch",
+    price: 3599,
+    image: watchNew7
+  },
+  {
+    id: "watch-new-8",
+    title: "New Arrival Watch 3",
+    category: "Watch",
+    price: 3799,
+    image: watchNew8
+  },
+  {
+    id: "watch-new-9",
+    title: "New Arrival Watch 4",
+    category: "Watch",
+    price: 3899,
+    oldPrice: 4699,
+    image: watchNew9,
+    badge: "Sale"
+  },
+  {
+    id: "watch-new-10",
+    title: "Product Watch 1",
+    category: "Watch",
+    price: 4299,
+    image: watchNew10
+  },
+  {
+    id: "watch-new-11",
+    title: "Product Watch 2",
+    category: "Watch",
+    price: 4399,
+    image: watchNew11
+  },
+  {
+    id: "watch-new-12",
+    title: "Product Watch 3",
+    category: "Watch",
+    price: 4599,
+    oldPrice: 5399,
+    image: watchNew12,
+    badge: "Hot"
+  },
+  {
+    id: "watch-new-13",
+    title: "Product Watch 4",
+    category: "Watch",
+    price: 4199,
+    image: watchNew13
+  },
+  {
+    id: "watch-new-14",
+    title: "Product Watch 5",
+    category: "Watch",
+    price: 4899,
+    image: watchNew14
+  },
+  {
+    id: "watch-new-15",
+    title: "Story Collection Watch",
+    category: "Watch",
+    price: 5199,
+    oldPrice: 6099,
+    image: watchNew15,
+    badge: "New"
   }
 ];

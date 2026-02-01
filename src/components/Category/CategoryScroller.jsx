@@ -100,46 +100,45 @@ export default function CategoryScroller() {
         `}</style>
       </div>
       {/* Category Sections - Only show active */}
-      {categories.map(cat => (
-        activeSection === cat.title ? (
+      {categories.map(cat => {
+        const filteredProducts = products.filter(p => p.category?.toLowerCase() === cat.title.toLowerCase());
+        return activeSection === cat.title ? (
           <div
             key={cat.title}
             id={`${cat.title.toLowerCase().replace(/\s+/g, '-')}-section`}
-            className="container mx-auto px-4 py-12"
+            className="container mx-auto px-4 py-12 bg-gray-50"
           >
-            <h2 className="text-2xl font-bold mb-4">{cat.title} Section</h2>
-            <p className="text-gray-600 mb-2">Yahan aap {cat.title} category ke products ya content dikha sakte hain.</p>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-6">
-                {/* Example placeholder cards - smaller cards */}
-                {[1,2,3,4,5,6,7,8,9,10,11,12].map(i => (
-                  <div key={i} className="bg-white rounded-lg shadow p-2 flex flex-col items-center min-w-0">
-                    <img src={cat.icon} alt={cat.title} className="w-10 h-10 mb-1" />
-                    <span className="font-semibold text-xs text-center">{cat.title} Product {i}</span>
-                  </div>
-                ))}
-              </div>
-            <div className="flex justify-between items-center mb-6">
-              <a href={`/category/${cat.title.toLowerCase().replace(/\s+/g, '-')}`}
-                 className="bg-[#f0c14b] text-gray-900 font-bold px-6 py-2 rounded-full shadow hover:bg-yellow-400 transition">
-                More Products
-              </a>
-            </div>
-            <h3 className="text-lg font-bold mb-3">Suggestions</h3>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-                {products.filter(p => p.category?.toLowerCase() === cat.title.toLowerCase()).slice(0, 12).map(sug => (
+            <h2 className="text-2xl font-bold mb-2">{cat.title}</h2>
+            <p className="text-gray-600 mb-6">Total products: {filteredProducts.length}</p>
+            
+            {/* Suggestions Section */}
+            <h3 className="text-lg font-bold mb-4">Popular Products</h3>
+            {filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-8">
+                {filteredProducts.slice(0, 12).map(sug => (
                   <a href={`/product/${sug.id}`}
                      key={sug.id}
-                     className="bg-white rounded-lg shadow p-2 flex flex-col items-center hover:shadow-lg transition min-w-0">
-                    <img src={sug.image} alt={sug.title} className="w-10 h-10 mb-1 object-cover rounded" />
-                    <span className="font-semibold text-xs text-center">{sug.title}</span>
-                    <span className="text-[11px] text-gray-500 mt-0.5">₹{sug.price}</span>
-                    {sug.badge && <span className="text-[10px] bg-[#f0c14b] text-gray-900 px-1.5 py-0.5 rounded-full mt-0.5 font-bold">{sug.badge}</span>}
+                     className="bg-white rounded-lg shadow p-3 flex flex-col items-center hover:shadow-lg transition min-w-0">
+                    <img src={sug.image} alt={sug.title} className="w-16 h-16 mb-2 object-cover rounded" />
+                    <span className="font-semibold text-xs text-center line-clamp-2">{sug.title}</span>
+                    <span className="text-[11px] text-gray-700 font-bold mt-1">₹{sug.price}</span>
+                    {sug.badge && <span className="text-[10px] bg-[#f0c14b] text-gray-900 px-1.5 py-0.5 rounded-full mt-1 font-bold">{sug.badge}</span>}
                   </a>
                 ))}
               </div>
+            ) : (
+              <p className="text-gray-500 mb-6">No products found in this category.</p>
+            )}
+            
+            <div className="flex justify-center">
+              <a href={`/category/${cat.title.toLowerCase().replace(/\s+/g, '-')}`}
+                 className="bg-[#f0c14b] text-gray-900 font-bold px-6 py-2 rounded-full shadow hover:bg-yellow-400 transition">
+                View All Products
+              </a>
+            </div>
           </div>
-        ) : null
-      ))}
+        ) : null;
+      })}
     </>
   );
 }
