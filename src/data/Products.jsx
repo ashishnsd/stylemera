@@ -114,6 +114,22 @@ import jewelry1 from '../assets/images/products/new-product-1.jpg';
 import jewelry2 from '../assets/images/products/new-product-2.jpg';
 import jewelry3 from '../assets/images/products/new-product-3.jpg';
 import jewelry4 from '../assets/images/products/new-product-4.jpg';
+import bag1 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for.jpg';
+import bag2 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (1).jpg';
+import bag3 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (2).jpg';
+import bag4 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (3).jpg';
+import bag5 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (4).jpg';
+import bag6 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (5).jpg';
+import bag7 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (6).jpg';
+import bag8 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (7).jpg';
+import bag9 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (8).jpg';
+import bag10 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (9).jpg';
+import bag11 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (10).jpg';
+import bag12 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (11).jpg';
+import bag13 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (12).jpg';
+import bag14 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (13).jpg';
+import bag15 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (14).jpg';
+import bag16 from '../assets/images/products/bag-tote_bag_spacious_and_perfect_for (15).jpg';
 import skincare1 from '../assets/images/products/product-01.jpg';
 import skincare2 from '../assets/images/products/product-02.jpg';
 import skincare3 from '../assets/images/products/product-03.jpg';
@@ -1292,5 +1308,133 @@ export const products = [
     category: "Skincare",
     price: 1899,
     image: skincare14
+  },
+  {
+    id: "bag-1",
+    title: "Classic Tote Bag",
+    category: "Bags",
+    price: 1299,
+    oldPrice: 1699,
+    image: bag1,
+    badge: "Sale"
+  },
+  {
+    id: "bag-2",
+    title: "Spacious Tote",
+    category: "Bags",
+    price: 1399,
+    image: bag2
+  },
+  {
+    id: "bag-3",
+    title: "Premium Tote Bag",
+    category: "Bags",
+    price: 1599,
+    oldPrice: 1999,
+    image: bag3,
+    badge: "Hot"
+  },
+  {
+    id: "bag-4",
+    title: "Elegant Carry Tote",
+    category: "Bags",
+    price: 1499,
+    image: bag4
+  },
+  {
+    id: "bag-5",
+    title: "Designer Tote",
+    category: "Bags",
+    price: 1799,
+    oldPrice: 2199,
+    image: bag5,
+    badge: "New"
+  },
+  {
+    id: "bag-6",
+    title: "Stylish Tote Bag",
+    category: "Bags",
+    price: 1349,
+    image: bag6
+  },
+  {
+    id: "bag-7",
+    title: "Daily Use Tote",
+    category: "Bags",
+    price: 1199,
+    oldPrice: 1599,
+    image: bag7,
+    badge: "Sale"
+  },
+  {
+    id: "bag-8",
+    title: "Professional Tote",
+    category: "Bags",
+    price: 1699,
+    image: bag8
+  },
+  {
+    id: "bag-9",
+    title: "Travel Tote Bag",
+    category: "Bags",
+    price: 1899,
+    oldPrice: 2299,
+    image: bag9,
+    badge: "Hot"
+  },
+  {
+    id: "bag-10",
+    title: "Casual Tote",
+    category: "Bags",
+    price: 1249,
+    image: bag10
+  },
+  {
+    id: "bag-11",
+    title: "Fashion Tote Bag",
+    category: "Bags",
+    price: 1549,
+    oldPrice: 1899,
+    image: bag11,
+    badge: "Sale"
+  },
+  {
+    id: "bag-12",
+    title: "Luxury Tote",
+    category: "Bags",
+    price: 1999,
+    image: bag12
+  },
+  {
+    id: "bag-13",
+    title: "Durable Tote Bag",
+    category: "Bags",
+    price: 1399,
+    oldPrice: 1799,
+    image: bag13,
+    badge: "Hot"
+  },
+  {
+    id: "bag-14",
+    title: "Weekend Tote",
+    category: "Bags",
+    price: 1599,
+    image: bag14
+  },
+  {
+    id: "bag-15",
+    title: "Office Tote Bag",
+    category: "Bags",
+    price: 1449,
+    oldPrice: 1899,
+    image: bag15,
+    badge: "Sale"
+  },
+  {
+    id: "bag-16",
+    title: "All-Purpose Tote",
+    category: "Bags",
+    price: 1349,
+    image: bag16
   }
 ];
