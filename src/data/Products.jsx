@@ -11,6 +11,27 @@ import jacket5 from '../assets/images/products/jacket-5.jpg';
 import jacket6 from '../assets/images/products/jacket-6.jpg';
 import shirt1 from '../assets/images/products/shirt-1.jpg';
 import shirt2 from '../assets/images/products/shirt-2.jpg';
+import shirtNew1 from '../assets/images/products/product-1.jpg';
+import shirtNew2 from '../assets/images/products/product-3.jpg';
+import shirtNew3 from '../assets/images/products/product-4.jpg';
+import shirtNew4 from '../assets/images/products/product-6.jpg';
+import shirtNew5 from '../assets/images/products/product-12.jpg';
+import shirtNew6 from '../assets/images/products/f1.jpg';
+import shirtNew7 from '../assets/images/products/f2.jpg';
+import shirtNew8 from '../assets/images/products/f3.jpg';
+import shirtNew9 from '../assets/images/products/f4.jpg';
+import shirtNew10 from '../assets/images/products/f5.jpg';
+import shirtNew11 from '../assets/images/products/f6.jpg';
+import shirtNew12 from '../assets/images/products/f7.jpg';
+import shirtNew13 from '../assets/images/products/f8.jpg';
+import shirtNew14 from '../assets/images/products/n1.jpg';
+import shirtNew15 from '../assets/images/products/n2.jpg';
+import shirtNew16 from '../assets/images/products/n3.jpg';
+import shirtNew17 from '../assets/images/products/n4.jpg';
+import shirtNew18 from '../assets/images/products/n5.jpg';
+import shirtNew19 from '../assets/images/products/n6.jpg';
+import shirtNew20 from '../assets/images/products/n7.jpg';
+import shirtNew21 from '../assets/images/products/n8.jpg';
 import shorts1 from '../assets/images/products/shorts-1.jpg';
 import shorts2 from '../assets/images/products/shorts-2.jpg';
 import watch1 from '../assets/images/products/watch-1.jpg';
@@ -123,14 +144,14 @@ export const products = [
   {
     id: "shirt-1",
     title: "Casual Shirt",
-    category: "Men's Fashion",
+    category: "T-Shirts",
     price: 89,
     image: shirt1
   },
   {
     id: "shirt-2",
     title: "Formal Shirt",
-    category: "Men's Fashion",
+    category: "T-Shirts",
     price: 99,
     oldPrice: 120,
     image: shirt2,
@@ -354,5 +375,166 @@ export const products = [
     category: "Electronics",
     price: 79,
     image: prod4
+  },
+  {
+    id: "tshirt-new-1",
+    title: "Casual Cotton T-Shirt",
+    category: "T-Shirts",
+    price: 299,
+    oldPrice: 399,
+    image: shirtNew1,
+    badge: "Sale"
+  },
+  {
+    id: "tshirt-new-2",
+    title: "Classic Crew Neck Tee",
+    category: "T-Shirts",
+    price: 249,
+    image: shirtNew2
+  },
+  {
+    id: "tshirt-new-3",
+    title: "Premium Blend T-Shirt",
+    category: "T-Shirts",
+    price: 279,
+    image: shirtNew3
+  },
+  {
+    id: "tshirt-new-4",
+    title: "Comfort Fit Tee",
+    category: "T-Shirts",
+    price: 259,
+    oldPrice: 349,
+    image: shirtNew4,
+    badge: "Hot"
+  },
+  {
+    id: "tshirt-new-5",
+    title: "Slim Fit T-Shirt",
+    category: "T-Shirts",
+    price: 289,
+    image: shirtNew5
+  },
+  {
+    id: "tshirt-new-6",
+    title: "Trendy Style Tee",
+    category: "T-Shirts",
+    price: 299,
+    image: shirtNew6
+  },
+  {
+    id: "tshirt-new-7",
+    title: "Urban Collection Shirt",
+    category: "T-Shirts",
+    price: 319,
+    oldPrice: 399,
+    image: shirtNew7,
+    badge: "New"
+  },
+  {
+    id: "tshirt-new-8",
+    title: "Everyday Essential Tee",
+    category: "T-Shirts",
+    price: 269,
+    image: shirtNew8
+  },
+  {
+    id: "tshirt-new-9",
+    title: "Summer Vibes Shirt",
+    category: "T-Shirts",
+    price: 289,
+    image: shirtNew9
+  },
+  {
+    id: "tshirt-new-10",
+    title: "Classic Logo Tee",
+    category: "T-Shirts",
+    price: 309,
+    oldPrice: 399,
+    image: shirtNew10,
+    badge: "Sale"
+  },
+  {
+    id: "tshirt-new-11",
+    title: "Vintage Style Shirt",
+    category: "T-Shirts",
+    price: 299,
+    image: shirtNew11
+  },
+  {
+    id: "tshirt-new-12",
+    title: "Modern Fit T-Shirt",
+    category: "T-Shirts",
+    price: 279,
+    image: shirtNew12
+  },
+  {
+    id: "tshirt-new-13",
+    title: "Premium Cotton Tee",
+    category: "T-Shirts",
+    price: 329,
+    oldPrice: 429,
+    image: shirtNew13,
+    badge: "Hot"
+  },
+  {
+    id: "tshirt-new-14",
+    title: "Fashion Forward Shirt",
+    category: "T-Shirts",
+    price: 299,
+    image: shirtNew14
+  },
+  {
+    id: "tshirt-new-15",
+    title: "Casual Comfort Tee",
+    category: "T-Shirts",
+    price: 259,
+    image: shirtNew15
+  },
+  {
+    id: "tshirt-new-16",
+    title: "Stylish Basic Shirt",
+    category: "T-Shirts",
+    price: 289,
+    oldPrice: 349,
+    image: shirtNew16,
+    badge: "Sale"
+  },
+  {
+    id: "tshirt-new-17",
+    title: "Contemporary Tee",
+    category: "T-Shirts",
+    price: 299,
+    image: shirtNew17
+  },
+  {
+    id: "tshirt-new-18",
+    title: "Quality Blend Shirt",
+    category: "T-Shirts",
+    price: 319,
+    image: shirtNew18
+  },
+  {
+    id: "tshirt-new-19",
+    title: "Timeless Classic Tee",
+    category: "T-Shirts",
+    price: 279,
+    oldPrice: 379,
+    image: shirtNew19,
+    badge: "New"
+  },
+  {
+    id: "tshirt-new-20",
+    title: "Everyday Wear Shirt",
+    category: "T-Shirts",
+    price: 269,
+    image: shirtNew20
+  },
+  {
+    id: "tshirt-new-21",
+    title: "Ultimate Comfort Tee",
+    category: "T-Shirts",
+    price: 299,
+    image: shirtNew21
   }
 ];
