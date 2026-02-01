@@ -83,6 +83,8 @@ import shoeNew18 from '../assets/images/products/collection18.png';
 import perfumeNew1 from '../assets/images/products/perfume1.png';
 import perfumeNew2 from '../assets/images/products/perfume2.png';
 import perfumeNew3 from '../assets/images/products/perfume3.png';
+import perfumeExtra1 from '../assets/images/products/30 ML.jpg';
+import perfumeExtra2 from '../assets/images/products/50 ML.jpg';
 import clothes1 from '../assets/images/products/clothes-1.jpg';
 import clothes2 from '../assets/images/products/clothes-2.jpg';
 import clothes3 from '../assets/images/products/clothes-3.jpg';
@@ -890,5 +892,21 @@ export const products = [
     oldPrice: 3299,
     image: perfumeNew3,
     badge: "Hot"
+  },
+  {
+    id: "perfume-extra-1",
+    title: "1 Million Man Cologne",
+    category: "Perfume",
+    price: 1899,
+    oldPrice: 2499,
+    image: perfumeExtra1,
+    badge: "Sale"
+  },
+  {
+    id: "perfume-extra-2",
+    title: "Premium Brand Fragrance",
+    category: "Perfume",
+    price: 2199,
+    image: perfumeExtra2
   }
 ];
