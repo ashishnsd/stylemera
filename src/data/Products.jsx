@@ -90,6 +90,21 @@ import jacketExtra2 from '../assets/images/products/jacket-2.jpg';
 import jacketExtra3 from '../assets/images/products/jacket-3.jpg';
 import jacketExtra4 from '../assets/images/products/jacket-4.jpg';
 import jacketExtra5 from '../assets/images/products/jacket-5.jpg';
+import hatNew1 from '../assets/images/products/cap_cutout_simple_design_caps.png';
+import hatNew2 from '../assets/images/products/cap_cutout_simple_design_caps (1).png';
+import hatNew3 from '../assets/images/products/cap_cutout_simple_design_caps (2).png';
+import hatNew4 from '../assets/images/products/cap_cutout_simple_design_caps (3).png';
+import hatNew5 from '../assets/images/products/cap_cutout_simple_design_caps (4).png';
+import hatNew6 from '../assets/images/products/hat_cutout_fancy_simple.png';
+import hatNew7 from '../assets/images/products/hat_cutout_fancy_simple (1).png';
+import hatNew8 from '../assets/images/products/hat_cutout_fancy_simple (2).png';
+import hatNew9 from '../assets/images/products/hat_cutout_fancy_simple (3).png';
+import hatNew10 from '../assets/images/products/hat_cutout_fancy_simple (4).png';
+import hatNew11 from '../assets/images/products/hats_come_in_a_huge_variety_of.png';
+import hatNew12 from '../assets/images/products/hats_come_in_a_huge_variety_of (1).png';
+import hatNew13 from '../assets/images/products/hats_come_in_a_huge_variety_of (2).png';
+import hatNew14 from '../assets/images/products/ht1.png';
+import hatNew15 from '../assets/images/products/ht2.png';
 import clothes1 from '../assets/images/products/clothes-1.jpg';
 import clothes2 from '../assets/images/products/clothes-2.jpg';
 import clothes3 from '../assets/images/products/clothes-3.jpg';
@@ -954,5 +969,120 @@ export const products = [
     oldPrice: 5999,
     image: jacketExtra5,
     badge: "New"
+  },
+  {
+    id: "hat-new-1",
+    title: "Classic Baseball Cap",
+    category: "Hats",
+    price: 599,
+    oldPrice: 799,
+    image: hatNew1,
+    badge: "Sale"
+  },
+  {
+    id: "hat-new-2",
+    title: "Casual Cotton Cap",
+    category: "Hats",
+    price: 499,
+    image: hatNew2
+  },
+  {
+    id: "hat-new-3",
+    title: "Sports Performance Cap",
+    category: "Hats",
+    price: 649,
+    image: hatNew3
+  },
+  {
+    id: "hat-new-4",
+    title: "Premium Adjustable Hat",
+    category: "Hats",
+    price: 699,
+    oldPrice: 899,
+    image: hatNew4,
+    badge: "Hot"
+  },
+  {
+    id: "hat-new-5",
+    title: "Trendy Snapback Cap",
+    category: "Hats",
+    price: 549,
+    image: hatNew5
+  },
+  {
+    id: "hat-new-6",
+    title: "Fancy Designer Hat",
+    category: "Hats",
+    price: 799,
+    image: hatNew6
+  },
+  {
+    id: "hat-new-7",
+    title: "Stylish Formal Hat",
+    category: "Hats",
+    price: 899,
+    oldPrice: 1199,
+    image: hatNew7,
+    badge: "New"
+  },
+  {
+    id: "hat-new-8",
+    title: "Casual Summer Cap",
+    category: "Hats",
+    price: 449,
+    image: hatNew8
+  },
+  {
+    id: "hat-new-9",
+    title: "Fashion Forward Hat",
+    category: "Hats",
+    price: 749,
+    image: hatNew9
+  },
+  {
+    id: "hat-new-10",
+    title: "Urban Style Cap",
+    category: "Hats",
+    price: 649,
+    oldPrice: 849,
+    image: hatNew10,
+    badge: "Sale"
+  },
+  {
+    id: "hat-new-11",
+    title: "Classic Variety Hat",
+    category: "Hats",
+    price: 699,
+    image: hatNew11
+  },
+  {
+    id: "hat-new-12",
+    title: "Premium Variety Cap",
+    category: "Hats",
+    price: 749,
+    image: hatNew12
+  },
+  {
+    id: "hat-new-13",
+    title: "Exclusive Design Hat",
+    category: "Hats",
+    price: 849,
+    oldPrice: 1099,
+    image: hatNew13,
+    badge: "Hot"
+  },
+  {
+    id: "hat-new-14",
+    title: "Modern Style Cap",
+    category: "Hats",
+    price: 599,
+    image: hatNew14
+  },
+  {
+    id: "hat-new-15",
+    title: "Contemporary Hat",
+    category: "Hats",
+    price: 699,
+    image: hatNew15
   }
 ];
