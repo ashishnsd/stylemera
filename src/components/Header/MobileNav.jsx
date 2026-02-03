@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { UIContext } from "../../context/UIContext";
+import { useNavigate } from "react-router-dom";
 
 export default function MobileNav() {
+  const navigate = useNavigate();
   const {
     isMobileMenuOpen,
     setMobileMenuOpen,
@@ -35,9 +37,14 @@ export default function MobileNav() {
               className={`accordion-menu w-full flex justify-between items-center ${
                 activeAccordion === title ? "active" : ""
               }`}
-              onClick={() =>
-                setActiveAccordion(activeAccordion === title ? null : title)
-              }
+              onClick={() => {
+                if (title === "Perfume") {
+                  navigate("/perfume");
+                  setMobileMenuOpen(false);
+                } else {
+                  setActiveAccordion(activeAccordion === title ? null : title);
+                }
+              }}
             >
               <p className="menu-title text-gray-800 text-[16px] font-medium py-3">{title}</p>
               <div className="text-sm">
