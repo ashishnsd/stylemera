@@ -31,78 +31,29 @@ export default function MobileNav() {
       </div>
 
       <ul className="mobile-menu-category-list mb-[30px]">
-        {["Men's", "Women's", "Jewelry", "Perfume"].map((title) => (
-          <li className="menu-category border-b border-gray-200" key={title}>
-            <button
-              className={`accordion-menu w-full flex justify-between items-center ${
-                activeAccordion === title ? "active" : ""
-              }`}
-              onClick={() => {
-                if (title === "Perfume") {
-                  navigate("/perfume");
-                  setMobileMenuOpen(false);
-                } else {
-                  setActiveAccordion(activeAccordion === title ? null : title);
-                }
-              }}
-            >
-              <p className="menu-title text-gray-800 text-[16px] font-medium py-3">{title}</p>
-              <div className="text-sm">
-                <span 
-                  className={`add-icon ${
-                    activeAccordion === title ? 'hidden' : 'block'
-                  }`}
-                >
-                  <ion-icon 
-                    name="add-outline" 
-                    style={{ 
-                      fontSize: '18px',
-                      color: 'var(--onyx)',
-                      '--ionicon-stroke-width': '90px' 
-                    }}
-                  ></ion-icon>
-                </span>
-                <span 
-                  className={`remove-icon ${
-                    activeAccordion === title ? 'block' : 'hidden'
-                  }`}
-                >
-                  <ion-icon 
-                    name="remove-outline"
-                    style={{ 
-                      fontSize: '18px',
-                      color: 'var(--onyx)',
-                      '--ionicon-stroke-width': '90px' 
-                    }}
-                  ></ion-icon>
-                </span>
-              </div>
-            </button>
-
-            <ul
-              className={`submenu-category-list ml-2.5 overflow-hidden transition-all duration-500 ${
-                activeAccordion === title ? 'max-h-[148px] visible' : 'max-h-0 invisible'
-              }`}
-            >
-              <li className="submenu-category">
-                <a 
-                  className="submenu-title block py-1.5 text-[16px] text-gray-500 font-light hover:text-gray-700" 
-                  href="#"
-                >
-                  Item 1
-                </a>
-              </li>
-              <li className="submenu-category">
-                <a 
-                  className="submenu-title block py-1.5 text-[16px] text-gray-500 font-light hover:text-gray-700" 
-                  href="#"
-                >
-                  Item 2
-                </a>
-              </li>
-            </ul>
-          </li>
-        ))}
+        <li className="menu-category border-b border-gray-200" key="Perfume">
+          <button
+            className="w-full flex items-center text-gray-800 text-[16px] font-medium py-3"
+            onClick={() => {
+              navigate("/perfume");
+              setMobileMenuOpen(false);
+            }}
+          >
+            Perfume
+          </button>
+        </li>
+        <li className="menu-category border-b border-gray-200" key="Watch's">
+          <button
+            className="w-full flex items-center text-gray-800 text-[16px] font-medium py-3"
+            onClick={() => {
+              navigate("/watches");
+              setMobileMenuOpen(false);
+            }}
+          >
+            Watch's
+          </button>
+        </li>
+        {/* Only 'Perfume' remains in the menu */}
       </ul>
 
       <div className="menu-social-container flex justify-center items-center gap-2.5">

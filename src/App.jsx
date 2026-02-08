@@ -1,8 +1,9 @@
+import PerfumeLanding from "./components/PerfumeLanding";
+            <Route path="/perfume" element={<PerfumeLanding />} />
+// Perfume landing page route removed
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
-import PerfumeLanding from "./components/PerfumeLanding";
-
 const Home = lazy(() => import("./pages/Home"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Wishlist = lazy(() => import("./pages/Wishlist"));
@@ -44,7 +45,6 @@ export default function App() {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/category/:category" element={<CategoryProducts />} />
           </Route>
-          <Route path="/perfume" element={<PerfumeLanding />} />
         </Routes>
       </Suspense>
 
