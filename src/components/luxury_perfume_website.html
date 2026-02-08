@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOIR — Luxury Perfume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --charcoal: #1a1a1a;
+            --gold: #d4af37;
+            --rose: #d4a5a5;
+            --white: #f8f8f8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-weight: 300;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .scroll-progress-fill {
+            width: 100%;
+            height: 0%;
+            background: var(--gold);
+            transition: opacity 0.3s;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-size: 24px;
+            letter-spacing: 0.2em;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.4s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 200vh;
+            position: relative;
+        }
+
+        .hero-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, var(--black) 0%, var(--charcoal) 50%, rgba(212, 165, 165, 0.15) 100%);
+            z-index: 1;
+        }
+
+        .hero-bottle {
+            position: relative;
+            z-index: 2;
+            width: 300px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(212, 175, 55, 0.2));
+            border-radius: 10px 10px 40px 40px;
+            box-shadow: 0 40px 100px rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .bottle-shine {
+            position: absolute;
+            width: 40px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0%, 100% { transform: translateX(-100px); }
+            50% { transform: translateX(100px); }
+        }
+
+        .hero-content {
+            position: absolute;
+            z-index: 3;
+            text-align: center;
+            opacity: 0;
+        }
+
+        .hero-content h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .hero-content .tagline {
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            color: var(--rose);
+        }
+
+        /* Scent Story Section */
+        .scent-story {
+            position: relative;
+            min-height: 250vh;
+            background: linear-gradient(180deg, rgba(212, 165, 165, 0.05) 0%, var(--black) 100%);
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.3;
+        }
+
+        .smoke-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(212, 165, 165, 0.1) 0%, transparent 50%);
+            filter: blur(60px);
+        }
+
+        .petals-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(212, 165, 165, 0.4), transparent);
+            border-radius: 50%;
+            filter: blur(2px);
+        }
+
+        .scent-content {
+            position: relative;
+            z-index: 10;
+            padding: 200px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .scent-quote {
+            font-size: 48px;
+            line-height: 1.6;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin: 150px 0;
+            opacity: 0;
+        }
+
+        .scent-detail {
+            font-size: 16px;
+            max-width: 600px;
+            margin: 100px auto;
+            opacity: 0;
+        }
+
+        /* Collection Gallery */
+        .collection {
+            padding: 200px 100px;
+            background: var(--charcoal);
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            max-width: 1400px;
+            margin: 100px auto 0;
+        }
+
+        .bottle-card {
+            position: relative;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(212, 175, 55, 0.1));
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
+            opacity: 0;
+        }
+
+        .bottle-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .bottle-card:hover::before {
+            opacity: 1;
+        }
+
+        .bottle-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4);
+        }
+
+        .bottle-card h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        .bottle-card p {
+            font-size: 12px;
+            color: var(--rose);
+        }
+
+        /* Campaign Section */
+        .campaign {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .campaign-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, var(--black) 0%, var(--charcoal) 50%, rgba(212, 175, 55, 0.2) 100%);
+            animation: gradientShift 15s infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .campaign-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .campaign-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            opacity: 0;
+        }
+
+        .campaign-content h2 {
+            font-size: 64px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 60px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            transform: scaleX(1);
+        }
+
+        .cta-button:hover {
+            color: var(--black);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* About Section */
+        .about {
+            padding: 200px 100px;
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--black) 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-text {
+            opacity: 0;
+        }
+
+        .about-text h2 {
+            font-size: 48px;
+            margin-bottom: 40px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 500px;
+            opacity: 0;
+        }
+
+        .about-shape {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            padding: 150px 100px 60px;
+            background: var(--black);
+            overflow: hidden;
+        }
+
+        .footer-caps {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .floating-cap {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent);
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            opacity: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .collection-grid {
+                grid-template-columns: 1fr;
+                padding: 0 30px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                padding: 0 30px;
+            }
+
+            .scent-quote {
+                font-size: 28px;
+                padding: 0 30px;
+            }
+
+            .campaign-content h2 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-fill"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">NOIR</div>
+        <div class="nav-links">
+            <a href="#collection">Collection</a>
+            <a href="#story">Story</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-sticky">
+            <div class="hero-bg"></div>
+            <div class="hero-bottle">
+                <div class="bottle-shine"></div>
+            </div>
+            <div class="hero-content">
+                <h1>NOIR</h1>
+                <p class="tagline">Where mystery becomes essence</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scent Story -->
+    <section class="scent-story">
+        <div class="parallax-bg">
+            <div class="smoke-layer"></div>
+            <div class="petals-layer">
+                <div class="petal" style="left: 20%; top: 10%;"></div>
+                <div class="petal" style="left: 60%; top: 30%;"></div>
+                <div class="petal" style="left: 80%; top: 60%;"></div>
+                <div class="petal" style="left: 30%; top: 70%;"></div>
+                <div class="petal" style="left: 70%; top: 85%;"></div>
+            </div>
+        </div>
+        <div class="scent-content">
+            <div class="scent-quote">
+                "A whisper of midnight rose,<br>
+                dancing with amber shadows"
+            </div>
+            <div class="scent-detail">
+                Each note unfolds like a secret. Top notes of bergamot and blackcurrant surrender to a heart of damask rose and jasmine, settling into a base of vanilla and sandalwood.
+            </div>
+            <div class="scent-quote">
+                "Luxury is not seen.<br>
+                It is felt."
+            </div>
+            <div class="scent-detail">
+                Crafted in Grasse, France, using methods passed through generations. Each bottle contains 100ml of pure parfum, concentrated to tell your story.
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection -->
+    <section class="collection" id="collection">
+        <h2 style="text-align: center; font-size: 48px; letter-spacing: 0.15em;">The Collection</h2>
+        <div class="collection-grid">
+            <div class="bottle-card">
+                <h3>Noir Absolu</h3>
+                <p>The signature scent</p>
+            </div>
+            <div class="bottle-card">
+                <h3>Rose Obscure</h3>
+                <p>Dark floral elegance</p>
+            </div>
+            <div class="bottle-card">
+                <h3>Ambre Nocturne</h3>
+                <p>Warm, mysterious depth</p>
+            </div>
+            <div class="bottle-card">
+                <h3>Velvet Oud</h3>
+                <p>Exotic richness</p>
+            </div>
+            <div class="bottle-card">
+                <h3>Iris Lunaire</h3>
+                <p>Powdery moonlight</p>
+            </div>
+            <div class="bottle-card">
+                <h3>Muse Divine</h3>
+                <p>Ethereal femininity</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campaign -->
+    <section class="campaign">
+        <div class="campaign-bg"></div>
+        <div class="campaign-overlay"></div>
+        <div class="campaign-content">
+            <h2>The New Chapter</h2>
+            <a href="#" class="cta-button">Discover More</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="story">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Crafted in Darkness</h2>
+                <p>NOIR was born from the belief that true luxury whispers rather than shouts. Each fragrance is composed in absolute darkness, allowing the perfumer to rely purely on scent memory and intuition.</p>
+                <p>Our bottles are hand-blown glass, each one unique. The fragrance within ages for six months before release, developing complexity and character.</p>
+                <p>This is perfume as art. Intimate, personal, unforgettable.</p>
+            </div>
+            <div class="about-visual">
+                <div class="about-shape" style="top: 0; left: 0;"></div>
+                <div class="about-shape" style="top: 50%; left: 50%; width: 150px; height: 150px;"></div>
+                <div class="about-shape" style="bottom: 0; right: 0; width: 100px; height: 100px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-caps">
+            <div class="floating-cap" style="left: 10%; top: 20%;"></div>
+            <div class="floating-cap" style="left: 70%; top: 40%;"></div>
+            <div class="floating-cap" style="left: 30%; top: 70%;"></div>
+            <div class="floating-cap" style="left: 80%; top: 80%;"></div>
+        </div>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Email</a>
+            </div>
+            <p class="copyright">© 2026 NOIR PARFUM. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Scroll Progress
+        gsap.to('.scroll-progress-fill', {
+            height: '100%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: 'body',
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: true
+            }
+        });
+
+        // Hero Animations
+        const heroTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.hero-section',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+
+        heroTimeline
+            .to('.hero-bottle', {
+                rotateY: 360,
+                rotateZ: 15,
+                scale: 0.8,
+                ease: 'none'
+            })
+            .to('.hero-bg', {
+                opacity: 0.3,
+                ease: 'none'
+            }, 0);
+
+        gsap.to('.hero-content', {
+            opacity: 1,
+            y: -50,
+            duration: 1.5,
+            delay: 0.5,
+            ease: 'power2.out'
+        });
+
+        // Scent Story Parallax
+        gsap.to('.smoke-layer', {
+            y: -300,
+            opacity: 0.5,
+            scrollTrigger: {
+                trigger: '.scent-story',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+
+        gsap.utils.toArray('.petal').forEach((petal, i) => {
+            gsap.to(petal, {
+                y: -200 - (i * 50),
+                x: (i % 2 === 0 ? 50 : -50),
+                rotation: 360,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: '.scent-story',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 2
+                }
+            });
+        });
+
+        gsap.utils.toArray('.scent-quote').forEach(quote => {
+            gsap.to(quote, {
+                opacity: 1,
+                y: -30,
+                scrollTrigger: {
+                    trigger: quote,
+                    start: 'top 80%',
+                    end: 'top 30%',
+                    scrub: 1
+                }
+            });
+        });
+
+        gsap.utils.toArray('.scent-detail').forEach(detail => {
+            gsap.to(detail, {
+                opacity: 1,
+                y: -20,
+                scrollTrigger: {
+                    trigger: detail,
+                    start: 'top 85%',
+                    end: 'top 40%',
+                    scrub: 1
+                }
+            });
+        });
+
+        // Collection Cards
+        gsap.utils.toArray('.bottle-card').forEach((card, i) => {
+            gsap.from(card, {
+                opacity: 0,
+                x: i % 2 === 0 ? -100 : 100,
+                scale: 0.9,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                    end: 'top 60%',
+                    scrub: 1
+                }
+            });
+        });
+
+        // Card Tilt Effect
+        document.querySelectorAll('.bottle-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                gsap.to(card, {
+                    rotateX: rotateX,
+                    rotateY: rotateY,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                    transformPerspective: 1000
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    duration: 0.5,
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        // Campaign Section
+        gsap.to('.campaign-content', {
+            opacity: 1,
+            y: -30,
+            scrollTrigger: {
+                trigger: '.campaign',
+                start: 'top 70%',
+                end: 'top 30%',
+                scrub: 1
+            }
+        });
+
+        // About Section
+        gsap.to('.about-text', {
+            opacity: 1,
+            x: 0,
+            scrollTrigger: {
+                trigger: '.about',
+                start: 'top 70%',
+                end: 'top 30%',
+                scrub: 1
+            }
+        });
+
+        gsap.to('.about-visual', {
+            opacity: 1,
+            scrollTrigger: {
+                trigger: '.about',
+                start: 'top 70%',
+                end: 'top 30%',
+                scrub: 1
+            }
+        });
+
+        gsap.utils.toArray('.about-shape').forEach((shape, i) => {
+            gsap.to(shape, {
+                y: -50 - (i * 20),
+                rotation: 180,
+                scrollTrigger: {
+                    trigger: '.about',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 2
+                }
+            });
+        });
+
+        // Footer
+        gsap.to('.footer-content', {
+            opacity: 1,
+            y: -20,
+            scrollTrigger: {
+                trigger: '.footer',
+                start: 'top 80%',
+                end: 'top 50%',
+                scrub: 1
+            }
+        });
+
+        gsap.utils.toArray('.floating-cap').forEach((cap, i) => {
+            gsap.to(cap, {
+                y: -100 - (i * 30),
+                x: (i % 2 === 0 ? 30 : -30),
+                scrollTrigger: {
+                    trigger: '.footer',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 3
+                }
+            });
+        });
+
+        // CTA Button Micro-Shake
+        document.querySelectorAll('.cta-button').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                gsap.to(btn, {
+                    x: 2,
+                    duration: 0.1,
+                    repeat: 3,
+                    yoyo: true,
+                    ease: 'power1.inOut'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
