@@ -77,19 +77,19 @@ export default function PerfumeLanding() {
         <div style={styles.grid}>
           {/* Left card with IMG1 */}
           <div style={styles.card}>
-            <img src="/src/assets/images/IMAGES/img/IMG1.png" alt="IMG1" style={{ borderRadius: 24, marginBottom: 16 }} />
+            <img src="/src/assets/images/IMAGES/img/IMG1.png" alt="IMG1" style={{ borderRadius: 24, marginBottom: 8 }} />
             <h3 style={styles.cardTitle}>Noir Absolu</h3>
             <p style={styles.cardText}>Luxury fragrance</p>
           </div>
           {/* Center card with IMG13 */}
           <div style={styles.card}>
-            <img src="/src/assets/images/IMAGES/img/IMG13.png" alt="IMG13" style={{ borderRadius: 24, marginBottom: 16 }} />
+            <img src="/src/assets/images/IMAGES/img/IMG13.png" alt="IMG13" style={{ borderRadius: 24, marginBottom: 8 }} />
             <h3 style={styles.cardTitle}>Rose Obscure</h3>
             <p style={styles.cardText}>Luxury fragrance</p>
           </div>
           {/* Right card with IMG2 */}
           <div style={styles.card}>
-            <img src="/src/assets/images/IMAGES/img/IMG2.png" alt="IMG2" style={{ borderRadius: 24, marginBottom: 16 }} />
+            <img src="/src/assets/images/IMAGES/img/IMG2.png" alt="IMG2" style={{ borderRadius: 24, marginBottom: 8 }} />
             <h3 style={styles.cardTitle}>Ambre Nocturne</h3>
             <p style={styles.cardText}>Luxury fragrance</p>
           </div>
@@ -122,7 +122,7 @@ const styles = {
     textAlign: "center",
     background:
       "radial-gradient(circle at center, rgba(212,175,55,0.15), transparent 60%)",
-    padding: "24px 8px 0 8px",
+    padding: "12px 8px 0 8px",
     boxSizing: "border-box",
   },
 
@@ -138,7 +138,7 @@ const styles = {
     color: "#d4af37",
     fontSize: "clamp(32px,8vw,60px)",
     fontFamily: "'Playwrite CU Guides', cursive",
-    marginBottom: 20
+    marginBottom: 12
   },
 
   imageWrapper: {
@@ -146,14 +146,14 @@ const styles = {
     width: "100%",
     maxWidth: 320,
     height: 320,
-    marginTop: 40,
-    marginBottom: 30,
+    marginTop: 12,
+    marginBottom: 12,
     boxSizing: "border-box",
   },
 
   overlayText: {
     position: "absolute",
-      top: 40,
+      top: 20,
       left: "10%",
     right: 0,
     margin: '0 auto',
@@ -179,7 +179,7 @@ const styles = {
 
   bottomImage: {
     position: "absolute",
-    top: 80,
+    top: 60,
     left: "25%",
     width: "60%",
     borderRadius: 24,
@@ -191,7 +191,7 @@ const styles = {
   heroTitle: {
     fontSize: 'clamp(24px, 8vw, 48px)', // More mobile friendly
     letterSpacing: "0.2em",
-    marginBottom: 20,
+    marginBottom: 12,
     fontFamily: 'sans-serif',
     fontWeight: 300
   },
@@ -203,7 +203,7 @@ const styles = {
   tagline: {
     fontSize: 'clamp(14px, 3vw, 18px)',
     opacity: 0.8,
-    marginBottom: 32
+    marginBottom: 16
   },
 
   cta: {
@@ -219,7 +219,7 @@ const styles = {
   },
 
   story: {
-    padding: "0 8px 40px 8px",
+    padding: "0 8px 24px 8px",
     textAlign: "center"
   },
 
@@ -231,7 +231,7 @@ const styles = {
   sectionTitle: {
     fontSize: 'clamp(20px, 6vw, 36px)',
     fontWeight: 700,
-    marginBottom: 16,
+    marginBottom: 8,
     color: '#d4af37',
     letterSpacing: '0.1em',
   },
@@ -242,7 +242,7 @@ const styles = {
   },
 
   collection: {
-    padding: "40px 8px",
+    padding: "20px 8px",
     textAlign: "center"
   },
 
@@ -250,8 +250,8 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    gap: 16,
-    marginTop: 24,
+    gap: 8,
+    marginTop: 12,
     width: "100%",
     maxWidth: 600,
     marginLeft: "auto",
@@ -261,9 +261,9 @@ const styles = {
   card: {
     background: "#181818",
     borderRadius: 18,
-    padding: 16,
+    padding: 12,
     color: "#fff",
-    minHeight: 120,
+    minHeight: 100,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -273,7 +273,7 @@ const styles = {
   cardTitle: {
     fontSize: 'clamp(12px, 2vw, 16px)',
     fontWeight: 600,
-    margin: "8px 0 2px 0"
+    margin: "6px 0 2px 0"
   },
 
   cardText: {
@@ -286,11 +286,11 @@ const styles = {
     height: 48,
     background: "#333",
     borderRadius: 12,
-    marginBottom: 8
+    marginBottom: 6
   },
 
   campaign: {
-    padding: "40px 8px",
+    padding: "20px 8px",
     textAlign: "center"
   },
 
@@ -300,7 +300,7 @@ const styles = {
   },
 
   footer: {
-    padding: "32px 8px 16px 8px",
+    padding: "16px 8px 8px 8px",
     textAlign: "center",
     fontSize: 'clamp(12px, 3vw, 16px)',
     color: '#d4af37',
