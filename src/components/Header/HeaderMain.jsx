@@ -34,8 +34,7 @@ export default function HeaderMain() {
                 alt="StyleMera logo" 
                 width="120" 
                 height="36"
-                className={`h-8 md:h-9 w-auto ${isPerfumeLanding ? 'opacity-100' : ''}`}
-                style={isPerfumeLanding ? { filter: 'invert(1) brightness(2)'} : undefined}
+                className="h-8 md:h-9 w-auto"
               />
             </a>
             {/* Action Buttons */}
