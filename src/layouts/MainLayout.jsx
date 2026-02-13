@@ -3,12 +3,15 @@ import Modal from "../components/Modal";
 import NotificationToast from "../components/NotificationToast";
 import CartDrawer from "../components/CartDrawer";
 import Header from "../components/Header/Header";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 
 export default function MainLayout() {
+  const location = useLocation();
+  const isPerfumeLanding = location && location.pathname === '/perfume';
+
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className={`min-h-screen flex flex-col ${isPerfumeLanding ? '' : 'bg-gray-50'}`} style={isPerfumeLanding ? { background: '#0a0a0a', color: '#f8f8f8' } : undefined}>
       <Overlay />
       <Modal />
       {/* <NotificationToast /> */}
