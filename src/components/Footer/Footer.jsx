@@ -1,9 +1,12 @@
 import logo from "../../assets/images/logo/logo.svg";
 import paymentImg from "../../assets/images/payment.png";
 import { useRef } from "react";
+import { useLocation } from 'react-router-dom';
 
 export default function Footer() {
   const footerRef = useRef(null);
+  const location = useLocation();
+  const isPerfumeLanding = location && location.pathname === '/perfume';
 
   const footerCategories = [
     { name: "Fashion", icon: "shirt-outline" },
@@ -50,7 +53,9 @@ export default function Footer() {
             src={logo}
             alt=""
             aria-hidden="true"
-            className="w-[90%] max-w-[900px] opacity-[0.18] blur-[0.5px]"            style={{ filter: 'brightness(0) invert(1)' }}          />
+            className="w-[90%] max-w-[900px] blur-[0.5px]"
+            style={isPerfumeLanding ? { filter: 'invert(1) brightness(2)', opacity: 0.14 } : { opacity: 0.18 }}
+          />
         </div>
       </div>
       <div className="w-full px-2 sm:px-4 py-8 md:py-12 lg:py-16">
@@ -64,8 +69,8 @@ export default function Footer() {
               <img
                 src={logo}
                 alt="StyleMera logo"
-                className="max-w-[60px] h-auto flex-shrink-0 transition-all duration-300 group-hover:scale-110 filter brightness-110 drop-shadow-lg"
-                style={{ filter: 'brightness(0) invert(1)' }}
+                className="max-w-[60px] h-auto flex-shrink-0 transition-all duration-300 group-hover:scale-110 drop-shadow-lg"
+                style={isPerfumeLanding ? { filter: 'invert(1) brightness(2)' } : { filter: 'brightness(1.1)' }}
               />
               <div className="flex-1">
                 <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-2 md:mb-3">

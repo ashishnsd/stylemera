@@ -4,16 +4,23 @@ import { WishlistContext } from "../../context/WishlistContext";
 import { UIContext } from "../../context/UIContext";
 import SearchBar from "./SearchBar";
 import logo from "../../assets/images/logo/logo.svg";
+import { useLocation } from "react-router-dom";
 
 export default function HeaderMain() {
   const { cartItems } = useContext(CartContext);
   const { wishlistItems } = useContext(WishlistContext);
   const { setCartOpen, showSearchBar, setShowSearchBar } = useContext(UIContext);
 
+  const location = useLocation();
+  const isPerfumeLanding = location && location.pathname === '/perfume';
+
   return (
     <>
       {/* Main Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div
+        className={`border-b ${isPerfumeLanding ? '' : 'bg-white border-gray-200'}`}
+        style={isPerfumeLanding ? { background: '#0a0a0a', borderColor: '#222' } : undefined}
+      >
         <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between gap-3 md:gap-6">
             {/* Logo */}
@@ -27,8 +34,8 @@ export default function HeaderMain() {
                 alt="StyleMera logo" 
                 width="120" 
                 height="36"
-                className="h-8 md:h-9 w-auto"
-                style={{ filter: 'brightness(0) invert(1)' }}
+                className={`h-8 md:h-9 w-auto ${isPerfumeLanding ? 'opacity-100' : ''}`}
+                style={isPerfumeLanding ? { filter: 'invert(1) brightness(2)'} : undefined}
               />
             </a>
             {/* Action Buttons */}
