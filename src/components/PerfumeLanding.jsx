@@ -61,7 +61,7 @@ export default function PerfumeLanding() {
       {/* STORY */}
       <section style={styles.story}>
         <div style={styles.storyInner}>
-          <img src="/src/assets/images/IMAGES/img/IMG7.png" alt="IMG7" style={{ display: 'block', margin: '0 auto 0px', marginTop: 0, width: 140, height: 'auto', borderRadius: 28 }} />
+          <img src="/src/assets/images/IMAGES/img/IMG7.png" alt="IMG7" style={{ display: 'block', margin: '0 auto 0px', marginTop: 0, maxWidth: 100, height: 'auto', borderRadius: 28 }} />
           <h2 style={styles.sectionTitle}>The Scent Story</h2>
           <p style={styles.storyText}>
             A whisper of midnight rose, dancing with amber shadows.
