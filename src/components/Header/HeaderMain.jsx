@@ -4,15 +4,11 @@ import { WishlistContext } from "../../context/WishlistContext";
 import { UIContext } from "../../context/UIContext";
 import SearchBar from "./SearchBar";
 import logo from "../../assets/images/logo/logo.svg";
-import { useLocation } from "react-router-dom";
 
-export default function HeaderMain() {
+export default function HeaderMain({ isPerfumeLanding = false }) {
   const { cartItems } = useContext(CartContext);
   const { wishlistItems } = useContext(WishlistContext);
   const { setCartOpen, showSearchBar, setShowSearchBar } = useContext(UIContext);
-
-  const location = useLocation();
-  const isPerfumeLanding = location && location.pathname === '/perfume';
 
   return (
     <>
@@ -41,7 +37,7 @@ export default function HeaderMain() {
             <div className="flex items-center gap-2 md:gap-4">
               {/* Search Button */}
               <button 
-                className="group relative p-2 md:p-2.5 text-gray-700 hover:text-[#f0c14b] transition-all duration-300 hover:bg-gray-50 rounded-lg"
+                className={`group relative p-2 md:p-2.5 ${isPerfumeLanding ? 'text-white hover:text-[#d4af37] hover:bg-transparent' : 'text-gray-700 hover:text-[#f0c14b] hover:bg-gray-50'} transition-all duration-300 rounded-lg`}
                 onClick={() => setShowSearchBar(!showSearchBar)}
                 aria-label="Search"
               >
@@ -63,7 +59,7 @@ export default function HeaderMain() {
 
               {/* Wishlist */}
               <button 
-                className="group relative p-2 md:p-2.5 text-gray-700 hover:text-[#f0c14b] transition-all duration-300 hover:bg-gray-50 rounded-lg"
+                className={`group relative p-2 md:p-2.5 ${isPerfumeLanding ? 'text-white hover:text-[#d4af37] hover:bg-transparent' : 'text-gray-700 hover:text-[#f0c14b] hover:bg-gray-50'} transition-all duration-300 rounded-lg`}
                 aria-label={`Wishlist with ${wishlistItems.length} items`}
               >
                 <ion-icon 
@@ -82,7 +78,7 @@ export default function HeaderMain() {
               {/* Shopping Cart */}
               <button 
                 id="cart-button"
-                className="group relative p-2 md:p-2.5 text-[#f0c14b] hover:text-[#f0c14b] transition-all duration-300 hover:bg-yellow-50 rounded-lg active:scale-95 cursor-pointer"
+                className={`group relative p-2 md:p-2.5 ${isPerfumeLanding ? 'text-[#f0c14b] hover:text-[#d4af37]' : 'text-[#f0c14b] hover:text-[#f0c14b]'} transition-all duration-300 ${isPerfumeLanding ? '' : 'hover:bg-yellow-50'} rounded-lg active:scale-95 cursor-pointer`}
                 onClick={() => setCartOpen(true)}
                 aria-label={`Shopping cart with ${cartItems.length} items`}
               >

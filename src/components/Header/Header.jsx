@@ -6,12 +6,15 @@ import DesktopNav from "./DesktopNav";
 import MobileBottomNav from "./MobileBottomNav";
 import MobileNav from "./MobileNav";
 import SearchBar from "./SearchBar";
+import { useLocation } from 'react-router-dom';
 
 export default function Header() {
   const { showSearchBar, setShowSearchBar } = useContext(UIContext);
   const [showSearchInNav, setShowSearchInNav] = useState(false);
   const rafRef = useRef(null);
   const lastStateRef = useRef(false);
+  const location = useLocation();
+  const isPerfumeLanding = location && location.pathname === '/perfume';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,11 +60,11 @@ export default function Header() {
   return (
     <>
       <header>
-        <HeaderTop />
-        <HeaderMain />
-        <DesktopNav />
-        <MobileBottomNav showSearchIcon={showSearchInNav} />
-        <MobileNav />
+        <HeaderTop isPerfumeLanding={isPerfumeLanding} />
+        <HeaderMain isPerfumeLanding={isPerfumeLanding} />
+        <DesktopNav isPerfumeLanding={isPerfumeLanding} />
+        <MobileBottomNav showSearchIcon={showSearchInNav} isPerfumeLanding={isPerfumeLanding} />
+        <MobileNav isPerfumeLanding={isPerfumeLanding} />
       </header>
       
       {/* Sticky Search Bar - Shutter close before hiding on mobile */}

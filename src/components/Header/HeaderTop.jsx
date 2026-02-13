@@ -1,6 +1,6 @@
-export default function HeaderTop() {
+export default function HeaderTop({ isPerfumeLanding = false }) {
   return (
-    <div className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200 overflow-hidden">
+    <div className={`${isPerfumeLanding ? 'border-b' : 'bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200'} overflow-hidden`} style={isPerfumeLanding ? { background: 'transparent' } : undefined}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center py-2 md:py-3 gap-3 md:gap-0">
           
@@ -14,7 +14,7 @@ export default function HeaderTop() {
             ].map((social) => (
               <li key={social.name}>
                 <a 
-                  className={`flex items-center justify-center w-8 h-8 bg-white rounded-md text-gray-600 transition-all duration-300 ${social.color} hover:text-white hover:scale-110 hover:shadow-md`}
+                  className={`flex items-center justify-center w-8 h-8 rounded-md transition-all duration-300 ${isPerfumeLanding ? 'bg-transparent text-white/90' : 'bg-white text-gray-600'} ${social.color} hover:text-white hover:scale-110 hover:shadow-md`}
                   href="#" 
                   aria-label={social.label}
                 >
@@ -32,13 +32,13 @@ export default function HeaderTop() {
                   <ion-icon name="gift-outline" class="text-base"></ion-icon>
                   Free Shipping
                 </span>
-                <span className="ml-2 text-xs md:text-sm text-gray-700">This Week Order Over <strong className="text-[#f0c14b]">₹499</strong></span>
+                <span className={`${isPerfumeLanding ? 'text-white/90' : 'text-gray-700'} ml-2 text-xs md:text-sm`}>This Week Order Over <strong className="text-[#f0c14b]">₹499</strong></span>
                 <span className="mx-3 text-[#f0c14b]">•</span>
                 <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#f0c14b] to-[#f0c14b] text-white px-3 py-1 rounded-full text-xs md:text-sm font-semibold shadow-sm">
                   <ion-icon name="gift-outline" class="text-base"></ion-icon>
                   Free Shipping
                 </span>
-                <span className="ml-2 text-xs md:text-sm text-gray-700">This Week Order Over <strong className="text-[#f0c14b]">₹499</strong></span>
+                <span className={`${isPerfumeLanding ? 'text-white/90' : 'text-gray-700'} ml-2 text-xs md:text-sm`}>This Week Order Over <strong className="text-[#f0c14b]">₹499</strong></span>
                 <span className="mx-3 text-[#f0c14b]">•</span>
               </div>
             </div>

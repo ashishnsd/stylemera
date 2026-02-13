@@ -3,7 +3,7 @@ import { WishlistContext } from "../../context/WishlistContext";
 import { useNavigate } from "react-router-dom";
 import { UIContext } from "../../context/UIContext";
 
-export default function MobileBottomNav({ showSearchIcon = false }) {
+export default function MobileBottomNav({ showSearchIcon = false, isPerfumeLanding = false }) {
   const { setMobileMenuOpen, setShowSearchBar } = useContext(UIContext);
   const { wishlistItems } = useContext(WishlistContext);
   const navigate = useNavigate();
@@ -195,16 +195,16 @@ export default function MobileBottomNav({ showSearchIcon = false }) {
         </div>
       )}
     
-      <div ref={navRef} className="mobile-bottom-navigation md:hidden bg-white fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[500px] mx-auto flex justify-around items-center py-[5px] shadow-[0_0_10px_hsla(0,0%,0%,0.25)] z-10 rounded-t-md transition-all duration-500 overflow-visible" style={{ perspective: '1200px' }}>
+      <div ref={navRef} className={`mobile-bottom-navigation md:hidden ${isPerfumeLanding ? 'bg-[#0a0a0a]' : 'bg-white'} fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[500px] mx-auto flex justify-around items-center py-[5px] shadow-[0_0_10px_hsla(0,0%,0%,0.25)] z-10 rounded-t-md transition-all duration-500 overflow-visible`} style={{ perspective: '1200px' }}>
         <button 
-          className={`action-btn relative text-[26px] text-gray-800 p-2.5 transition-all duration-300 ${navPump ? 'pump-icon' : ''}`}
+          className={`action-btn relative text-[26px] ${isPerfumeLanding ? 'text-white/90' : 'text-gray-800'} p-2.5 transition-all duration-300 ${navPump ? 'pump-icon' : ''}`}
           onClick={() => setMobileMenuOpen(true)}
         >
           <ion-icon name="menu-outline"></ion-icon>
         </button>
 
         <button 
-          className={`action-btn relative text-[26px] text-gray-800 p-2.5 transition-all duration-300 ${navPump ? 'pump-icon' : ''}`}
+          className={`action-btn relative text-[26px] ${isPerfumeLanding ? 'text-white/90' : 'text-gray-800'} p-2.5 transition-all duration-300 ${navPump ? 'pump-icon' : ''}`}
           onClick={() => setCartOpen(true)}
           aria-label="Open cart"
         >
@@ -215,14 +215,14 @@ export default function MobileBottomNav({ showSearchIcon = false }) {
         </button>
 
         <button 
-          className={`action-btn relative text-[26px] text-gray-800 p-2.5 transition-all duration-300 ${navPump ? 'pump-icon' : ''}`}
+          className={`action-btn relative text-[26px] ${isPerfumeLanding ? 'text-white/90' : 'text-gray-800'} p-2.5 transition-all duration-300 ${navPump ? 'pump-icon' : ''}`}
           onClick={goHome}
         >
           <ion-icon name="home-outline"></ion-icon>
         </button>
 
         <button 
-          className={`action-btn relative text-[26px] text-gray-800 p-2.5 transition-all duration-300 ${navPump ? 'pump-icon' : ''}`}
+          className={`action-btn relative text-[26px] ${isPerfumeLanding ? 'text-white/90' : 'text-gray-800'} p-2.5 transition-all duration-300 ${navPump ? 'pump-icon' : ''}`}
           onClick={() => navigate('/wishlist')}
           aria-label={`Wishlist with ${wishlistItems.length} items`}
         >
