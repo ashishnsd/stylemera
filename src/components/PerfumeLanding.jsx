@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 // Import Playwrite CU Guides font in JS (for Vite/React projects, best to add in index.html or CSS, but can be loaded here for demo)
 const playwriteFont = document && document.fonts ? document.fonts.load("1em 'Playwrite CU Guides'") : null;
@@ -7,13 +7,35 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export default function PerfumeLanding() {
   const { scrollY } = useScroll();
 
-  // IMG22 scroll animation (fast up, delayed down)
-  // 0-60: moves up fast, 60-120: stays, 120-500: returns slowly
-  const imageY = useTransform(scrollY, [0, 60, 120, 500], [0, -48, -48, 0]);
-
   // moving overlay text: starts off-screen right, comes in on scroll, then exits left
   // 0: 1200px (off-screen right), 300: -1200px (off-screen left)
   const x = useTransform(scrollY, [0, 300], [1200, -1200]);
+
+  // --- drive both hero images together until the hero heading reaches the top ---
+  const titleRef = useRef(null);
+  const [titleTop, setTitleTop] = useState(520);
+
+  useEffect(() => {
+    const update = () => {
+      if (titleRef.current) {
+        const rect = titleRef.current.getBoundingClientRect();
+        setTitleTop(window.scrollY + rect.top);
+      }
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  const stopAt = titleTop || 520;
+  // keep hero idle until micro-animation finishes (start group-down at ~180px)
+  const heroCollectiveY = useTransform(scrollY, [0, 180, stopAt], [0, 0, 260]);
+  const heroFade = useTransform(scrollY, [Math.max(0, stopAt - 160), stopAt], [1, 0]);
+
+  // IMG22 micro animation: small lift and settle (happens before group-down)
+  const combined22Y = useTransform(scrollY, [0, 60, 120, 180, stopAt], [0, -48, -48, 0, 260]);
+
+  // (story-side copies removed) — hero images keep their down/fade animation on scroll
 
   return (
     <div style={styles.page}>
@@ -26,11 +48,11 @@ export default function PerfumeLanding() {
 
           {/* Image stack */}
           <div style={styles.imageWrapper}>
-            {/* Back image */}
-            <img
+            {/* Back image (will slowly move down & fade when user scrolls) */}
+            <motion.img
               src="/src/assets/images/IMAGES/img/CUTIMG/IMG21.png"
               alt="Background scent"
-              style={styles.bottomImage}
+              style={{ ...styles.bottomImage, y: heroCollectiveY, opacity: heroFade }}
             />
 
             {/* Moving overlay text (below images) */}
@@ -38,15 +60,15 @@ export default function PerfumeLanding() {
               A SCENT THAT LINGERS LIKE A SECRET, IMPOSSIBLE TO FORGET.
             </motion.div>
 
-            {/* Front image (moves on scroll, now on top) */}
+            {/* Top floating image (fades with hero) */}
             <motion.img
               src="/src/assets/images/IMAGES/img/CUTIMG/IMG22.png"
-              alt="Fragrance"
-              style={{ ...styles.topImage, y: imageY, zIndex: 3 }}
+              alt="Floating scent"
+              style={{ ...styles.topImage, y: combined22Y, opacity: heroFade, zIndex: 3 }}
             />
           </div>
 
-          <h1 style={styles.heroTitle}>
+          <h1 ref={titleRef} style={styles.heroTitle}>
             Premium <span style={styles.gold}>Scent</span>
           </h1>
 
@@ -61,7 +83,10 @@ export default function PerfumeLanding() {
       {/* STORY */}
       <section style={styles.story}>
         <div style={styles.storyInner}>
-          <img src="/src/assets/images/IMAGES/img/IMG7.png" alt="IMG7" style={{ display: 'block', margin: '0 auto 0px', marginTop: 0, borderRadius: 28 }} />
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 18, marginBottom: 8 }}>
+            <img src="/src/assets/images/IMAGES/img/IMG7.png" alt="IMG7" style={{ display: 'block', margin: '0 auto 0px', marginTop: 0, width: 140, height: 'auto', borderRadius: 28 }} />
+          </div>
+
           <h2 style={styles.sectionTitle}>The Scent Story</h2>
           <p style={styles.storyText}>
             A whisper of midnight rose, dancing with amber shadows.
@@ -77,19 +102,19 @@ export default function PerfumeLanding() {
         <div style={styles.grid}>
           {/* Left card with IMG1 */}
           <div style={styles.card}>
-            <img src="/src/assets/images/IMAGES/img/IMG1.png" alt="IMG1" style={{ borderRadius: 24, marginBottom: 8 }} />
+            <img src="/src/assets/images/IMAGES/img/IMG1.png" alt="IMG1" style={{ borderRadius: 24, marginBottom: 16 }} />
             <h3 style={styles.cardTitle}>Noir Absolu</h3>
             <p style={styles.cardText}>Luxury fragrance</p>
           </div>
           {/* Center card with IMG13 */}
           <div style={styles.card}>
-            <img src="/src/assets/images/IMAGES/img/IMG13.png" alt="IMG13" style={{ borderRadius: 24, marginBottom: 8 }} />
+            <img src="/src/assets/images/IMAGES/img/IMG13.png" alt="IMG13" style={{ borderRadius: 24, marginBottom: 16 }} />
             <h3 style={styles.cardTitle}>Rose Obscure</h3>
             <p style={styles.cardText}>Luxury fragrance</p>
           </div>
           {/* Right card with IMG2 */}
           <div style={styles.card}>
-            <img src="/src/assets/images/IMAGES/img/IMG2.png" alt="IMG2" style={{ borderRadius: 24, marginBottom: 8 }} />
+            <img src="/src/assets/images/IMAGES/img/IMG2.png" alt="IMG2" style={{ borderRadius: 24, marginBottom: 16 }} />
             <h3 style={styles.cardTitle}>Ambre Nocturne</h3>
             <p style={styles.cardText}>Luxury fragrance</p>
           </div>
@@ -97,9 +122,7 @@ export default function PerfumeLanding() {
       </section>
 
       {/* FOOTER */}
-      <footer style={styles.footer}>
-        © 2026 NOIR LUXURY PARFUM
-      </footer>
+      <footer style={styles.footer}></footer>
     </div>
   );
 }
@@ -122,7 +145,7 @@ const styles = {
     textAlign: "center",
     background:
       "radial-gradient(circle at center, rgba(212,175,55,0.15), transparent 60%)",
-    padding: "12px 8px 0 8px",
+    padding: "24px 8px 0 8px",
     boxSizing: "border-box",
   },
 
@@ -138,7 +161,7 @@ const styles = {
     color: "#d4af37",
     fontSize: "clamp(32px,8vw,60px)",
     fontFamily: "'Playwrite CU Guides', cursive",
-    marginBottom: 12
+    marginBottom: 20
   },
 
   imageWrapper: {
@@ -146,14 +169,14 @@ const styles = {
     width: "100%",
     maxWidth: 320,
     height: 320,
-    marginTop: 12,
-    marginBottom: 12,
+    marginTop: 40,
+    marginBottom: 30,
     boxSizing: "border-box",
   },
 
   overlayText: {
     position: "absolute",
-      top: 20,
+      top: 40,
       left: "10%",
     right: 0,
     margin: '0 auto',
@@ -179,7 +202,7 @@ const styles = {
 
   bottomImage: {
     position: "absolute",
-    top: 60,
+    top: 80,
     left: "25%",
     width: "60%",
     borderRadius: 24,
@@ -191,7 +214,7 @@ const styles = {
   heroTitle: {
     fontSize: 'clamp(24px, 8vw, 48px)', // More mobile friendly
     letterSpacing: "0.2em",
-    marginBottom: 12,
+    marginBottom: 20,
     fontFamily: 'sans-serif',
     fontWeight: 300
   },
@@ -203,7 +226,7 @@ const styles = {
   tagline: {
     fontSize: 'clamp(14px, 3vw, 18px)',
     opacity: 0.8,
-    marginBottom: 16
+    marginBottom: 32
   },
 
   cta: {
@@ -219,7 +242,7 @@ const styles = {
   },
 
   story: {
-    padding: "0 8px 24px 8px",
+    padding: "0 8px 40px 8px",
     textAlign: "center"
   },
 
@@ -231,7 +254,7 @@ const styles = {
   sectionTitle: {
     fontSize: 'clamp(20px, 6vw, 36px)',
     fontWeight: 700,
-    marginBottom: 8,
+    marginBottom: 16,
     color: '#d4af37',
     letterSpacing: '0.1em',
   },
@@ -242,7 +265,7 @@ const styles = {
   },
 
   collection: {
-    padding: "20px 8px",
+    padding: "40px 8px",
     textAlign: "center"
   },
 
@@ -250,8 +273,8 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    gap: 8,
-    marginTop: 12,
+    gap: 16,
+    marginTop: 24,
     width: "100%",
     maxWidth: 600,
     marginLeft: "auto",
@@ -261,9 +284,9 @@ const styles = {
   card: {
     background: "#181818",
     borderRadius: 18,
-    padding: 12,
+    padding: 16,
     color: "#fff",
-    minHeight: 100,
+    minHeight: 120,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -273,7 +296,7 @@ const styles = {
   cardTitle: {
     fontSize: 'clamp(12px, 2vw, 16px)',
     fontWeight: 600,
-    margin: "6px 0 2px 0"
+    margin: "8px 0 2px 0"
   },
 
   cardText: {
@@ -286,11 +309,11 @@ const styles = {
     height: 48,
     background: "#333",
     borderRadius: 12,
-    marginBottom: 6
+    marginBottom: 8
   },
 
   campaign: {
-    padding: "20px 8px",
+    padding: "40px 8px",
     textAlign: "center"
   },
 
@@ -300,7 +323,7 @@ const styles = {
   },
 
   footer: {
-    padding: "16px 8px 8px 8px",
+    padding: "32px 8px 16px 8px",
     textAlign: "center",
     fontSize: 'clamp(12px, 3vw, 16px)',
     color: '#d4af37',
