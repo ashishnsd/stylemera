@@ -1,4 +1,4 @@
-import{j as e,r as n,C as M,U as O,l as W,W as _}from"./index-iTvAYl7t.js";import{t as H,j as G,w as U,h as V,s as J,a as K,p as Z,c as Q,b as ee,d as R,e as te}from"./Products-Z3uNyGRd.js";function se({img:u,subtitle:m,title:l,price:s}){return e.jsxs("div",{className:`\r
+import{j as e,r as n,C as M,U as O,l as W,W as _}from"./index-Ce29oqxc.js";import{t as H,j as G,w as U,h as V,s as J,a as K,p as Z,c as Q,b as ee,d as R,e as te}from"./Products-Z3uNyGRd.js";function se({img:u,subtitle:m,title:l,price:s}){return e.jsxs("div",{className:`\r
       relative \r
       min-w-full \r
       snap-start \r

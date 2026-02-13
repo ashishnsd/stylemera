@@ -1,14 +1,19 @@
 import React from "react";
+
+// Import Playwrite CU Guides font in JS (for Vite/React projects, best to add in index.html or CSS, but can be loaded here for demo)
+const playwriteFont = document && document.fonts ? document.fonts.load("1em 'Playwrite CU Guides'") : null;
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function PerfumeLanding() {
   const { scrollY } = useScroll();
 
-  // IMG22 scroll animation
-  const imageY = useTransform(scrollY, [0, 300], [0, -120]);
+  // IMG22 scroll animation (fast up, delayed down)
+  // 0-60: moves up fast, 60-120: stays, 120-500: returns slowly
+  const imageY = useTransform(scrollY, [0, 60, 120, 500], [0, -48, -48, 0]);
 
-  // moving overlay text
-  const x = useTransform(scrollY, [0, 300], [200, -200]);
+  // moving overlay text: starts off-screen right, comes in on scroll, then exits left
+  // 0: 1200px (off-screen right), 300: -1200px (off-screen left)
+  const x = useTransform(scrollY, [0, 300], [1200, -1200]);
 
   return (
     <div style={styles.page}>
@@ -56,6 +61,7 @@ export default function PerfumeLanding() {
       {/* STORY */}
       <section style={styles.story}>
         <div style={styles.storyInner}>
+          <img src="/src/assets/images/IMAGES/img/IMG7.png" alt="IMG7" style={{ display: 'block', margin: '0 auto 0px', marginTop: 0, width: 140, height: 'auto', borderRadius: 28 }} />
           <h2 style={styles.sectionTitle}>The Scent Story</h2>
           <p style={styles.storyText}>
             A whisper of midnight rose, dancing with amber shadows.
@@ -69,20 +75,24 @@ export default function PerfumeLanding() {
         <h2 style={styles.sectionTitle}>The Collection</h2>
 
         <div style={styles.grid}>
-          {[
-            "Noir Absolu",
-            "Rose Obscure",
-            "Ambre Nocturne",
-            "Velvet Oud",
-            "Iris Lunaire",
-            "Muse Divine"
-          ].map((name, i) => (
-            <div key={i} style={styles.card}>
-              <div style={styles.bottle}></div>
-              <h3 style={styles.cardTitle}>{name}</h3>
-              <p style={styles.cardText}>Luxury fragrance</p>
-            </div>
-          ))}
+          {/* Left card with IMG1 */}
+          <div style={styles.card}>
+            <img src="/src/assets/images/IMAGES/img/IMG1.png" alt="IMG1" style={{ borderRadius: 24, marginBottom: 16 }} />
+            <h3 style={styles.cardTitle}>Noir Absolu</h3>
+            <p style={styles.cardText}>Luxury fragrance</p>
+          </div>
+          {/* Center card with IMG13 */}
+          <div style={styles.card}>
+            <img src="/src/assets/images/IMAGES/img/IMG13.png" alt="IMG13" style={{ borderRadius: 24, marginBottom: 16 }} />
+            <h3 style={styles.cardTitle}>Rose Obscure</h3>
+            <p style={styles.cardText}>Luxury fragrance</p>
+          </div>
+          {/* Right card with IMG2 */}
+          <div style={styles.card}>
+            <img src="/src/assets/images/IMAGES/img/IMG2.png" alt="IMG2" style={{ borderRadius: 24, marginBottom: 16 }} />
+            <h3 style={styles.cardTitle}>Ambre Nocturne</h3>
+            <p style={styles.cardText}>Luxury fragrance</p>
+          </div>
         </div>
       </section>
 
@@ -127,7 +137,7 @@ const styles = {
   scriptText: {
     color: "#d4af37",
     fontSize: "clamp(32px,8vw,60px)",
-    fontFamily: "cursive",
+    fontFamily: "'Playwrite CU Guides', cursive",
     marginBottom: 20
   },
 
@@ -143,8 +153,8 @@ const styles = {
 
   overlayText: {
     position: "absolute",
-    top: 40,
-    left: 0,
+      top: 40,
+      left: "10%",
     right: 0,
     margin: '0 auto',
     width: "100%",
@@ -152,16 +162,16 @@ const styles = {
     textAlign: "center",
     fontWeight: 700,
     letterSpacing: "0.08em",
-    fontSize: "clamp(14px,3vw,20px)",
+      fontSize: "clamp(22px,5vw,36px)",
     textTransform: "uppercase",
-    whiteSpace: "normal",
+      whiteSpace: "nowrap",
     zIndex: 3
   },
 
   topImage: {
     position: "absolute",
     top: 0,
-    left: "20%",
+    left: "25%",
     width: "60%",
     borderRadius: 24,
     zIndex: 2
@@ -170,7 +180,7 @@ const styles = {
   bottomImage: {
     position: "absolute",
     top: 80,
-    left: "20%",
+    left: "25%",
     width: "60%",
     borderRadius: 24,
     opacity: 0.6,
@@ -209,7 +219,7 @@ const styles = {
   },
 
   story: {
-    padding: "80px 8px 40px 8px",
+    padding: "0 8px 40px 8px",
     textAlign: "center"
   },
 
@@ -237,12 +247,13 @@ const styles = {
   },
 
   grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
     gap: 16,
     marginTop: 24,
     width: "100%",
-    maxWidth: 400,
+    maxWidth: 600,
     marginLeft: "auto",
     marginRight: "auto"
   },
@@ -260,13 +271,13 @@ const styles = {
   },
 
   cardTitle: {
-    fontSize: 'clamp(16px, 4vw, 22px)',
+    fontSize: 'clamp(12px, 2vw, 16px)',
     fontWeight: 600,
-    margin: "12px 0 4px 0"
+    margin: "8px 0 2px 0"
   },
 
   cardText: {
-    fontSize: 'clamp(12px, 3vw, 16px)',
+    fontSize: 'clamp(10px, 2vw, 13px)',
     opacity: 0.8
   },
 
