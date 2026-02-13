@@ -50,8 +50,7 @@ export default function Footer() {
             src={logo}
             alt=""
             aria-hidden="true"
-            className="w-[90%] max-w-[900px] opacity-[0.18] blur-[0.5px]"
-          />
+            className="w-[90%] max-w-[900px] opacity-[0.18] blur-[0.5px]"            style={{ filter: 'brightness(0) invert(1)' }}          />
         </div>
       </div>
       <div className="w-full px-2 sm:px-4 py-8 md:py-12 lg:py-16">
@@ -66,6 +65,7 @@ export default function Footer() {
                 src={logo}
                 alt="StyleMera logo"
                 className="max-w-[60px] h-auto flex-shrink-0 transition-all duration-300 group-hover:scale-110 filter brightness-110 drop-shadow-lg"
+                style={{ filter: 'brightness(0) invert(1)' }}
               />
               <div className="flex-1">
                 <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-2 md:mb-3">

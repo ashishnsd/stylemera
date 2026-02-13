@@ -28,6 +28,7 @@ export default function HeaderMain() {
                 width="120" 
                 height="36"
                 className="h-8 md:h-9 w-auto"
+                style={{ filter: 'brightness(0) invert(1)' }}
               />
             </a>
             {/* Action Buttons */}
