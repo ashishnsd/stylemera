@@ -1,260 +1,214 @@
-import React, { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-// Load font (safe check)
-if (typeof document !== "undefined" && document.fonts) {
-  document.fonts.load("1em 'Playwrite CU Guides'");
-}
+export default function ParallaxPerfume() {
+  const containerRef = useRef(null);
 
-export default function PerfumeLanding() {
-  const { scrollY } = useScroll();
-
-  // --- SEAMLESS PARALLAX TRANSFORMS ---
-  // Text moves left to right perfectly across any screen size
-  const x = useTransform(scrollY, [0, 500], ["100vw", "-100vw"]);
-  
-  // Parallax for Hero Text (Moves up faster than user scrolls to create depth)
-  const heroTextY = useTransform(scrollY, [0, 400], [0, -80]);
-  const heroTextOpacity = useTransform(scrollY, [0, 300], [1, 0]);
-
-  // --- REFS & POSITIONS ---
-  const titleRef = useRef(null);
-  const wrapperRef = useRef(null);
-  const collectionRef = useRef(null);
-  
-  const [positions, setPositions] = useState({
-    wrapperTop: 180,
-    collectionTop: 1400,
+  const { scrollYProgress: scroll } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
   });
 
-  // Calculate positions only once on load and resize (Performance boost)
-  useEffect(() => {
-    const update = () => {
-      setPositions({
-        wrapperTop: wrapperRef.current?.getBoundingClientRect().top + window.scrollY || 180,
-        collectionTop: collectionRef.current?.getBoundingClientRect().top + window.scrollY || 1400,
-      });
-    };
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
-
-  const moveStart = 480;
-  const moveEnd = positions.collectionTop || 900;
-  const targetY = (positions.collectionTop - positions.wrapperTop) + 20;
-
-  // --- ANIMATION VALUES ---
-  const heroCollectiveY = useTransform(scrollY, [0, moveStart, moveEnd], [0, 0, targetY]);
-  const imageScale = useTransform(scrollY, [moveStart, moveEnd], [1, 0.52]);
+  // ==========================================
+  // 🔥 MASTER BOTTLE (THE MAGIC LANDING EFFECT) 🔥
+  // ==========================================
+  // X-Axis: Center -> Left -> Back to Center (for Grid)
+  const bottleX = useTransform(scroll, 
+    [0, 0.1, 0.2, 0.3, 0.38, 0.48, 0.55, 1], 
+    ["0vw", "0vw", "-25vw", "-25vw", "0vw", "0vw", "0vw", "0vw"]
+  );
   
-  // Parallax Layer 1: Bottom Image (Moves slower)
-  const bgImageY = useTransform(scrollY, [0, moveStart], [0, 60]); 
+  // Rotate: 0 -> Tilt Right (15) -> Straighten out (0) for the card
+  const bottleRotate = useTransform(scroll,
+    [0, 0.1, 0.2, 0.3, 0.38, 0.48, 0.55, 1],
+    [0, 0, 15, 15, 0, 0, 0, 0] 
+  );
+
+  // Scale: 1 -> 0.9 -> Drops to 0.35 (Fits inside the card!) -> Scales back to 1
+  const bottleScale = useTransform(scroll, 
+    [0, 0.1, 0.2, 0.3, 0.38, 0.48, 0.55, 0.6, 0.9, 1], 
+    [1, 1, 0.9, 0.9, 0.80, 0.80, 1.1, 0.85, 0.85, 0.5] 
+  );
+
+  // Y-Axis: 0 -> -8vh (Aligned with text) -> 15vh (Lands perfectly inside the middle card) -> 0vh
+  const bottleY = useTransform(scroll, 
+    [0, 0.1, 0.2, 0.3, 0.38, 0.48, 0.55, 0.6, 0.9, 1], 
+    ["0vh", "0vh", "-2vh", "-2vh", "20vh", "21vh", "0vh", "0vh", "0vh", "-10vh"] 
+  );
+
+  // ==========================================
+  // SCENE 1: WE BELIEVE
+  // ==========================================
+  const s1Y = useTransform(scroll, [0, 0.15], ["0vh", "-20vh"]);
+  const s1Scale = useTransform(scroll, [0, 0.15], [1, 1.5]);
+  const s1Opacity = useTransform(scroll, [0.05, 0.15], [1, 0]);
+  const textLeftX = useTransform(scroll, [0, 0.1], ["0%", "-50%"]);
+  const textRightX = useTransform(scroll, [0, 0.1], ["0%", "50%"]);
+
+  // ==========================================
+  // SCENE 2: CRAFTING Style | MERAS
+  // ==========================================
+  const s2Y = useTransform(scroll, [0.1, 0.2, 0.3, 0.35], ["30vh", "0vh", "0vh", "-30vh"]);
+  const s2Opacity = useTransform(scroll, [0.1, 0.18, 0.3, 0.35], [0, 1, 1, 0]);
+
+  // ==========================================
+  // SCENE 3: THE COLLECTION GRID (Modified for Landing)
+  // ==========================================
+  const s3Y = useTransform(scroll, [0.3, 0.4, 0.45, 0.5], ["50vh", "0vh", "0vh", "-50vh"]);
+  const s3Opacity = useTransform(scroll, [0.32, 0.4, 0.45, 0.5], [0, 1, 1, 0]);
   
-  // Parallax Layer 2: Top Image (Moves faster + lift effect)
-  const combined22Y = useTransform(scrollY, [0, 120, moveStart, moveEnd], [0, -48, -48, targetY]);
-  const img22Scale = useTransform(scrollY, [0, 120, moveStart, moveEnd], [1, 0.98, 0.92, 0.52]);
+  // ==========================================
+  // SCENE 4: WHY CHOOSE Style | MERA
+  // ==========================================
+  const s4Y = useTransform(scroll, [0.45, 0.55, 0.6], ["20vh", "0vh", "-20vh"]);
+  const s4Opacity = useTransform(scroll, [0.45, 0.5, 0.55, 0.6], [0, 1, 1, 0]);
+  const s4Scale = useTransform(scroll, [0.45, 0.6], [0.8, 1.2]); 
 
-  // Fades
-  const fadeOutTop = useTransform(scrollY, [150, 300], [1, 0]);
-  const fadeOutBottom = useTransform(scrollY, [150, 300], [0.6, 0]);
-  // Show IMG12 only after text is fully gone
-  const fadeInNew = useTransform(scrollY, [300, 350], [0, 1]);
+  // ==========================================
+  // SCENE 5: CIRCLES & FEATURES
+  // ==========================================
+  const s5Opacity = useTransform(scroll, [0.55, 0.6, 0.85, 0.9], [0, 1, 1, 0]);
+  const circleScale = useTransform(scroll, [0.55, 0.6], [0, 1]);
+  const circleColor = useTransform(scroll, [0.6, 0.7, 0.8], ["#6b4c8a", "#4a7c59", "#b56576"]);
 
-  // --- OPTIMIZED SCROLL TRACKING (No laggy re-renders) ---
-  const [isSticky, setIsSticky] = useState(false);
-  const [docked, setDocked] = useState(false);
-  const [pinned, setPinned] = useState(false);
-  const [stickyTopPx, setStickyTopPx] = useState(120);
+  const purityY = useTransform(scroll, [0.55, 0.6, 0.65], ["10vh", "0vh", "-10vh"]);
+  const purityOp = useTransform(scroll, [0.55, 0.6, 0.65], [0, 1, 0]);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest >= moveEnd - 8) {
-      if (!isSticky) setIsSticky(true);
+  const craftY = useTransform(scroll, [0.65, 0.7, 0.75], ["10vh", "0vh", "-10vh"]);
+  const craftOp = useTransform(scroll, [0.65, 0.7, 0.75], [0, 1, 0]);
 
-      if (collectionRef.current) {
-        const rect = collectionRef.current.getBoundingClientRect();
-        if (!docked) setStickyTopPx(Math.max(20, rect.top + 20));
+  const rarityY = useTransform(scroll, [0.75, 0.8, 0.85], ["10vh", "0vh", "-10vh"]);
+  const rarityOp = useTransform(scroll, [0.75, 0.8, 0.85], [0, 1, 0]);
 
-        const shouldPin = rect.bottom <= 140;
-        if (shouldPin && !pinned) setPinned(true);
-        else if (!shouldPin && pinned) setPinned(false);
-      }
-
-      if (!docked) {
-        window.clearTimeout(window.__dockTimeout);
-        window.__dockTimeout = window.setTimeout(() => setDocked(true), 140);
-      }
-    } else {
-      if (isSticky) setIsSticky(false);
-      if (docked) setDocked(false);
-      if (pinned) setPinned(false);
-      window.clearTimeout(window.__dockTimeout);
-    }
-  });
+  // ==========================================
+  // SCENE 6: OUTRO
+  // ==========================================
+  const s6Y = useTransform(scroll, [0.85, 0.95], ["30vh", "0vh"]);
+  const s6Opacity = useTransform(scroll, [0.85, 0.95], [0, 1]);
 
   return (
-    <div style={styles.page}>
-      {/* HERO */}
-      <section style={styles.hero}>
-        <div style={styles.heroContent}>
+    <div ref={containerRef} style={{ height: "1200vh", background: "#d1d1d1" }}>
+      
+      <div style={styles.stickyFrame}>
+        <div style={styles.cardContainer}>
           
-          {/* Parallax Script Text */}
-          <motion.div 
-            style={{ ...styles.scriptText, y: heroTextY, opacity: heroTextOpacity }}
-          >
-            Your Fragrance Your Life
+          <div style={styles.logo}>Style | MERA</div>
+
+          <motion.div style={{ ...styles.sceneWrapper, y: s1Y, scale: s1Scale, opacity: s1Opacity }}>
+            <motion.div style={{ display: "flex", width: "100%", justifyContent: "space-between", padding: "0 10%" }}>
+              <motion.h1 style={{ ...styles.massiveText, x: textLeftX }}>WE BELIEVE</motion.h1>
+              <motion.h1 style={{ ...styles.massiveText, x: textRightX }}>IN SIGNATURES</motion.h1>
+            </motion.div>
           </motion.div>
 
-          {/* Image stack */}
-          <div ref={wrapperRef} style={styles.imageWrapper}>
-            
-            {/* 1. Back image (IMG21) */}
-            <motion.img
-              src="/src/assets/images/IMAGES/img/CUTIMG/IMG21.png"
-              alt="Background scent"
-              style={isSticky ? {
-                position: 'fixed', top: stickyTopPx, left: '50%', transform: 'translateX(-140px)', width: (docked || pinned) ? 0 : 140, borderRadius: 20, zIndex: 60, opacity: (docked || pinned) ? 0 : fadeOutBottom, scale: imageScale
-              } : pinned ? { display: 'none' } : { 
-                ...styles.bottomImage, y: bgImageY, scale: imageScale, zIndex: 4, opacity: fadeOutBottom 
-              }}
-            />
-
-            {/* Moving overlay text */}
-            <motion.div style={{ ...styles.overlayText, x }}>
-              A SCENT THAT LINGERS.
-            </motion.div>
-
-            {/* 2. Top floating image (IMG22) */}
-            <motion.img
-              src="/src/assets/images/IMAGES/img/CUTIMG/IMG22.png"
-              alt="Floating scent"
-              style={isSticky ? {
-                position: 'fixed', top: stickyTopPx, left: '50%', transform: 'translateX(20px)', width: (docked || pinned) ? 0 : 96, borderRadius: 20, zIndex: 61, opacity: (docked || pinned) ? 0 : fadeOutTop, scale: img22Scale
-              } : pinned ? { display: 'none' } : { 
-                ...styles.topImage, y: combined22Y, scale: img22Scale, zIndex: 5, opacity: fadeOutTop 
-              }}
-            />
-
-            {/* 3. NEW REPLACEMENT IMAGE (IMG12) - Only show after text is gone */}
-            <motion.img
-              src="/src/assets/images/IMAGES/img/IMG12.png"
-              alt="New Scent"
-              style={isSticky ? {
-                position: 'fixed', top: stickyTopPx, left: '50%', transform: 'translateX(-50%)', width: (docked || pinned) ? 0 : 140, borderRadius: 20, zIndex: 65, opacity: (docked || pinned) ? 0 : fadeInNew, scale: imageScale, display: undefined
-              } : pinned ? { display: 'none' } : { 
-                ...styles.topImage, left: '20%', y: combined22Y, scale: img22Scale, zIndex: 62, opacity: fadeInNew, display: undefined
-              }}
-              // Hide IMG12 completely until text is gone
-              initial={{ opacity: 0, display: 'none' }}
-              animate={scrollY && scrollY.get() < 300 ? { opacity: 0, display: 'none' } : { opacity: 1, display: undefined }}
-            />
-          </div>
-
-          {/* Parallax Main Title & Subtitle */}
-          <motion.div style={{ y: heroTextY, opacity: heroTextOpacity }}>
-            <h1 ref={titleRef} style={styles.heroTitle}>
-              Premium <span style={styles.gold}>Scent</span>
-            </h1>
-            <p style={styles.tagline}>
-              Crafted for elegance. Designed for memory.
-            </p>
-            <button style={styles.cta}>Explore Collection</button>
+          <motion.div style={{ ...styles.sceneWrapper, y: s2Y, opacity: s2Opacity }}>
+            <div style={{ position: "absolute", right: "5%", width: "40%", maxWidth: "400px" }}>
+              <h2 style={styles.heading}>CRAFTED IN SILENCE</h2>
+              <p style={styles.paragraph}>
+                Every bottle begins as a whisper of rare oils, aged to perfection and blended with precision.
+              </p>
+            </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* STORY */}
-      <section style={styles.story}>
-        <div style={styles.storyInner}>
-          <h2 style={styles.sectionTitle}>The Scent Story</h2>
-          <p style={styles.storyText}>
-            A whisper of midnight rose, dancing with amber shadows.
-            Each note unfolds like a secret crafted in Grasse.
-          </p>
-        </div>
-      </section>
+          {/* 🔥 MODIFIED SCENE 3: THE COLLECTION GRID 🔥 */}
+          <motion.div style={{ ...styles.sceneWrapper, y: s3Y, opacity: s3Opacity, background: "#0a0a0a", zIndex: 5 }}>
+            <div style={{ textAlign: "center", width: "100%" }}>
+              <p style={{ color: "#d4af37", marginBottom: "10px", letterSpacing: "2px" }}>Our Signature Collection</p>
+              <h2 style={{ ...styles.heading, marginBottom: "40px" }}>CHOOSE YOUR ESSENCE</h2>
+              <div style={styles.gridRow}>
+                
+                {/* Left Card */}
+                <div style={styles.gridCard}>
+                  <img src="/src/assets/images/IMAGES/img/IMG1.png" alt="Scent 1" style={styles.gridImage} />
+                  <button style={styles.btn}>Add to Cart</button>
+                </div>
 
-      {/* COLLECTION */}
-      <section ref={collectionRef} style={styles.collection}>
-        <h2 style={styles.sectionTitle}>The Collection</h2>
-        <div style={styles.grid}>
-          {/* Card 1 */}
-          <div style={styles.card}>
-            <div style={styles.imageContainer}>
-              <img src="/src/assets/images/IMAGES/img/IMG1.png" alt="Noir Absolu" style={styles.cardImg} />
+                {/* Center Card - EMPTY PLACEHOLDER for the Hero Bottle to land in */}
+                <div style={styles.gridCard}>
+                  <img src="/src/assets/images/IMAGES/img/IMG2.png" alt="Scent 3" style={styles.gridImage} />
+                  <button style={styles.btnGreen}>Add to Cart</button>
+                </div>
+
+                {/* Right Card */}
+                <div style={styles.gridCard}>
+                  
+                  <div style={styles.emptyPlaceholder}></div>
+                  <button style={styles.btn}>Add to Cart</button>
+                </div>
+
+              </div>
             </div>
-            <h3 style={styles.cardTitle}>Noir Absolu</h3>
-            <p style={styles.cardText}>Luxury fragrance</p>
-          </div>
-          
-          {/* Center card — IMG12 appears when hero docks */}
-          <div style={styles.card}>
-            <motion.div style={styles.imageContainer}>
-              <motion.img
-                src="/src/assets/images/IMAGES/img/IMG12.png"
-                alt="Rose Obscure (docked)"
-                initial={{ opacity: 0, scale: 1.18, y: -80 }}
-                animate={docked && !pinned ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 1.18, y: -80 }}
-                transition={{ duration: 0.38, ease: 'easeOut' }}
-                style={styles.cardImg}
-              />
-            </motion.div>
+          </motion.div>
 
-            {pinned && (
-              <motion.img
-                src="/src/assets/images/IMAGES/img/IMG12.png"
-                alt="Rose Obscure (pinned)"
-                initial={{ opacity: 0, top: -160 }}
-                animate={{ opacity: 1, top: 12 }}
-                transition={{ duration: 0.36, ease: 'easeOut' }}
-                style={styles.pinnedImg}
-              />
-            )}
-            <h3 style={styles.cardTitle}>Rose Obscure</h3>
-            <p style={styles.cardText}>Luxury fragrance</p>
-          </div>
-          
-          {/* Card 3 */}
-          <div style={styles.card}>
-            <div style={styles.imageContainer}>
-              <img src="/src/assets/images/IMAGES/img/IMG2.png" alt="Ambre Nocturne" style={styles.cardImg} />
+          <motion.div style={{ ...styles.sceneWrapper, y: s4Y, opacity: s4Opacity, scale: s4Scale, zIndex: 1 }}>
+            <h1 style={styles.bgHugeText}>WHY<br/>CHOOSE<br/>STYLE | MERA</h1>
+          </motion.div>
+
+          <motion.div style={{ ...styles.sceneWrapper, opacity: s5Opacity, zIndex: 2 }}>
+            <motion.div 
+              style={{
+                width: "clamp(250px, 40vw, 400px)", height: "clamp(250px, 40vw, 400px)",
+                borderRadius: "50%", background: circleColor, scale: circleScale,
+                position: "absolute", left: "50%", top: "50%", x: "-50%", y: "-50%"
+              }}
+            />
+            <motion.h2 style={{ ...styles.featureWord, left: "10%", y: purityY, opacity: purityOp }}>DISTINCTION</motion.h2>
+            <motion.h2 style={{ ...styles.featureWord, right: "10%", y: craftY, opacity: craftOp }}>MASTERY</motion.h2>
+            <motion.h2 style={{ ...styles.featureWord, left: "10%", y: rarityY, opacity: rarityOp }}>LEGACY</motion.h2>
+          </motion.div>
+
+          <motion.div style={{ ...styles.sceneWrapper, y: s6Y, opacity: s6Opacity, zIndex: 20 }}>
+            <div style={{ textAlign: "center", width: "100%", marginTop: "20vh" }}>
+              <h2 style={{ ...styles.heading, fontSize: "clamp(30px, 5vw, 60px)" }}>EMBRACE YOUR<br/>SIGNATURE</h2>
+              <div style={styles.footerLine}>
+                <span>Style | MERA</span>
+                <span style={{ fontSize: "12px", color: "#666" }}>© 2026 Style | MERA </span>
+              </div>
             </div>
-            <h3 style={styles.cardTitle}>Ambre Nocturne</h3>
-            <p style={styles.cardText}>Luxury fragrance</p>
-          </div>
-        </div>
-      </section>
+          </motion.div>
 
-      <footer style={styles.footer}></footer>
+          {/* 🔥 THE HERO BOTTLE - NEVER HIDES, IT MORPHS! 🔥 */}
+          <motion.img
+            src="/src/assets/images/IMAGES/img/IMG12.png" 
+            alt="Hero Bottle"
+            style={{
+              position: "absolute",
+              width: "clamp(120px, 20vw, 250px)",
+              x: bottleX,
+              y: bottleY,        /* Moves to 15vh to land in card */
+              scale: bottleScale, /* Shrinks to 0.35 to fit card */
+              rotate: bottleRotate,
+              zIndex: 10,
+              filter: "drop-shadow(0 30px 40px rgba(0,0,0,0.8))",
+              transformOrigin: "bottom center"
+            }}
+          />
+
+        </div>
+      </div>
     </div>
   );
 }
 
-// Extracted a few inline styles for cleanliness
 const styles = {
-  page: { background: "#0a0a0a", color: "#f8f8f8", fontFamily: "sans-serif", minHeight: "100vh", padding: 0, overflowX: "hidden" },
-  hero: { minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", background: "radial-gradient(circle at center, rgba(212,175,55,0.15), transparent 60%)", padding: "24px 8px 0 8px", boxSizing: "border-box" },
-  heroContent: { maxWidth: 400, width: "100%", margin: "0 auto", padding: "0 8px", boxSizing: "border-box" },
-  scriptText: { color: "#d4af37", fontSize: "clamp(32px,8vw,60px)", fontFamily: "'Playwrite CU Guides', cursive", marginBottom: 20 },
-  imageWrapper: { position: "relative", width: "100%", maxWidth: 320, height: 320, marginTop: 40, marginBottom: 30, boxSizing: "border-box" },
-  overlayText: { position: "absolute", top: 40, left: 0, margin: '0 auto', textAlign: "center", fontWeight: 700, letterSpacing: "0.08em", fontSize: "clamp(22px,5vw,36px)", textTransform: "uppercase", whiteSpace: "nowrap", zIndex: 3 },
-  topImage: { position: "absolute", top: 0, left: "25%", width: "60%", borderRadius: 24, zIndex: 2 },
-  bottomImage: { position: "absolute", top: 80, left: "25%", width: "60%", borderRadius: 24, opacity: 0.6, transform: "scale(0.92)", zIndex: 1 },
-  heroTitle: { fontSize: 'clamp(24px, 8vw, 48px)', letterSpacing: "0.2em", marginBottom: 20, fontFamily: 'sans-serif', fontWeight: 300 },
-  gold: { color: "#d4af37" },
-  tagline: { fontSize: 'clamp(14px, 3vw, 18px)', opacity: 0.8, marginBottom: 32 },
-  cta: { padding: "12px 24px", background: "transparent", border: "1px solid #d4af37", color: "#d4af37", borderRadius: 40, cursor: "pointer", letterSpacing: "0.15em", transition: "0.3s", fontSize: 'clamp(14px, 3vw, 18px)' },
-  story: { padding: "0 8px 40px 8px", textAlign: "center", position: "relative", zIndex: 10 },
-  storyInner: { maxWidth: 400, margin: "auto" },
-  sectionTitle: { fontSize: 'clamp(20px, 6vw, 36px)', fontWeight: 700, marginBottom: 16, color: '#d4af37', letterSpacing: '0.1em' },
-  storyText: { opacity: 0.75, lineHeight: 1.8 },
-  collection: { padding: "40px 8px", textAlign: "center", position: "relative", zIndex: 10 },
-  grid: { display: "flex", flexDirection: "row", justifyContent: "center", gap: 16, marginTop: 24, width: "100%", maxWidth: 600, marginLeft: "auto", marginRight: "auto" },
-  card: { background: "#181818", borderRadius: 18, padding: 16, color: "#fff", minHeight: 220, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" },
-  imageContainer: { width: '100%', height: 140, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16, overflow: 'hidden' },
-  cardImg: { width: 140, height: 140, objectFit: 'cover', borderRadius: 20, boxShadow: '0 8px 24px rgba(0,0,0,0.45)' },
-  pinnedImg: { position: 'fixed', left: '50%', transform: 'translateX(-50%)', width: 140, maxWidth: '36vw', height: 140, borderRadius: 20, objectFit: 'cover', zIndex: 2200, boxShadow: '0 12px 32px rgba(0,0,0,0.55)' },
-  cardTitle: { fontSize: 'clamp(12px, 2vw, 16px)', fontWeight: 600, margin: "8px 0 2px 0" },
-  cardText: { fontSize: 'clamp(10px, 2vw, 13px)', opacity: 0.8 },
-  footer: { padding: "32px 8px 16px 8px", textAlign: "center", fontSize: 'clamp(12px, 3vw, 16px)', color: '#d4af37', background: 'transparent' }
+  stickyFrame: { position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" },
+  cardContainer: { position: "relative", width: "95vw", maxWidth: "1200px", height: "90vh", background: "#050505", borderRadius: "30px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", boxShadow: "0 25px 60px rgba(0,0,0,0.4)" },
+  sceneWrapper: { position: "absolute", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" },
+  logo: { position: "absolute", top: "30px", width: "100%", textAlign: "center", color: "#fff", fontSize: "16px", letterSpacing: "0.2em", fontWeight: "bold", zIndex: 50 },
+  massiveText: { color: "#fff", fontSize: "clamp(30px, 6vw, 80px)", fontWeight: "300", letterSpacing: "0.1em", whiteSpace: "nowrap" },
+  heading: { color: "#fff", fontSize: "clamp(24px, 4vw, 48px)", fontWeight: "600", letterSpacing: "0.1em", marginBottom: "15px" },
+  paragraph: { color: "#aaa", fontSize: "clamp(14px, 1.5vw, 18px)", lineHeight: "1.6" },
+  bgHugeText: { color: "rgba(255,255,255,0.04)", fontSize: "clamp(60px, 15vw, 180px)", fontWeight: "900", lineHeight: "0.9", letterSpacing: "-0.02em", textAlign: "center" },
+  featureWord: { position: "absolute", color: "#fff", fontSize: "clamp(40px, 8vw, 90px)", fontWeight: "700", letterSpacing: "0.1em", zIndex: 5 },
+  gridRow: { display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap", zIndex: 6 },
+  gridCard: { background: "#111", padding: "20px", borderRadius: "20px", display: "flex", flexDirection: "column", width: "clamp(150px, 25%, 300px)", boxShadow: "0 10px 30px rgba(0,0,0,0.5)", position: "relative" },
+  gridImage: { width: "100%", height: "200px", objectFit: "contain", marginBottom: "20px" },
+  emptyPlaceholder: { 
+    width: "100%", 
+    minHeight: "180px", 
+    marginBottom: "20px" 
+  }, /* THIS IS WHERE BOTTLE LANDS */
+  btn: { background: "#333", color: "#fff", border: "none", padding: "12px", borderRadius: "30px", fontWeight: "bold", cursor: "pointer", width: "100%" },
+  btnGreen: { background: "#4a7c59", color: "#fff", border: "none", padding: "12px", borderRadius: "30px", fontWeight: "bold", cursor: "pointer", width: "100%" },
+  footerLine: { display: "flex", justifyContent: "space-between", width: "80%", margin: "80px auto 0", paddingTop: "20px", borderTop: "1px solid #333", color: "#fff", fontSize: "14px" }
 };
