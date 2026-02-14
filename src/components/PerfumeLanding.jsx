@@ -185,13 +185,13 @@ export default function ParallaxPerfume() {
               <div style={styles.gridRow}>
                 {/* Left Product Card */}
                 <div style={styles.gridCard}>
-                  <img src="/src/assets/images/IMAGES/img/IMG1.png" alt="Scent 1" style={styles.gridImage} />
+                  <img src="/perfume-landing/products/IMG1.png" alt="Scent 1" style={styles.gridImage} />
                   <button style={styles.btn}>Add to Cart</button>
                 </div>
 
                 {/* Center Product Card (Different Button Color) */}
                 <div style={styles.gridCard}>
-                  <img src="/src/assets/images/IMAGES/img/IMG2.png" alt="Scent 3" style={styles.gridImage} />
+                  <img src="/perfume-landing/products/IMG2.png" alt="Scent 3" style={styles.gridImage} />
                   <button style={styles.btnGreen}>Add to Cart</button>
                 </div>
 
@@ -239,7 +239,7 @@ export default function ParallaxPerfume() {
               NOTE: Ye image hamesha upar (zIndex:10) rehti hai aur hide nahi hoti, sirf move/scale hoti hai
               ========================================== */}
           <motion.img
-            src="/src/assets/images/IMAGES/img/IMG12.png" 
+            src="/perfume-landing/hero/IMG12.png" 
             alt="Hero Bottle"
             style={{
               position: "absolute",
