@@ -13,7 +13,8 @@ export default function MainLayout() {
   return (
     <div className={`min-h-screen flex flex-col ${isPerfumeLanding ? '' : 'bg-gray-50'}`} style={isPerfumeLanding ? { background: '#0a0a0a', color: '#f8f8f8' } : undefined}>
       <Overlay />
-      <Modal />
+      {/* Modal should not open on PerfumeLanding page */}
+      {!isPerfumeLanding && <Modal />}
       {/* <NotificationToast /> */}
       <CartDrawer />
       <Header />
